@@ -21,8 +21,6 @@
 
     </head>
     <body class="antialiased">
-        <div id="app"></div>
-        <script defer src="{{asset('js/app.js')}}"></script>
-
+        <div id="root"></div>
     </body>
 </html>

@@ -1,9 +1,13 @@
-import './bootstrap';
-import '../css/app.css'
-
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Example from "./components/Example";
+import RouterList from "./RouterList";
+import('./bootstrap');
 
-ReactDOM.createRoot(document.getElementById('app')).render(
-    <Example />
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <>
+        <RouterList/>
+    </>
 );
+
