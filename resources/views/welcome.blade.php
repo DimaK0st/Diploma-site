@@ -8,13 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link href="{{asset('js/app.css')}}" rel="stylesheet" />
-
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
+        <link href="{{asset('js/app.css')}}" rel="stylesheet"/>
+        <link href="{{asset('js/reset.css')}}" rel="stylesheet"/>
 
         @viteReactRefresh
         @vite('resources/js/app.jsx')

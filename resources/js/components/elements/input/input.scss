@@ -1,0 +1,24 @@
+.field{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    width: 100%;
+
+    &-label{
+        text-align: center;
+        flex: 0 0 100px;
+    }
+
+
+    &-input{
+        text-align: center;
+        width: 100%;
+        border: #a1a1a1 1px solid;
+        border-radius: 5px;
+        max-width: 260px;
+    }
+
+    .half{
+    }
+
+}

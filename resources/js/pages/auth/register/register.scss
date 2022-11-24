@@ -1,0 +1,46 @@
+.register {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    max-width: 800px;
+    padding: 20px;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    border-radius: 5px;
+
+    &-title {
+        font-size: 30px;
+        text-align: center;
+        margin: auto auto 20px;
+
+    }
+
+    &-fields {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        &-pair{
+            width: 100%;
+            display: flex;
+        }
+    }
+
+    &-button{
+        color: #000000;
+        outline: 0;
+        margin: 20px auto auto;
+
+        border: 2px solid #467fef;
+        transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 40px 40px #467fef inset;
+        }
+    }
+}
