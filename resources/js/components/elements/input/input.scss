@@ -22,3 +22,11 @@
     }
 
 }
+.error{
+    & > span{
+        color: red;
+    }
+    & > input {
+        border: red 1px solid;
+    }
+}
