@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
+
+    Route::get('/groupList', function (Request $request) {
+        return json_encode([['title' => 'asd2fasdf','label'=>'asda2sd'],['title' => 'a2sdfa3sdf','label'=>'asd4asd'],['title' => 'asdfas5df','label'=>'asda6sd'],['title' => 'asdfasd7f','label'=>'a8sdasd'],]);
+    });
 });

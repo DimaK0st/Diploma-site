@@ -20,6 +20,7 @@
     "dependencies": {
         "formik": "^2.2.9",
         "react-router-dom": "^6.4.5",
+        "react-select": "^5.7.0",
         "yup": "^0.32.11"
     }
 }
