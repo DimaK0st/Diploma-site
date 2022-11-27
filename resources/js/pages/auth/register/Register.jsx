@@ -1,17 +1,34 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './register.scss'
 import Input from "../../../components/elements/input/Input";
 import {useAuthService} from "../../../services/AuthService";
-import {Formik, Field, Form} from "formik";
+import {Formik, Form, Field} from "formik";
 import * as yup from 'yup'
+import MultiSelect from "../../../components/elements/MultiSelect";
 
 function Register(props) {
 
     const authService = useAuthService()
+    const [options, setOptions] = useState(    [
+        { value: 'one', label: 'One' },
+        { value: 'two', label: 'Two' },
+        { value: 'three', label: 'Three' },
+    ])
+
+    useEffect(()=>{
+        authService.getOptions().then((data)=>setOptions(data));
+    }, [])
+
+    useEffect((options)=>{
+        console.log(options)}, [options])
+
+    console.log('huila', options)
 
     const onSubmit = (event) => {
         event.preventDefault();
     }
+
+
 
     const validationsSchema = yup.object().shape({
         lastname: yup.string().typeError('Повинно бути рядком').required('Обов\'язково'),
@@ -54,6 +71,14 @@ function Register(props) {
                     </div>
 
                     <Input label={'Група'} className={' '} type={'text'} name={'text'} placeholder={'Група'}/>
+                    <Field
+                        name="singleSelectCustom"
+                        id="singleSelectCustom"
+                        placeholder="Single Select"
+                        isMulti={false}
+                        component={MultiSelect}
+                        options={options}
+                    />
 
                     <button type={"submit"} className={'button register-button'}>Зареєструватись</button>
 
