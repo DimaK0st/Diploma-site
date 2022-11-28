@@ -35,8 +35,10 @@ function Register(props) {
         firstname: yup.string().typeError('Повинно бути рядком').required('Обов\'язково'),
         patronymic: yup.string().typeError('Повинно бути рядком').required('Обов\'язково'),
         email: yup.string().email('Введіть корректный email').required('Обов\'язково'),
-        password: yup.string().typeError('Повинно бути рядком').required('Обов\'язково'),
-        confirmPassword: yup.string().oneOf([yup.ref('password')], 'Паролі не збігаються').required('Обов\'язково'),
+        password: yup.string().typeError('Повинно бути рядком').required('Обов\'язково')
+            .min(8, "Повинно бути довше 8 символів"),
+        confirmPassword: yup.string().oneOf([yup.ref('password')], 'Паролі не збігаються').required('Обов\'язково')
+            .min(8, "Повинно бути довше 8 символів"),
     })
 
     return (
