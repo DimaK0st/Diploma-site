@@ -5,6 +5,7 @@ import {useAuthService} from "../../../services/AuthService";
 import {Formik, Form, Field} from "formik";
 import * as yup from 'yup'
 import MultiSelect from "../../../components/elements/MultiSelect";
+import {value} from "lodash/seq";
 
 function Register(props) {
 
@@ -24,8 +25,9 @@ function Register(props) {
 
     console.log('huila', options)
 
-    const onSubmit = (event) => {
-        event.preventDefault();
+    const onSubmit = (values) => {
+
+        authService.register(values)
     }
 
 
@@ -46,8 +48,7 @@ function Register(props) {
             validationSchema={validationsSchema}
             initialValues={{lastname: "", firstname: "", patronymic: "", email: "", password: "", confirmPassword: "", text:""}}
             onSubmit={async (values) => {
-                await new Promise((resolve) => setTimeout(resolve, 500));
-                alert(JSON.stringify(values, null, 2));
+                onSubmit(values)
             }}
             validateOnChange={false}
             validateOnBlur={false}
@@ -73,14 +74,14 @@ function Register(props) {
                     </div>
 
                     <Input label={'Група'} className={' '} type={'text'} name={'text'} placeholder={'Група'}/>
-                    <Field
-                        name="singleSelectCustom"
-                        id="singleSelectCustom"
-                        placeholder="Single Select"
-                        isMulti={false}
-                        component={MultiSelect}
-                        options={options}
-                    />
+                    {/*<Field*/}
+                    {/*    name="singleSelectCustom"*/}
+                    {/*    id="singleSelectCustom"*/}
+                    {/*    placeholder="Single Select"*/}
+                    {/*    isMulti={false}*/}
+                    {/*    component={MultiSelect}*/}
+                    {/*    options={options}*/}
+                    {/*/>*/}
 
                     <button type={"submit"} className={'button register-button'}>Зареєструватись</button>
 

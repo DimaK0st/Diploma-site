@@ -4,13 +4,17 @@ import axios from 'axios';
 export const useAuthService = () => {
 
 
-    const register = () => {
-        return axios.post(_apiBase + 'register', {}, {
+    const register = (data) => {
+        console.log('1')
+        return axios.post(_apiBase + 'register', data, {
             headers: {
                 ...postRequest.headers
             }
         }).then(res => {
+            console.log('2')
+
             console.log(res)
+            return res.data
         })
     }
 
@@ -34,5 +38,5 @@ export const useAuthService = () => {
             });
     }
 
-    return {getOptions, }
+    return {getOptions, register, login}
 }
