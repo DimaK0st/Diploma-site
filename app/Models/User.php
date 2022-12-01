@@ -43,4 +43,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function groups(){
+        return $this->hasOne(Group::class , 'id','group_id' );
+    }
+
+    public function roles(){
+        return $this->hasOne(Role::class, 'id','role_id');
+    }
 }
