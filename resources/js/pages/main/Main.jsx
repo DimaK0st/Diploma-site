@@ -1,8 +1,20 @@
 import React from 'react';
+import './main.scss'
 
 function Main(props) {
     return (
-        <div>Start SITE :D</div>
+        <div className={'main'}>
+            Start SITE :D
+        <div className={'main-left'}>
+
+
+        </div>
+        <div className={'main-center'}>
+
+
+        </div>
+
+        </div>
     );
 }
 

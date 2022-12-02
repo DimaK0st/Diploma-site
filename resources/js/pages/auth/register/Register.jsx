@@ -10,7 +10,8 @@ import {value} from "lodash/seq";
 function Register(props) {
 
     const authService = useAuthService()
-    const [options, setOptions] = useState(    [
+    const [error, setError] = useState([])
+        const [options, setOptions] = useState(    [
         { value: 'one', label: 'One' },
         { value: 'two', label: 'Two' },
         { value: 'three', label: 'Three' },
@@ -27,7 +28,7 @@ function Register(props) {
 
     const onSubmit = (values) => {
 
-        authService.register(values)
+        authService.register(values,setError)
     }
 
 
@@ -57,6 +58,10 @@ function Register(props) {
                 <Form className={'register'}>
 
                     <span className={'register-title'}>Реєстрація</span>
+                    {
+                        error.map((item)=> <span key={item} className={'register-error'}>{item}</span>)
+                    }
+                    <span className={'register-error'}>{error.message} asdasasdas</span>
 
                     <div className={'register-fields'}>
                         <Input label={'Прізвище'} className={'half'} type={'text'} name={'lastname'}

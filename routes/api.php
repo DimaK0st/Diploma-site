@@ -26,6 +26,13 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
         return json_encode([['title' => 'asd2fasdf','label'=>'asda2sd'],['title' => 'a2sdfa3sdf','label'=>'asd4asd'],['title' => 'asdfas5df','label'=>'asda6sd'],['title' => 'asdfasd7f','label'=>'a8sdasd'],]);
     });
 
+    Route::get('/user_courses',  function (Request $request) {
+        return json_encode([['title' => 'asd2fasdf','label'=>'asda2sd'],['title' => 'a2sdfa3sdf','label'=>'asd4asd'],['title' => 'asdfas5df','label'=>'asda6sd'],['title' => 'asdfasd7f','label'=>'a8sdasd'],]);
+
+
+    });
+
+
     Route::get('/schedule/{group}', [ScheduleController::class,'showSchedule'])->name('');
 
     Route::get('/schedule/data', [ScheduleController::class,'getScheduleData'])->name('');

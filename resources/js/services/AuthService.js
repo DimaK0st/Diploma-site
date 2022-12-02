@@ -4,7 +4,7 @@ import axios from 'axios';
 export const useAuthService = () => {
 
 
-    const register = (data) => {
+    const register = (data, setError) => {
         console.log('1')
         return axios.post(_apiBase + 'register', data, {
             headers: {
@@ -12,9 +12,24 @@ export const useAuthService = () => {
             }
         }).then(res => {
             console.log('2')
+            setError([])
 
-            console.log(res)
             return res.data
+
+        }).catch(function (error) {
+            console.log('error',error);
+            console.log('error.response.data.errors',error.response.data.errors);
+            let errors = error.response.data.errors
+            let res = []
+            for (let key in errors) {
+                if(errors.hasOwnProperty(key)){
+                    console.log(`${key} : ${errors[key]}`)
+                    res.push(`${key}: ${errors[key]}`)
+                }
+            }
+
+            setError(res)
+            console.log('res',res);
         })
     }
 
@@ -23,7 +38,7 @@ export const useAuthService = () => {
     }
 
 
-    const getOptions = (input) => {
+    const getOptions = (input, setError) => {
 
         return axios.get('http://127.0.0.1:8000/api/v1/groupList')
             .then(function (response) {
@@ -34,7 +49,8 @@ export const useAuthService = () => {
                 return options;
             })
             .catch(function (error) {
-                console.log(error);
+
+                console.log('error',error);
             });
     }
 
