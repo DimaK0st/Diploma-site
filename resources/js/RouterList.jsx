@@ -6,12 +6,14 @@ import Footer from "./components/footer/Footer";
 import Main from "./pages/main/Main";
 import Register from "./pages/auth/register/Register";
 import Login from "./pages/auth/login/Login";
+import Schedule from "./pages/schedule/Schedule";
 
 function RouterList(props){
     return <Router >
         <Header/>
         <Routes>
             {/*<Route path="/phone/:number" element={<Home/>}/>*/}
+            <Route path="/" element={<Schedule />} />
             <Route path="/" element={<Main />} />
             <Route path="/" element={<Login />} />
             <Route path="/" element={<Register />} />

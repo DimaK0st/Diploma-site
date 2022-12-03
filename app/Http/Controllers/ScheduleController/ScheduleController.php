@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ScheduleController;
 
+use App\Http\Requests\Schedule\AddScheduleRequest;
 use App\Http\Requests\Schedule\DeleteScheduleRequest;
 use App\Models\Day;
 use App\Models\Evaluation;
@@ -32,24 +33,28 @@ class ScheduleController extends BaseController
 
         $list2 = Schedule::query()->with(['subject', 'group', 'day', 'teacher', 'form', 'evaluation'])->orderBy('day_id')->get();
 
-        dd($list2->toArray());
-        return (json_encode($listSchedule));
+        $collection = collect($list2->toArray());
+        $grouped = $collection->sortBy('form')->groupBy(['day_id','subject_num']);
+        $grouped ['days_list'] = Day::all();
+
+        //        dd($list2->toArray());
+        return (json_encode($grouped));
     }
 
     public function getScheduleData()
     {
-        $listSchedule = Schedule::with(['day', 'teacher', 'form', 'subject', 'evaluation', 'group'])->get();
-        $listGroups = Group::all();
-        $listDays = Day::all();
-        $listTeachers = Teacher::all();
-        $listForms = Form::all();
-        $listSubjects = Subject::all();
-        $listEvalueations = Evaluation::all();
 
-
+        return [
+            'groups' => Group::all(),
+            'days' => Day::all(),
+            'teachers' => Teacher::all(),
+            'forms' => Form::all(),
+            'subjects' => Subject::all(),
+            'evaluation' => Evaluation::all(),
+        ];
     }
 
-    public function addSchedule(DeleteScheduleRequest $request)
+    public function addSchedule(AddScheduleRequest $request)
     {
         $schedule = new Schedule();
         $schedule->course = $request->getCourse();

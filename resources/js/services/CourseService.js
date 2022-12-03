@@ -9,7 +9,6 @@ export const useCourseService = (state, setState) => {
 
 
         return axios.get(_apiBase + 'user_course').then(res => {
-            console.log('2')
             varSetState(res.data)
             return res.data
 
