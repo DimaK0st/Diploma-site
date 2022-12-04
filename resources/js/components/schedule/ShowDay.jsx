@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 
 function ShowDay(props) {
     const {name, data} = props
-
     const [lessons, setLessons] = useState()
+    const emptyRow = '---------'
 
-    console.log('name', name)
     let day = []
     let lesson = []
 
@@ -13,90 +12,54 @@ function ShowDay(props) {
         day.push(<><a>{name[i]}</a><br></br></>)
     }
 
-    // for (let i = 0; i < name; i++) {
-    //     day.push(<><a>name[i]</a><br></>)
-    //         }
-    if (data) {
+    const oneLesson = (inc, data, type) => {
 
+        return (
+            <tr>
+                {type === 2 ? '' : <th rowSpan={type === 3 || type === null ? 1 : 2} className="table-num">{inc}</th>}
+                <th className="table-num">{data?.form?.name ?? emptyRow}</th>
+                <th className="table-subject">{data?.subject?.name?? emptyRow}</th>
+                <th className="table-teacher">{data?.teacher?.surname??emptyRow}</th>
+                {
+                    data?.id ?
+                        <>
+                            <th className="table-edit">{data.id}</th>
+                            <th className="table-delete">{data.id}</th>
+                        </> :
+                        <th colSpan="2">{emptyRow}</th>
+                }
+            </tr>
+        )
+    }
+
+    if (data) {
         for (let i = 1; i < 9; i++) {
-            console.log(data)
             if (data[i]) {
-                console.log(']]]]]]]]]]]]]]]]data[i].0', data[i])
-                console.log(']]]]]]]]]]]]]]]]data[i].lenght', data[i].length)
                 if (data[i].length === 2) {
                     lesson.push(
                         <>
-                            <tr>
-                                <th rowSpan="2" className="table-num">{i}</th>
-                                <th className="table-num">{data[i][0].form.name}</th>
-                                <th className="table-subject">{data[i][0].subject.name}</th>
-                                <th className="table-teacher">{data[i][0].teacher.surname}</th>
-                                <th className="table-edit">Редактировать</th>
-                                <th className="table-delete">Удалить</th>
-                            </tr>
-                            <tr>
-                                <th className="table-num">{data[i][1].form.name}</th>
-                                <th className="table-subject">{data[i][1].subject.name}</th>
-                                <th className="table-teacher">{data[i][1].teacher.surname}</th>
-                                <th className="table-edit">Редактировать</th>
-                                <th className="table-delete">Удалить</th>
-                            </tr>
+                            {oneLesson(i,data[i][0],1)}
+                            {oneLesson(i, data[i][1],2)}
                         </>)
                 } else if (data[i][0].form.id === 1) {
                     lesson.push(
                         <>
-                            <tr>
-                                <th rowSpan="2" className="table-num">{i}</th>
-                                <th className="table-num">{data[i][0].form.name}</th>
-                                <th className="table-subject">{data[i][0].subject.name}</th>
-                                <th className="table-teacher">{data[i][0].teacher.surname}</th>
-                                <th className="table-edit">Редактировать</th>
-                                <th className="table-delete">Удалить</th>
-                            </tr>
-                            <tr>
-                                <th className="table-num">-------------------</th>
-                                <th className="table-subject">----------------</th>
-                                <th className="table-teacher">-------------------</th>
-                                <th className="table-edit">Редактировать</th>
-                                <th className="table-delete">Удалить</th>
-                            </tr>
+                            {oneLesson(i,data[i][0],1)}
+                            {oneLesson(i, null,2)}
                         </>)
-                }
-                else if (data[i][0].form.id === 1) {
+                } else if (data[i][0].form.id === 2) {
                     lesson.push(
                         <>
-                            <tr>
-                                <th rowSpan="2" className="table-num">{i}</th>
-                                <th className="table-num">------------------</th>
-                                <th className="table-subject">---------------</th>
-                                <th className="table-teacher">---------------------</th>
-                                <th className="table-edit">Редактировать</th>
-                                <th className="table-delete">Удалить</th>
-                            </tr>
-                            <tr>
-                                <th className="table-num">{data[i][1].form.name}</th>
-                                <th className="table-subject">{data[i][1].subject.name}</th>
-                                <th className="table-teacher">{data[i][1].teacher.surname}</th>
-                                <th className="table-edit">Редактировать</th>
-                                <th className="table-delete">Удалить</th>
-                            </tr>
+                            {oneLesson(i,null,1)}
+                            {oneLesson(i, data[i][0],2)}
                         </>)
                 }
             } else {
                 lesson.push(
-                    <tr>
-                        <th className="table-num">{i}</th>
-                        <th className="table-num">--------</th>
-                        <th className="table-subject">--------</th>
-                        <th className="table-teacher">--------</th>
-                        <th className="table-edit">--------</th>
-                        <th className="table-delete">--------</th>
-                    </tr>
+                    oneLesson(i, null, null)
                 )
             }
-
         }
-
     }
 
     return (

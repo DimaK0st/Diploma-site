@@ -15,8 +15,6 @@ export const useScheduleService = (state, setState) => {
                 // return options;
             })
             .catch(function (error) {
-
-                console.log('error', error);
             });
     }
 

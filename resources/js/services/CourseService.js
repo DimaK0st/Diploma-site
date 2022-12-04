@@ -13,9 +13,7 @@ export const useCourseService = (state, setState) => {
             return res.data
 
         }).catch(function (error) {
-            console.log('error',error);
             let errors = error.response.data.errors
-            console.log('res',res);
         })
     }
 
