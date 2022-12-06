@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 
 function ShowDay(props) {
-    const {name, data} = props
-    const [lessons, setLessons] = useState()
+    const {day, data} = props
     const emptyRow = '---------'
 
-    let day = []
+    let dayList = []
     let lesson = []
 
-    for (let i = 0; i < name.length; i++) {
-        day.push(<><a>{name[i]}</a><br></br></>)
+    for (let i = 0; i < day.name.length; i++) {
+        dayList.push(<><a>{day.name[i]}</a><br></br></>)
     }
+
 
     const oneLesson = (inc, data, type) => {
 
@@ -78,7 +78,7 @@ function ShowDay(props) {
                 </tr>
 
                 <td rowSpan="15">
-                    {day}
+                    {dayList}
                 </td>
                 {lesson}
                 </tbody>

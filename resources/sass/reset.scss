@@ -2,7 +2,7 @@
 *::before,
 *::after {
     box-sizing: border-box;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 ul[class],
@@ -48,6 +48,14 @@ img {
     display: block;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+thead, tbody, tfoot, tr, td, th {
+    border: 1px solid black !important;
+}
+
 article > * + * {
     margin-top: 1em;
 }
@@ -91,6 +99,7 @@ select {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
 }
+
 .button:hover {
     color: #fff;
     outline: 0;

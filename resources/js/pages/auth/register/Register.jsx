@@ -11,26 +11,26 @@ function Register(props) {
 
     const authService = useAuthService()
     const [error, setError] = useState([])
-        const [options, setOptions] = useState(    [
-        { value: 'one', label: 'One' },
-        { value: 'two', label: 'Two' },
-        { value: 'three', label: 'Three' },
+    const [options, setOptions] = useState([
+        {value: 'one', label: 'One'},
+        {value: 'two', label: 'Two'},
+        {value: 'three', label: 'Three'},
     ])
 
-    useEffect(()=>{
-        authService.getOptions().then((data)=>setOptions(data));
+    useEffect(() => {
+        authService.getOptions().then((data) => setOptions(data));
     }, [])
 
-    useEffect((options)=>{
-        console.log(options)}, [options])
+    useEffect((options) => {
+        console.log(options)
+    }, [options])
 
     console.log('huila', options)
 
     const onSubmit = (values) => {
 
-        authService.register(values,setError)
+        authService.register(values, setError)
     }
-
 
 
     const validationsSchema = yup.object().shape({
@@ -42,24 +42,33 @@ function Register(props) {
             .min(8, "Повинно бути довше 8 символів"),
         confirmPassword: yup.string().oneOf([yup.ref('password')], 'Паролі не збігаються').required('Обов\'язково')
             .min(8, "Повинно бути довше 8 символів"),
+        group: yup.string().required('Обов\'язково')
     })
 
     return (
         <Formik
             validationSchema={validationsSchema}
-            initialValues={{lastname: "", firstname: "", patronymic: "", email: "", password: "", confirmPassword: "", text:""}}
+            initialValues={{
+                lastname: "",
+                firstname: "",
+                patronymic: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+                group: ""
+            }}
             onSubmit={async (values) => {
                 onSubmit(values)
             }}
             validateOnChange={false}
             validateOnBlur={false}
         >
-            {({ errors, touched }) => (
+            {({errors, touched}) => (
                 <Form className={'register'}>
 
                     <span className={'register-title'}>Реєстрація</span>
                     {
-                        error.map((item)=> <span key={item} className={'register-error'}>{item}</span>)
+                        error.map((item) => <span key={item} className={'register-error'}>{item}</span>)
                     }
                     <span className={'register-error'}>{error.message} asdasasdas</span>
 
@@ -76,17 +85,23 @@ function Register(props) {
                                placeholder={'Пароль'} required={true} errors={errors}/>
                         <Input label={'Пароль'} className={'half'} type={'password'} name={'confirmPassword'}
                                placeholder={'Пароль'} required={true} errors={errors}/>
-                    </div>
+                        {console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',errors)}
+                        <div className={'register-group field '+ `${(errors && errors['group']!==undefined) ? 'error' : ''}`}
+                             title={errors && errors['group'] ? errors['group'] : ''} key={'group' ?? ''}>
+                            <label className={'register-group-label'}>
+                                Група
+                            </label>
+                            <Field
+                                name="group"
+                                id="singleSelectCustom"
+                                placeholder="Single Select"
+                                isMulti={false}
+                                component={MultiSelect}
+                                options={options}
+                            />
 
-                    <Input label={'Група'} className={' '} type={'text'} name={'text'} placeholder={'Група'}/>
-                    {/*<Field*/}
-                    {/*    name="singleSelectCustom"*/}
-                    {/*    id="singleSelectCustom"*/}
-                    {/*    placeholder="Single Select"*/}
-                    {/*    isMulti={false}*/}
-                    {/*    component={MultiSelect}*/}
-                    {/*    options={options}*/}
-                    {/*/>*/}
+                        </div>
+                    </div>
 
                     <button type={"submit"} className={'button register-button'}>Зареєструватись</button>
 

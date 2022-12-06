@@ -29,7 +29,7 @@ function Schedule(props) {
             state.days_list.map((value) => {
                     if (state[value.id]) {
                         console.log('push huila1')
-                        res.push(<ShowDay name={value.name} data={state[value.id]}/>)
+                        res.push(<ShowDay day={value} data={state[value.id]}/>)
                     } else {
                         console.log('push huila2')
                         console.log('2')

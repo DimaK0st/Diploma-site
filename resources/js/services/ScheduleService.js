@@ -12,7 +12,6 @@ export const useScheduleService = (state, setState) => {
         return axios.get(_apiBase + 'schedule/1')
             .then(function (response) {
                 varSetState({...response.data, loaded: true,})
-                // return options;
             })
             .catch(function (error) {
             });
