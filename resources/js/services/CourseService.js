@@ -17,6 +17,18 @@ export const useCourseService = (state, setState) => {
         })
     }
 
+    function getAllCourse() {
+
+
+        return axios.get(_apiBase + 'user_course').then(res => {
+            varSetState(res.data)
+            return res.data
+
+        }).catch(function (error) {
+            let errors = error.response.data.errors
+        })
+    }
+
 
     return {getMyCourse}
 }

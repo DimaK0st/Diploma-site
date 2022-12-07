@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useScheduleService} from "../../services/ScheduleService";
 import ShowDay from "../../components/schedule/ShowDay";
+import Modal from "../../components/elements/modal/Modal";
 
 function Schedule(props) {
+    const [active, setActive] = useState(true)
 
     const [state, setState] = useState({
         loaded: false,
@@ -43,8 +45,15 @@ function Schedule(props) {
     }, [state])
 
 
+    useEffect(()=>{
+        console.log('asdfasjfhgasjfgjasdf+++++++++++=+=+=+=+=+=+=+=+', active)
+    }, [active])
+
     return (
         <div>
+            <Modal active={active} setActive={setActive}>loremskdfjaksfjhl khasdkhlaksf djhaskhjf kashdfklasdhlkfjlk k k dsfkhas</Modal>
+            <button onClick={()=>setActive(true)}>vbxcxcbxvcb</button>
+
             ---------------1
             {days}
             ------------2

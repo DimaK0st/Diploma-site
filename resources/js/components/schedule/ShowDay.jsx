@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
+import Modal from "../elements/modal/Modal";
 
 function ShowDay(props) {
     const {group, day, data} = props
     const emptyRow = '---------'
+
+
+    const {active, setActive, children} = props
 
     let dayList = []
     let lesson = []
@@ -21,6 +25,8 @@ function ShowDay(props) {
 
         return (
             <tr>
+
+
                 {type === 2 ? '' : <th rowSpan={type === 3 || type === null ? 1 : 2} className="table-num">{inc}</th>}
                 <th className="table-num">{data?.form?.name ?? emptyRow}</th>
                 <th className="table-subject">{data?.subject?.name?? emptyRow}</th>
