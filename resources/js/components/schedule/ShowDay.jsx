@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 function ShowDay(props) {
-    const {day, data} = props
+    const {group, day, data} = props
     const emptyRow = '---------'
 
     let dayList = []
@@ -9,6 +9,11 @@ function ShowDay(props) {
 
     for (let i = 0; i < day.name.length; i++) {
         dayList.push(<><a>{day.name[i]}</a><br></br></>)
+    }
+    console.log(data)
+    const addNewLessons = (subjectNum, dayId, formId)=>{
+
+        alert([subjectNum, dayId, formId, group])
     }
 
 
@@ -26,7 +31,7 @@ function ShowDay(props) {
                             <th className="table-edit">{data.id}</th>
                             <th className="table-delete">{data.id}</th>
                         </> :
-                        <th colSpan="2">{emptyRow}</th>
+                        <th colSpan="2" onClick={()=>addNewLessons(inc, day.id, type)}>{'№ предмета: '+inc + ' id day: ' + day.id + ' форма: ' + `${type ? type: '3'}`}</th>
                 }
             </tr>
         )

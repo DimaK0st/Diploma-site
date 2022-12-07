@@ -36,6 +36,7 @@ class ScheduleController extends BaseController
         $collection = collect($list2->toArray());
         $grouped = $collection->sortBy('form')->groupBy(['day_id','subject_num']);
         $grouped ['days_list'] = Day::all();
+        $grouped ['group_id'] = $group;
 
         //        dd($list2->toArray());
         return (json_encode($grouped));
