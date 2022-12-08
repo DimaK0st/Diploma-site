@@ -34,9 +34,9 @@ class ScheduleController extends BaseController
         $list2 = Schedule::query()->with(['subject', 'group', 'day', 'teacher', 'form', 'evaluation'])->orderBy('day_id')->get();
 
         $collection = collect($list2->toArray());
-        $grouped = $collection->sortBy('form')->groupBy(['day_id','subject_num']);
+        $grouped = $collection->sortBy('form')->groupBy(['day_id', 'subject_num']);
         $grouped ['days_list'] = Day::all();
-        $grouped ['group_id'] = $group;
+        $grouped ['group'] = Group::findOrFail($group);
 
         //        dd($list2->toArray());
         return (json_encode($grouped));
@@ -66,10 +66,34 @@ class ScheduleController extends BaseController
         $schedule->form_id = $request->getFormId();
         $schedule->subject_id = $request->getSubjectId();
         $schedule->evaluation_id = $request->getEvaluationId();
-
+        
         $schedule->save();
 
         return $schedule;
+    }
+
+    public function getAddScheduleData(Request $request)
+    {
+        return [
+            'teachers' => Teacher::query()->distinct('surname',
+                'name',
+                'patronymic')->get(),
+            'forms' => Form::all(),
+            'subjects' => Subject::all(),
+            'evaluations' => Evaluation::all(),
+        ];
+    }
+
+    public function addLesson(Request $request)
+    {
+        return [
+            'teachers' => Teacher::query()->distinct('surname',
+                'name',
+                'patronymic')->get(),
+            'forms' => Form::all(),
+            'subjects' => Subject::all(),
+            'evaluations' => Evaluation::all(),
+        ];
     }
 
     public function deleteSchedule(DeleteScheduleRequest $request)
