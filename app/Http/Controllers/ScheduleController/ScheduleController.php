@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ScheduleController;
 
 use App\Http\Requests\Schedule\AddScheduleRequest;
 use App\Http\Requests\Schedule\DeleteScheduleRequest;
+use App\Http\Requests\Schedule\EditScheduleRequest;
 use App\Models\Day;
 use App\Models\Evaluation;
 use App\Models\Form;
@@ -66,7 +67,25 @@ class ScheduleController extends BaseController
         $schedule->form_id = $request->getFormId();
         $schedule->subject_id = $request->getSubjectId();
         $schedule->evaluation_id = $request->getEvaluationId();
-        
+
+        $schedule->save();
+
+        return $schedule;
+    }
+
+    public function editSchedule(EditScheduleRequest $request)
+    {
+        $schedule = Schedule::findOrFail($request->getId());
+
+        $schedule->course = $request->getCourse();
+        $schedule->group_id = $request->getGroupId();
+        $schedule->day_id = $request->getDayId();
+        $schedule->subject_num = $request->getSubjectNum();
+        $schedule->teacher_id = $request->getTeacherId();
+        $schedule->form_id = $request->getFormId();
+        $schedule->subject_id = $request->getSubjectId();
+        $schedule->evaluation_id = $request->getEvaluationId();
+
         $schedule->save();
 
         return $schedule;

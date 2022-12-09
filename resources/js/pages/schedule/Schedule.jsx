@@ -2,33 +2,41 @@ import React, {useEffect, useState} from 'react';
 import {useScheduleService} from "../../services/ScheduleService";
 import ShowDay from "../../components/schedule/ShowDay";
 import Modal from "../../components/elements/modal/Modal";
-import AddSchedule from "../../components/schedule/add-schedule/AddSchedule";
+import ScheduleManager from "../../components/schedule/manager-schedule/ScheduleManager";
 
 function Schedule(props) {
     const [state, setState] = useState({
         loaded: false,
     })
     const [days, setDays] = useState();
+    let scheduleService = useScheduleService(state, setState);
 
     const [active, setActive] = useState(false)
     const [modal, setModal] = useState()
 
-    const addLesson = (subjectNum, dayId, formId, group) => {
-        setModal(<AddSchedule subjectNum={subjectNum} dayId={dayId} formId={formId} group={group} />)
+    const addLesson = (subjectNum, dayId, formId, group,editData) => {
+        console.log('aaaaaasafasdfasdasdafsdf',editData)
+
+        setModal(<ScheduleManager subjectNum={subjectNum} dayId={dayId} formId={formId} group={group} setActive={setActive} editData={editData}/>)
         setActive(true)
     }
 
     useEffect(() => {
-        let scheduleService = useScheduleService(state, setState);
         scheduleService.getSchedule()
     }, [])
+
+    useEffect(() => {
+        if (state.loaded && !active)
+        scheduleService.getSchedule()
+    }, [active])
 
     let res = []
 
     useEffect(() => {
         if (state.loaded) {
             state.days_list.map((value) => {
-                    if (state[value.id]) {
+                    // if (state[value.id]) {
+                    if (value.id===2) {
                         res.push(<ShowDay addLesson={addLesson} group={state.group} day={value} data={state[value.id]}/>)
                     } else {
                         console.log('2')
