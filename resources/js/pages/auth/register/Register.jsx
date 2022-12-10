@@ -21,12 +21,6 @@ function Register(props) {
         authService.getOptions().then((data) => setOptions(data));
     }, [])
 
-    useEffect((options) => {
-        console.log(options)
-    }, [options])
-
-    console.log('huila', options)
-
     const onSubmit = (values) => {
 
         authService.register(values, setError)
@@ -85,7 +79,6 @@ function Register(props) {
                                placeholder={'Пароль'} required={true} errors={errors}/>
                         <Input label={'Пароль'} className={'half'} type={'password'} name={'confirmPassword'}
                                placeholder={'Пароль'} required={true} errors={errors}/>
-                        {console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',errors)}
                         <div className={'register-group field '+ `${(errors && errors['group']!==undefined) ? 'error' : ''}`}
                              title={errors && errors['group'] ? errors['group'] : ''} key={'group' ?? ''}>
                             <label className={'register-group-label'}>

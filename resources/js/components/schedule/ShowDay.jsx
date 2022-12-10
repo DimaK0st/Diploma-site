@@ -1,8 +1,17 @@
 import React, {useState} from 'react';
 import Modal from "../elements/modal/Modal";
+import {
+    ArrowRight,
+    DashSquare,
+    DashSquareDotted,
+    DashSquareFill,
+    PencilSquare,
+    Plus, PlusSquare,
+    XSquare
+} from "react-bootstrap-icons";
 
 function ShowDay(props) {
-    const {group, day, data, addLesson} = props
+    const {group, day, data, addLesson, deleteLesson, root} = props
     const emptyRow = '---------'
 
     let dayList = []
@@ -13,7 +22,12 @@ function ShowDay(props) {
     }
 
     const addNewLesson = (subjectNum, dayId, formId, editData) => {
-        addLesson(subjectNum, dayId, formId, group,editData)
+        addLesson(subjectNum, dayId, formId, group, editData)
+    }
+
+    const deleteNewLesson = (id) => {
+        console.log('asdfasdfasdfasdf',id)
+        deleteLesson(id)
     }
 
     const oneLesson = (inc, data, type) => {
@@ -25,33 +39,28 @@ function ShowDay(props) {
                 <th className="table-teacher">{data?.teacher?.shortFullName ?? emptyRow}</th>
                 <th className="table-teacher">{data?.evaluation?.name ?? emptyRow}</th>
                 {
-                    data?.id ?
-                        <>
-                            <th className="table-edit" onClick={() => {
-                                addNewLesson(inc, day.id, type, {
-                                    id: data?.id,
-                                    teacher: data?.teacher?.id,
-                                    subject: data?.subject?.id,
-                                    form: type,
-                                    evaluation: data?.evaluation?.id,
-                                })
-                                console.log('{\n' +
-                                    '                                    teacher: data?.teacher?.id,\n' +
-                                    '                                    subject: data?.subject?.id,\n' +
-                                    '                                    form: type,\n' +
-                                    '                                    evaluation: data?.evaluation?.id,\n' +
-                                    '                                },',{
-                                    id: data?.id,
-                                    teacher: data?.teacher?.id,
-                                    subject: data?.subject?.id,
-                                    form: type,
-                                    evaluation: data?.evaluation?.id,
-                                })
-                            }}>{data.id}</th>
-                            <th className="table-delete">{data.id}</th>
-                        </> :
-                        <th colSpan="2"
-                            onClick={() => addNewLesson(inc, day.id, type)}>{'№ предмета: ' + inc + ' id day: ' + day.id + ' форма: ' + `${type ? type : '3'}`}</th>
+                    root ? (
+                        data?.id ?
+                            <>
+                                <th className="table-edit">
+                                    <PencilSquare style={{marginRight: '5px'}} onClick={() => {
+                                        console.log('huita?')
+                                        addNewLesson(inc, day.id, type, {
+                                            id: data?.id,
+                                            teacher: data?.teacher?.id,
+                                            subject: data?.subject?.id,
+                                            form: type,
+                                            evaluation: data?.evaluation?.id,
+                                        })
+                                    }}/>
+                                    <XSquare onClick={()=>{
+                                        deleteNewLesson(data?.id)
+                                    }}/>
+                                </th>
+                            </> :
+                            <th colSpan="2"
+                                onClick={() => addNewLesson(inc, day.id, type)}><PlusSquare/>
+                            </th>) : null
                 }
             </tr>
         )
@@ -102,10 +111,13 @@ function ShowDay(props) {
                     <th className="table-num">№</th>
                     <th className="table-num">Тип</th>
                     <th className="table-subject">Предмет</th>
-                    <th className="table-teacher">Преподаватель</th>
+                    <th className="table-teacher">Викладач</th>
                     <th className="table-teacher">Оцінювання</th>
-                    <th className="table-edit">Редактировать</th>
-                    <th className="table-delete">Удалить</th>
+                    {
+                        root ? <>
+                            <th className="table-edit">Дія</th>
+                        </> : null
+                    }
                 </tr>
 
                 <td rowSpan="15">

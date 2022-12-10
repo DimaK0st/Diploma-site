@@ -54,20 +54,19 @@ export const useScheduleService = (state, setState) => {
                 ...postRequest.headers
             }
         }).then(res => {
-            // setError([])
             return res.data
         })
-        //     .catch(function (error) {
-        //     let errors = error.response.data.errors
-        //     let res = []
-        //     for (let key in errors) {
-        //         if(errors.hasOwnProperty(key)){
-        //             res.push(`${key}: ${errors[key]}`)
-        //         }
-        //     }
-        //     setError(res)
-        // })
     }
 
-    return {getSchedule,addSchedule,getAddScheduleData,editSchedule}
+    const deleteSchedule = (data) => {
+        return axios.post(_apiBase + 'schedule/delete', data, {
+            headers: {
+                ...postRequest.headers
+            }
+        }).then(res => {
+            return res.data
+        })
+    }
+
+    return {getSchedule,addSchedule,getAddScheduleData,editSchedule, deleteSchedule}
 }

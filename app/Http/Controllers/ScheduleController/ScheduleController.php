@@ -117,10 +117,6 @@ class ScheduleController extends BaseController
 
     public function deleteSchedule(DeleteScheduleRequest $request)
     {
-
-        $deleteSchedule = Schedule::query()->where('id', '=', $request->getId())->delete();
-
-        return $deleteSchedule;
+        return Schedule::query()->where('id', '=', $request->getId())->delete();
     }
-
 }

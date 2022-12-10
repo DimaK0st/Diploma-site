@@ -34,7 +34,6 @@ const MultiSelect = ({
     };
 
     if (!isMulti) {
-        console.log('assssssssssssssssssssssssssssssss',options)
         return (
             <Select
                 options={options}
