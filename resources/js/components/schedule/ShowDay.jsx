@@ -102,9 +102,6 @@ function ShowDay(props) {
     }
 
     return (
-        <div className={'day'}>
-
-            <table border="1" style={{textAlign: "center", width: '100%'}}>
                 <tbody>
                 <tr>
                     <th className="table-day"></th>
@@ -125,8 +122,6 @@ function ShowDay(props) {
                 </td>
                 {lesson}
                 </tbody>
-            </table>
-        </div>
     )
 }
 

@@ -8,6 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property int $id
+ * @property string $lastname
+ * @property string $firstname
+ * @property string $patronymic
+ * @property string $email
+ * @property string $password
+ * @property int $role_id
+ * @property int $group_id
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -44,13 +54,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-
-    public function groups(){
-        return $this->hasOne(Group::class , 'id','group_id' );
+    public function groups()
+    {
+        return $this->hasOne(Group::class, 'id', 'group_id');
     }
 
-    public function roles(){
-        return $this->hasOne(Role::class, 'id','role_id');
+    public function roles()
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
     }
 }

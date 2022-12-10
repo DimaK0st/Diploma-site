@@ -16,8 +16,9 @@ function Schedule(props) {
     const [active, setActive] = useState(false)
     const [modal, setModal] = useState()
 
-    const addLesson = (subjectNum, dayId, formId, group,editData) => {
-        setModal(<ScheduleManager subjectNum={subjectNum} dayId={dayId} formId={formId} group={group} setActive={setActive} editData={editData}/>)
+    const addLesson = (subjectNum, dayId, formId, group, editData) => {
+        setModal(<ScheduleManager subjectNum={subjectNum} dayId={dayId} formId={formId} group={group}
+                                  setActive={setActive} editData={editData}/>)
         setActive(true)
     }
 
@@ -32,7 +33,7 @@ function Schedule(props) {
 
     useEffect(() => {
         if (state.loaded && !active)
-        scheduleService.getSchedule()
+            scheduleService.getSchedule()
     }, [active])
 
     let res = []
@@ -40,12 +41,11 @@ function Schedule(props) {
     useEffect(() => {
         if (state.loaded) {
             state.days_list.map((value) => {
-                    // if (state[value.id]) {
-                    if (value.id===2) {
-                        res.push(<ShowDay root={true} addLesson={addLesson} deleteLesson={deleteLesson} group={state.group} day={value} data={state[value.id]}/>)
+                    if (state[value.id]) {
+                        res.push(<ShowDay root={true} addLesson={addLesson} deleteLesson={deleteLesson} group={state.group}
+                                          day={value} data={state[value.id]}/>)
                     } else {
-                        console.log('2')
-                        // res.push(<ShowDay name={value.name}/>)
+                        res.push(<ShowDay day={value}/>)
                     }
                 }
             )
@@ -57,9 +57,11 @@ function Schedule(props) {
         <div>
             <Modal active={active} setActive={setActive}>{modal}</Modal>
             <button onClick={() => setActive(true)}>vbxcxcbxvcb</button>
-            ---------------1
-            {days}
-            ------------2
+            <div className={'day'}>
+                <table border="1" style={{textAlign: "center", width: '100%'}}>
+                    {days}
+                </table>
+            </div>
         </div>
     );
 }

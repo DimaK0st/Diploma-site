@@ -19,34 +19,38 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
 
-
-    public function day(){
-        return $this->belongsTo(Day::class , 'day_id','id' );
+    public function day()
+    {
+        return $this->belongsTo(Day::class, 'day_id', 'id');
     }
 
-    public function teacher(){
-        return $this->belongsTo(Teacher::class , 'teacher_id' ,'id');
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
     }
 
-    public function form(){
-        return $this->belongsTo(Form::class , 'form_id','id' );
+    public function form()
+    {
+        return $this->belongsTo(Form::class, 'form_id', 'id');
     }
 
-    public function subject(){
-        return $this->belongsTo(Subject::class , 'subject_id' ,'id');
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
 
-    public function group(){
+    public function group()
+    {
         return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 
-    public function evaluation(){
-        return $this->belongsTo(Evaluation::class, 'evaluation_id' ,'id');
+    public function evaluation()
+    {
+        return $this->belongsTo(Evaluation::class, 'evaluation_id', 'id');
     }
-
-
 
 
 }
