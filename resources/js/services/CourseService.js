@@ -6,8 +6,6 @@ export const useCourseService = (state, setState) => {
     let varSetState = setState
 
     function getMyCourse() {
-
-
         return axios.get(_apiBase + 'user_course').then(res => {
             varSetState(res.data)
             return res.data
@@ -17,10 +15,24 @@ export const useCourseService = (state, setState) => {
         })
     }
 
-    function getAllCourse() {
+    function searchCourse() {
+        return axios.get(_apiBase + 'course/search').then(res => {
+            console.log('res',res)
+            varSetState(res.data)
+            return res.data
 
+        }).catch(function (error) {
+            console.log(error)
+            // let errors = error.response.data.errors
+        })
+    }
 
-        return axios.get(_apiBase + 'user_course').then(res => {
+    function getAllCourse(search) {
+        return axios.get(_apiBase + 'course/all',{
+            params: {
+                title: search
+            }
+        }).then(res => {
             varSetState(res.data)
             return res.data
 
@@ -30,5 +42,5 @@ export const useCourseService = (state, setState) => {
     }
 
 
-    return {getMyCourse}
+    return {getMyCourse, getAllCourse, searchCourse}
 }

@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Form, Formik} from "formik";
 import Input from "../../../components/elements/input/Input";
 import * as yup from "yup";
 import './login.scss'
+import {useAuthService} from "../../../services/AuthService";
 
 function Login(props) {
+    const authService = useAuthService()
+    const [error, setError] = useState([])
+    const onSubmit = (values) => {
+
+        authService.login(values, setError)
+    }
 
     const validationsSchema = yup.object().shape({
         email: yup.string().email('Введіть корректный email').required('Обов\'язково'),
@@ -15,10 +22,7 @@ function Login(props) {
         <Formik
             validationSchema={validationsSchema}
             initialValues={{email: "", password: ""}}
-            onSubmit={async (values) => {
-                await new Promise((resolve) => setTimeout(resolve, 500));
-                alert(JSON.stringify(values, null, 2));
-            }}
+            onSubmit={async (values) => onSubmit(values)}
             validateOnChange={false}
             validateOnBlur={false}
         >
@@ -37,7 +41,7 @@ function Login(props) {
 
                     <button className={'login-btn button register-button'}>Вхід</button>
                 </Form>
-                
+
             )}
         </Formik>
     );

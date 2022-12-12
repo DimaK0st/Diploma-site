@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './my-course.scss'
-import {useAuthService} from "../../services/AuthService";
-import {useCourseService} from "../../services/CourseService";
+import {useAuthService} from "../../../services/AuthService";
+import {useCourseService} from "../../../services/CourseService";
 
 function MyCourse(props) {
 

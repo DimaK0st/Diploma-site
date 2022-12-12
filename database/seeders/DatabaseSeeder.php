@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             FormsSeeder::class,
             EvaluationsSeeder::class,
             SchedulesSeeder::class,
+            CourseSeeder::class,
         ]);
     }
 }

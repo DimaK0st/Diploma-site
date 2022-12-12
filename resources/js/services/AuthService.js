@@ -25,8 +25,25 @@ export const useAuthService = () => {
         })
     }
 
-    const login = () => {
+    const login = (data) => {
+        return axios.post(_apiBase + 'login', data, {
+            headers: {
+                ...postRequest.headers
+            }
+        }).then(res => {
+            setError([])
+            return res.data
+        }).catch(function (error) {
+            let errors = error.response.data.errors
+            let res = []
+            for (let key in errors) {
+                if(errors.hasOwnProperty(key)){
+                    res.push(`${key}: ${errors[key]}`)
+                }
+            }
 
+            setError(res)
+        })
     }
 
 

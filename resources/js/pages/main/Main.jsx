@@ -1,5 +1,6 @@
 import React from 'react';
 import './main.scss'
+import FindCourse from "../../components/course/find-course/FindCourse";
 
 function Main(props) {
     return (
@@ -10,7 +11,7 @@ function Main(props) {
 
         </div>
         <div className={'main-center'}>
-
+            <FindCourse/>
 
         </div>
 

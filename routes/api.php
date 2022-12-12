@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\CourseController\CourseContentController;
+use App\Http\Controllers\CourseController\CourseController;
 use App\Http\Controllers\ScheduleController\ScheduleController;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +26,25 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
 
     Auth::routes();
 
-    Route::get('/groupList', [\App\Http\Controllers\Controller::class, 'getGroupList']);
+    Route::get('/groupList', [Controller::class, 'getGroupList']);
+
+    Route::group(['prefix' => 'course'], function () {
+        Route::post('/create', [CourseController::class,'create'])->name('');
+        Route::post('/update', [CourseController::class,'update'])->name('');
+        Route::post('/delete', [CourseController::class,'delete'])->name('');
+        Route::get('/search', [CourseController::class,'searchCourse'])->name('');
+        Route::get('/my', [CourseController::class,'myCourse'])->name('');
+        Route::get('/{id}', [CourseController::class,'index'])->name('');
+    });
+
+    Route::group(['prefix' => 'course/content'], function () {
+        Route::post('/create', [CourseContentController::class,'create'])->name('');
+        Route::post('/update', [CourseContentController::class,'update'])->name('');
+        Route::post('/delete', [CourseContentController::class,'delete'])->name('');
+        Route::get('/{id}', [CourseContentController::class,'index'])->name('');
+    });
+
+
 
     Route::get('/schedule/data', [ScheduleController::class,'getScheduleData'])->name('');
     Route::get('/schedule/add_schedule_data', [ScheduleController::class,'getAddScheduleData'])->name('');
