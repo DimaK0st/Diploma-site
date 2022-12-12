@@ -23,7 +23,9 @@ function Register(props) {
 
     const onSubmit = (values) => {
 
-        authService.register(values, setError)
+        authService.register(values, setError).then((data)=>{
+            localStorage.setItem('token', data.token);
+        })
     }
 
 

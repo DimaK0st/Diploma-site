@@ -1,7 +1,29 @@
 .little-course{
 
+    padding: 10px;
+    margin: 10px 5px;
+    background: #0c63e4;
+    display: flex;
+    flex-direction: column;
 
+    &-title{
+        font-weight: 600;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; // количество строк
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
+    &-description{
+        margin: 10px 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; // количество строк
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
+    &-user{
+        font-weight: 600;
+    }
 
 }

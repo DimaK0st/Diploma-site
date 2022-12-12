@@ -13,7 +13,7 @@ function RouterList(props){
         <Header/>
         <Routes>
             {/*<Route path="/phone/:number" element={<Home/>}/>*/}
-            {/*<Route path="/" element={<Main />} />*/}
+            <Route path="/" element={<Main />} />
             {/*<Route path="/" element={<Schedule />} />*/}
             <Route path="/" element={<Login />} />
             <Route path="/" element={<Register />} />

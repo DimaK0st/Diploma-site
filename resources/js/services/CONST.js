@@ -7,6 +7,7 @@ export const postRequest = {
         'Access-Control-Allow-Origin': '*',
         mode: 'no-cors',
         credentials: 'same-origin',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     },
 
 };

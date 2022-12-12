@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const useAuthService = () => {
 
-
     const register = (data, setError) => {
         return axios.post(_apiBase + 'register', data, {
             headers: {
@@ -20,12 +19,11 @@ export const useAuthService = () => {
                     res.push(`${key}: ${errors[key]}`)
                 }
             }
-
             setError(res)
         })
     }
 
-    const login = (data) => {
+    const login = (data,setError) => {
         return axios.post(_apiBase + 'login', data, {
             headers: {
                 ...postRequest.headers
@@ -51,7 +49,7 @@ export const useAuthService = () => {
 
         return axios.get('http://127.0.0.1:8000/api/v1/groupList')
             .then(function (response) {
-                let options = response.data.map( category => ({ value: category.title, label: category.label }));
+                let options = response.data.map( category => ({ value: category.id, label: category.name }));
                 return options;
             })
             .catch(function (error) {

@@ -6,7 +6,9 @@ function LittleCourse(props) {
 
     return (
         <div className={'little-course'}>
-            <title></title>
+            <span className={'little-course-title'}> {title} </span>
+            <span className={'little-course-description'}> {description} </span>
+            <span className={'little-course-user'}> {user?.shortFullName} </span>
         </div>
     );
 }

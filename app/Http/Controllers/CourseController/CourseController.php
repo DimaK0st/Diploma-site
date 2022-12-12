@@ -28,10 +28,16 @@ class CourseController extends BaseController
 
     public function searchCourse(Request $request)
     {
-        dd(Auth::user());
         $search = $request->get('search');
+        $my = $request->get('my');
 
-        $course = Course::query();
+        $course = Course::query()->with('owner');
+
+        if ($my){
+//            ->join('postmeta', 'posts.ID','=','postmeta.post_id')
+            $course->join('course_user', 'courses.id','=','course_user.course_id')
+                ->where('course_user.user_id','=',Auth::user()->id);
+        }
 
         if (isset($search)) {
 

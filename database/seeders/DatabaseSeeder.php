@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             EvaluationsSeeder::class,
             SchedulesSeeder::class,
             CourseSeeder::class,
+            CourseUserSeeder::class,
         ]);
     }
 }

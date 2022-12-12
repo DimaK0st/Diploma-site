@@ -10,7 +10,9 @@ function Login(props) {
     const [error, setError] = useState([])
     const onSubmit = (values) => {
 
-        authService.login(values, setError)
+        authService.login(values, setError).then((data)=>{
+            localStorage.setItem('token', data.token);
+        })
     }
 
     const validationsSchema = yup.object().shape({
