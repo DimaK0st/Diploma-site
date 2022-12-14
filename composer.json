@@ -12,7 +12,8 @@
         "laravel/passport": "^11.3",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.1"
+        "laravel/ui": "^4.1",
+        "symfony/polyfill-mbstring": "^1.27"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

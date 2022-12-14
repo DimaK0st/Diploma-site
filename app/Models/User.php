@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class);
     }
 
+    public function results()
+    {
+        return $this->belongsTo(Result::class, 'id', 'user_id');
+    }
+
     public function getShortFullNameAttribute(): string
     {
         return $this->firstname . ' ' . mb_substr($this->lastname, 0, 1) . '.' . mb_substr($this->patronymic, 0, 1) . '.';

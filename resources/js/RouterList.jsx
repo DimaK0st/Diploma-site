@@ -7,16 +7,21 @@ import Main from "./pages/main/Main";
 import Register from "./pages/auth/register/Register";
 import Login from "./pages/auth/login/Login";
 import Schedule from "./pages/schedule/Schedule";
+import SearchTest from "./pages/test/SearchTest";
 
 function RouterList(props){
     return <Router >
         <Header/>
         <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/schedule" element={<Schedule />} />
+
+
             {/*<Route path="/phone/:number" element={<Home/>}/>*/}
+            <Route path="/" element={<SearchTest />} />
             <Route path="/" element={<Main />} />
             {/*<Route path="/" element={<Schedule />} />*/}
-            <Route path="/" element={<Login />} />
-            <Route path="/" element={<Register />} />
             <Route path="*" element={<Page404 />} />
         </Routes>
         <Footer/>
