@@ -9,7 +9,11 @@ export const useScheduleService = (state, setState) => {
 
     const getSchedule = (input, setError) => {
 
-        return axios.get(_apiBase + 'schedule/1')
+        return axios.get(_apiBase + 'schedule/1',{
+            headers: {
+                ...postRequest.headers
+            }
+        })
             .then(function (response) {
                 varSetState({...response.data, loaded: true,})
             })

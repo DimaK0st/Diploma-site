@@ -20,8 +20,7 @@ class CourseController extends BaseController
     public function index(Request $request, $id)
     {
 
-        $course = Course::query()->with('content')->where('id', $id)->get();
-
+        $course = Course::query()->with('contents')->where('id', $id)->first();
 
         return $course;
     }
@@ -29,12 +28,11 @@ class CourseController extends BaseController
     public function searchCourse(Request $request)
     {
         $search = $request->get('search');
-        $my = $request->get('my');
+        $my = (bool)$request->get('my');
 
-        $course = Course::query()->with('owner');
+        $course = Course::query()->with('owner')->orderBy('courses.id','desc');
 
         if ($my){
-//            ->join('postmeta', 'posts.ID','=','postmeta.post_id')
             $course->join('course_user', 'courses.id','=','course_user.course_id')
                 ->where('course_user.user_id','=',Auth::user()->id);
         }
@@ -47,22 +45,7 @@ class CourseController extends BaseController
             });
         }
 
-        return $course->get();
-    }
-
-    public function myCourse(Request $request)
-    {
-        $search = $request->get('search');
-
-        $course = Course::query();
-
-        if (isset($search)) {
-
-            $course->where(function ($q) use ($search) {
-                $q->where('title', 'LIKE', '%' . $search . '%')
-                    ->orWhere('description', 'LIKE', '%' . $search . '%');
-            });
-        }
+//        dd($course->dd());
 
         return $course->get();
     }
@@ -73,7 +56,7 @@ class CourseController extends BaseController
         $course = new Course();
 
         $course->title = $request->getTitle();
-        $course->user_id = $request->getUserId();
+        $course->user_id = Auth::id();
         $course->description = $request->getDescription();
 
         $course->save();

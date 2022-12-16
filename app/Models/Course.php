@@ -15,9 +15,9 @@ class Course extends Model
 {
     use HasFactory;
 
-    public function content()
+    public function contents()
     {
-        return $this->belongsTo(CourseContent::class, 'id', 'course_id');
+        return $this->hasMany(CourseContent::class, 'course_id', 'id');
     }
 
     public function owner()

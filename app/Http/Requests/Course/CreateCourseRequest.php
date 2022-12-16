@@ -14,18 +14,9 @@ class CreateCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|int',
             'title' => 'required|string',
             'description' => 'required|string',
         ];
-    }
-
-    /**
-     * @return int
-     */
-    public function getUserId(): int
-    {
-        return $this->input('user_id');
     }
 
     /**

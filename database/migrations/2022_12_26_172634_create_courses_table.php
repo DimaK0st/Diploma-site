@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
 
+            $table->timestamps();
         });
 
         Schema::table('courses', function (Blueprint $table) {

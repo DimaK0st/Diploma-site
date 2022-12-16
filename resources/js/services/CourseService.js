@@ -5,20 +5,27 @@ export const useCourseService = (state, setState) => {
     let varState = state
     let varSetState = setState
 
-    function getMyCourse() {
-        return axios.get(_apiBase + 'user_course').then(res => {
-            varSetState(res.data)
-            return res.data
+    function getCourseById(id) {
+        return axios.get(_apiBase + 'course/' + id, {
+            headers: {
+                ...postRequest.headers
+            }
+        }).then(res => {
+            console.log('res', res)
+            console.log('{data: [...res.data], loaded:true}',res.data)
+            console.log('{data: [...res.data], loaded:true}',{data: res.data, loaded:true})
 
+            varSetState({data: res.data, loaded:true})
+            return res.data
         }).catch(function (error) {
-            let errors = error.response.data.errors
+            // let errors = error.response.data.errors
         })
     }
 
     function searchCourse(my, search) {
         return axios.get(_apiBase + 'course/search', {
             params: {
-                my: my!=='',
+                my: my,
                 search: search
             },
             headers: {
@@ -26,7 +33,7 @@ export const useCourseService = (state, setState) => {
             }
         }).then(res => {
             console.log('res', res)
-            varSetState(res.data)
+            varSetState({data: [...res.data], loaded:true})
             return res.data
 
         }).catch(function (error) {
@@ -35,24 +42,27 @@ export const useCourseService = (state, setState) => {
         })
     }
 
-    function getAllCourse(my, search) {
-        return axios.get(_apiBase + 'course/all', {
-            params: {
-                my: my!=='',
-                title: search
-            },
+
+    const createCourse = (data) => {
+        return axios.post(_apiBase + 'course/create', data, {
             headers: {
                 ...postRequest.headers
             }
         }).then(res => {
-            varSetState(res.data)
             return res.data
-
-        }).catch(function (error) {
-            let errors = error.response.data.errors
         })
     }
 
+    const createCourseContent = (data) => {
+        console.log('adfasdfasfasdffas', data)
+        return axios.post(_apiBase + 'course/content/create', data, {
+            headers: {
+                ...postRequest.headers
+            }
+        }).then(res => {
+            return res.data
+        })
+    }
 
-    return {getMyCourse, getAllCourse, searchCourse}
+    return {getCourseById, searchCourse, createCourse,createCourseContent}
 }
