@@ -1,0 +1,26 @@
+.create-course-content {
+
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    max-width: 600px;
+
+    &-title {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    &-input {
+        margin-bottom: 20px !important;
+    }
+
+    &-submit {
+        display: flex;
+        justify-content: center;
+
+        &-btn {
+        }
+    }
+
+}

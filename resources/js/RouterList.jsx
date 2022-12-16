@@ -8,6 +8,8 @@ import Register from "./pages/auth/register/Register";
 import Login from "./pages/auth/login/Login";
 import Schedule from "./pages/schedule/Schedule";
 import SearchTest from "./pages/test/SearchTest";
+import FindCourse from "./components/course/find-course/FindCourse";
+import ShowCourse from "./components/course/show-course/ShowCourse";
 
 function RouterList(props){
     return <Router >
@@ -16,11 +18,13 @@ function RouterList(props){
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/schedule" element={<Schedule />} />
+            <Route path="/course" element={<FindCourse my={false}/>}/>
+            <Route path="/course/:courseId" element={<ShowCourse/>}/>
 
 
+            {/*<Route path="/" element={<Main />} />*/}
             {/*<Route path="/phone/:number" element={<Home/>}/>*/}
             <Route path="/" element={<SearchTest />} />
-            <Route path="/" element={<Main />} />
             {/*<Route path="/" element={<Schedule />} />*/}
             <Route path="*" element={<Page404 />} />
         </Routes>

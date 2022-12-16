@@ -1,0 +1,33 @@
+.course{
+    display: flex;
+    flex-direction: column;
+
+    &-wrapper{
+        display: flex;
+        flex-direction: column;
+        border: gray 1px solid;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    &-title{
+        text-align: center;
+        width: 90%;
+        margin: auto;
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    &-description{
+        text-indent: 20px;
+        color: #656565;
+    }
+
+    &-content{
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+}
