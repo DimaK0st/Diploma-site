@@ -23,13 +23,12 @@ export const useAuthService = () => {
         })
     }
 
-    const login = (data,setError) => {
+    const login = (data) => {
         return axios.post(_apiBase + 'login', data, {
             headers: {
                 ...postRequest.headers
             }
         }).then(res => {
-            setError([])
             return res.data
         }).catch(function (error) {
             let errors = error.response.data.errors

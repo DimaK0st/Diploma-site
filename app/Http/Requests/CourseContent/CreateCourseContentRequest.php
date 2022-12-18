@@ -17,7 +17,7 @@ class CreateCourseContentRequest extends FormRequest
             'course_id' => 'required|int',
             'title' => 'required|string',
             'description' => 'required|string',
-            'url' => 'string',
+            'url' => 'nullable|string',
         ];
     }
 
@@ -46,9 +46,9 @@ class CreateCourseContentRequest extends FormRequest
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): string|null
     {
         return $this->input('url');
     }

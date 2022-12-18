@@ -32,7 +32,7 @@ class CourseContentController extends BaseController
         $courseContent->title = $request->getTitle();
         $courseContent->course_id = $request->getCourseId();
         $courseContent->description = $request->getDescription();
-        $courseContent->url = $request->getUrl();
+        $courseContent->url = $request->getUrl()?:'';
 
         $courseContent->save();
 
