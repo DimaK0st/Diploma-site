@@ -22,7 +22,7 @@ class CreateGroupsTable extends Migration
 
         });
         Schema::table('groups', function (Blueprint $table) {
-            $table->foreign('faculty_id')->references('id')->on('faculties');
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');
 
 //            $table->foreign('id')->references('group_id')->on('schedules');
 //            $table->foreign('course')->references('course')->on('schedules');

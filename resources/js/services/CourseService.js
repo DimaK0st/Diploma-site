@@ -12,10 +12,10 @@ export const useCourseService = (state, setState) => {
             }
         }).then(res => {
             console.log('res', res)
-            console.log('{data: [...res.data], loaded:true}',res.data)
-            console.log('{data: [...res.data], loaded:true}',{data: res.data, loaded:true})
+            console.log('{data: [...res.data], loaded:true}', res.data)
+            console.log('{data: [...res.data], loaded:true}', {data: res.data, loaded: true})
 
-            varSetState({data: res.data, loaded:true})
+            varSetState({data: res.data, loaded: true})
             return res.data
         }).catch(function (error) {
             // let errors = error.response.data.errors
@@ -33,7 +33,7 @@ export const useCourseService = (state, setState) => {
             }
         }).then(res => {
             console.log('res', res)
-            varSetState({data: [...res.data], loaded:true})
+            varSetState({data: [...res.data], loaded: true})
             return res.data
 
         }).catch(function (error) {
@@ -53,6 +53,26 @@ export const useCourseService = (state, setState) => {
         })
     }
 
+    const updateCourse = (data) => {
+        return axios.post(_apiBase + 'course/update', data, {
+            headers: {
+                ...postRequest.headers
+            }
+        }).then(res => {
+            return res.data
+        })
+    }
+
+    const deleteCourse = (data) => {
+        return axios.post(_apiBase + 'course/delete', data, {
+            headers: {
+                ...postRequest.headers
+            }
+        }).then(res => {
+            return res.data
+        })
+    }
+
     const createCourseContent = (data) => {
         console.log('adfasdfasfasdffas', data)
         return axios.post(_apiBase + 'course/content/create', data, {
@@ -64,5 +84,5 @@ export const useCourseService = (state, setState) => {
         })
     }
 
-    return {getCourseById, searchCourse, createCourse,createCourseContent}
+    return {getCourseById, searchCourse, createCourse, updateCourse, deleteCourse, createCourseContent}
 }

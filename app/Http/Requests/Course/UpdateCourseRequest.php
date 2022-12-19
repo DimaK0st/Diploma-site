@@ -15,7 +15,6 @@ class UpdateCourseRequest extends FormRequest
     {
         return [
             'id' => 'required|int',
-            'user_id' => 'required|int',
             'title' => 'required|string',
             'description' => 'required|string',
         ];
@@ -27,14 +26,6 @@ class UpdateCourseRequest extends FormRequest
     public function getId(): int
     {
         return $this->input('id');
-    }
-
-    /**
-     * @return int
-     */
-    public function getUserId(): int
-    {
-        return $this->input('user_id');
     }
 
     /**

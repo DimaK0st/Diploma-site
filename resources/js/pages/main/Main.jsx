@@ -1,20 +1,15 @@
 import React from 'react';
 import './main.scss'
-import FindCourse from "../../components/course/find-course/FindCourse";
 
 function Main(props) {
     return (
         <div className={'main'}>
-            Start SITE :D
-        <div className={'main-left'}>
+            <div className={'main-left'}>
 
-
-        </div>
-        <div className={'main-center'}>
-            <FindCourse/>
-
-        </div>
-
+            </div>
+            <div className={'main-center'}>
+                {props.children}
+            </div>
         </div>
     );
 }

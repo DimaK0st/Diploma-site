@@ -69,7 +69,6 @@ class CourseController extends BaseController
         $course = Course::findOrFail($request->getId());
 
         $course->title = $request->getTitle();
-        $course->user_id = $request->getUserId();
         $course->description = $request->getDescription();
 
         $course->save();

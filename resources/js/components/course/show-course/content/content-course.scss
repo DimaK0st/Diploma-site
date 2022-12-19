@@ -1,4 +1,4 @@
-.content-course{
+.content{
 
     display: flex;
     flex-direction: column;
@@ -10,13 +10,16 @@
     &-title{
         font-weight: 600;
         font-size: 18px;
-        margin: auto auto 10px;
-        text-indent: 20px;
+        text-indent: 30px;
     }
 
     &-description{
         text-indent: 15px;
         color: #656565;
+    }
+
+    &-date{
+        margin-left: auto;
     }
 
 
