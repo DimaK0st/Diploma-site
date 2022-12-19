@@ -27,10 +27,10 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
 
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/groupList', [Controller::class, 'getGroupList']);
 
     Route::group(['middleware'=>'auth:sanctum'], function () {
 
-        Route::get('/groupList', [Controller::class, 'getGroupList']);
 
         Route::group(['prefix' => 'course', 'middleware' => 'auth:sanctum'], function () {
             Route::post('/create', [CourseController::class, 'create'])->name('');

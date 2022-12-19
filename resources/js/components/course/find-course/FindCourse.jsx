@@ -45,7 +45,7 @@ function FindCourse(props) {
                 options={select ?? []}
                 sx={{width: 300}}
                 onChange={(a, b) => {
-                    onChange(b)
+                    onChange(b?.title??b)
                 }}
                 renderInput={(params) => <TextField {...params}
                                                     label={"Пошук серед " + `${my ? 'ваших' : 'всіх'}` + " курсів"}/>}

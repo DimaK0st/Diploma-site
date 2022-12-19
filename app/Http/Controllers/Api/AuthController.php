@@ -63,17 +63,30 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user();
+        try {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $user = Auth::user();
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+                return response()->json([
+                    'status' => true,
+                    'message' => 'User Created Successfully',
+                    'token' => $user->createToken("API TOKEN")->plainTextToken,
+                    'user' => $user->toJson()
+                ], 200);
 //            return $this->sendResponse($success, 'User login successfully.');
-        } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            } else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Введіть коректні дані'
+                ], 500);
+
+            }
+        } catch
+        (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
         }
     }
 }

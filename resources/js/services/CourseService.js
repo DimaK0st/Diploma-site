@@ -1,4 +1,4 @@
-import {_apiBase, postRequest} from "./CONST";
+import {_apiBase, headers, postRequest} from "./CONST";
 import axios from 'axios';
 
 export const useCourseService = (state, setState) => {
@@ -6,15 +6,7 @@ export const useCourseService = (state, setState) => {
     let varSetState = setState
 
     function getCourseById(id) {
-        return axios.get(_apiBase + 'course/' + id, {
-            headers: {
-                ...postRequest.headers
-            }
-        }).then(res => {
-            console.log('res', res)
-            console.log('{data: [...res.data], loaded:true}', res.data)
-            console.log('{data: [...res.data], loaded:true}', {data: res.data, loaded: true})
-
+        return axios.get(_apiBase + 'course/' + id,  {...headers}).then(res => {
             varSetState({data: res.data, loaded: true})
             return res.data
         }).catch(function (error) {
@@ -28,9 +20,7 @@ export const useCourseService = (state, setState) => {
                 my: my,
                 search: search
             },
-            headers: {
-                ...postRequest.headers
-            }
+            ...headers
         }).then(res => {
             console.log('res', res)
             varSetState({data: [...res.data], loaded: true})
@@ -44,42 +34,26 @@ export const useCourseService = (state, setState) => {
 
 
     const createCourse = (data) => {
-        return axios.post(_apiBase + 'course/create', data, {
-            headers: {
-                ...postRequest.headers
-            }
-        }).then(res => {
+        return axios.post(_apiBase + 'course/create', data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const updateCourse = (data) => {
-        return axios.post(_apiBase + 'course/update', data, {
-            headers: {
-                ...postRequest.headers
-            }
-        }).then(res => {
+        return axios.post(_apiBase + 'course/update', data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const deleteCourse = (data) => {
-        return axios.post(_apiBase + 'course/delete', data, {
-            headers: {
-                ...postRequest.headers
-            }
-        }).then(res => {
+        return axios.post(_apiBase + 'course/delete', data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const createCourseContent = (data) => {
         console.log('adfasdfasfasdffas', data)
-        return axios.post(_apiBase + 'course/content/create', data, {
-            headers: {
-                ...postRequest.headers
-            }
-        }).then(res => {
+        return axios.post(_apiBase + 'course/content/create', data, {...headers}).then(res => {
             return res.data
         })
     }
