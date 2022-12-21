@@ -1,15 +1,15 @@
-import {_apiBase, postRequest} from "./CONST";
+import {_apiBase, headers, postRequest} from "./CONST";
 import axios from 'axios';
 
 export const useAuthService = () => {
 
     const register = (data, setError) => {
-        return axios.post(_apiBase + 'register', data, {
-            headers: {
-                ...postRequest.headers
-            }
-        }).then(res => {
+        return axios.post(_apiBase + 'register', data, {...headers}).then(res => {
             setError([])
+            localStorage.setItem('token', data.token)
+            localStorage.setItem('user', data.user)
+            document.location.href="/";
+
             return res.data
         }).catch(function (error) {
             let errors = error.response.data.errors
@@ -23,32 +23,26 @@ export const useAuthService = () => {
         })
     }
 
-    const login = (data) => {
-        return axios.post(_apiBase + 'login', data, {
-            headers: {
-                ...postRequest.headers
-            }
-        }).then(res => {
+    const login = (data, setError) => {
+        return axios.post(_apiBase + 'login', data, {...headers}).then(res => {
+            console.log(res)
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('user', res.data.user)
+            document.location.href="/";
             return res.data
         }).catch(function (error) {
             let errors = error.response.data.errors
-            let res = []
-            for (let key in errors) {
-                if(errors.hasOwnProperty(key)){
-                    res.push(`${key}: ${errors[key]}`)
-                }
-            }
-
-            setError(res)
+            setError(error.response.data.message)
         })
     }
 
 
     const getOptions = (input, setError) => {
 
-        return axios.get('http://127.0.0.1:8000/api/v1/groupList')
+        return axios.get('http://127.0.0.1:8000/api/v1/groupList', {...headers})
             .then(function (response) {
                 let options = response.data.map( category => ({ value: category.id, label: category.name }));
+
                 return options;
             })
             .catch(function (error) {

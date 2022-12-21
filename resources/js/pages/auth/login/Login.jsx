@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Form, Formik} from "formik";
+import {useNavigate} from "react-router-dom";
 import Input from "../../../components/elements/input/Input";
 import * as yup from "yup";
 import './login.scss'
@@ -8,10 +9,11 @@ import {useAuthService} from "../../../services/AuthService";
 function Login(props) {
     const authService = useAuthService()
     const [error, setError] = useState([])
+    let navigate = useNavigate();
     const onSubmit = (values) => {
 
         authService.login(values, setError).then((data)=>{
-            localStorage.setItem('token', data.token);
+
         })
     }
 
@@ -32,7 +34,7 @@ function Login(props) {
 
                 <Form className={'login'}>
                     <span className={'register-title'}>Авторизація</span>
-
+                    <span className={'login-error'}>{error}</span>
                     <div className={'login-inputs'}>
                         <Input label={'Пошта'} className={'half'} type={'text'} name={'email'}
                                placeholder={'Пошта'} required={true} errors={errors}/>
