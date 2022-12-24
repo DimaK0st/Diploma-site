@@ -6,7 +6,7 @@ export const useCourseService = (state, setState) => {
     let varSetState = setState
 
     function getCourseById(id) {
-        return axios.get(_apiBase + 'course/' + id,  {...headers}).then(res => {
+        return axios.get(_apiBase + 'course/' + id, {...headers}).then(res => {
             varSetState({data: res.data, loaded: true})
             return res.data
         }).catch(function (error) {
@@ -51,12 +51,21 @@ export const useCourseService = (state, setState) => {
         })
     }
 
+    const subscribeCourse = (data) => {
+        console.log('adfasdfasfasdffas', data)
+        return axios.post(_apiBase + 'course/subscribe_course', data, {...headers}).then(res => {
+            return res.data
+        })
+    }
+
     const createCourseContent = (data) => {
         console.log('adfasdfasfasdffas', data)
         return axios.post(_apiBase + 'course/content/create', data, {...headers}).then(res => {
             return res.data
         })
+
     }
 
-    return {getCourseById, searchCourse, createCourse, updateCourse, deleteCourse, createCourseContent}
+
+    return {getCourseById, searchCourse, createCourse, updateCourse, deleteCourse, createCourseContent, subscribeCourse}
 }

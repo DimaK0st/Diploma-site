@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ADMIN, DEANERY, STUDENT, TEACHER} from "../CONST";
+import {ADMIN, DEANERY, HEADMEN, STUDENT, TEACHER, USER} from "../CONST";
 
 function RoutesManager(props) {
 
@@ -15,7 +15,7 @@ function RoutesManager(props) {
             </>
             break;
 
-        case STUDENT:
+        case USER:
             routes = <>
 
             </>
@@ -27,7 +27,7 @@ function RoutesManager(props) {
             </>
             break;
 
-        case DEANERY:
+        case HEADMEN:
             routes = <>
 
             </>

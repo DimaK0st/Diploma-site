@@ -21,6 +21,7 @@ function RouterList(props){
             <Route path="/register" element={<Register />} />
             <Route path="/schedule" element={<Main><Schedule /></Main>} />
             <Route path="/course" element={<Main><FindCourse my={false}/></Main>}/>
+            <Route path="/course/my" element={<Main><FindCourse my={true}/></Main>}/>
             <Route path="/course/:courseId" element={<Main><ShowCourse/></Main>}/>
 
 

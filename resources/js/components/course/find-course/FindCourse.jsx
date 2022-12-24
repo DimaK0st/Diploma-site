@@ -5,6 +5,7 @@ import LittleCourse from "../little-course/LittleCourse";
 import './find-course.scss'
 import CreateCourse from "../create/CreateCourse";
 import Modal from "../../elements/modal/Modal";
+import {User} from "../../../services/User";
 
 function FindCourse(props) {
     const {my} = props
@@ -13,8 +14,11 @@ function FindCourse(props) {
         loaded: false
     })
     const [active, setActive] = useState(false)
+    const [activeSubscribe, setActiveSubscribe] = useState(false)
     const courseService = useCourseService(search, setSearch)
 
+    let user = new User()
+    console.log('hui2',user)
     const onChange = (str) => {
         console.log('str', str)
         courseService.searchCourse(my ? 1 : 0, str)
@@ -30,9 +34,11 @@ function FindCourse(props) {
         if (search.loaded && !active) {
             courseService.searchCourse(my ? 1 : 0, '').then((data) => {
                 setSelect(data)
+            }).then(()=>{
+                setActiveSubscribe(false)
             })
         }
-    }, [active])
+    }, [active,my,activeSubscribe])
 
     return (
         <div className={'find'}>
@@ -45,7 +51,7 @@ function FindCourse(props) {
                 options={select ?? []}
                 sx={{width: 300}}
                 onChange={(a, b) => {
-                    onChange(b?.title??b)
+                    onChange(b?.title ?? b)
                 }}
                 renderInput={(params) => <TextField {...params}
                                                     label={"Пошук серед " + `${my ? 'ваших' : 'всіх'}` + " курсів"}/>}
@@ -54,14 +60,20 @@ function FindCourse(props) {
 
             <Button onClick={() => setActive(true)}>Створити курс</Button>
 
-            <div>
+            <div key={my}>
                 {search?.data?.length
                     ? search?.data
-                        ?.map(({title, description, id, owner}) =>
-                            <LittleCourse title={title}
-                                          description={description}
-                                          id={id}
-                                          user={owner}/>)
+                        ?.map(({title, description, id, owner,subscribe}) =>
+                            <LittleCourse
+                                title={title}
+                                description={description}
+                                id={id}
+                                subscribe={subscribe}
+                                user={owner}
+                                active={activeSubscribe}
+                                setActive={setActiveSubscribe}
+                                courseService={courseService}
+                            />)
                     : 'sdfasdfasdf'}
             </div>
         </div>

@@ -8,6 +8,8 @@ import CreateCourseContent from "./content/create/CreateCourseContent";
 import {Button} from "@mui/material";
 import UpdateCourse from "../update/UpdateCourse";
 import DeleteCourse from "../delete/DeleteCourse";
+import {User} from "../../../services/User";
+import {ADMIN} from "../../../CONST";
 
 function ShowCourse(props) {
     const {courseId} = useParams()
@@ -20,7 +22,8 @@ function ShowCourse(props) {
     const [activeUpdateCourse, setActiveUpdateCourse] = useState(false)
     const [activeDeleteCourse, setActiveDeleteCourse] = useState(false)
     const courseService = useCourseService(data, setData)
-
+    let user = new User()
+    console.log(data)
     useEffect(() => {
         courseService.getCourseById(courseId)
     }, [])
@@ -45,13 +48,14 @@ function ShowCourse(props) {
                               setActive={setActiveUpdateCourse}/></Modal>
             <Modal active={activeDeleteCourse} setActive={setActiveDeleteCourse}>
                 <DeleteCourse id={courseId} setActive={setActiveDeleteCourse}/></Modal>
-            <div className={'course-nav'}>
+            {data?.data?.user_id === user.id || user.role_id===ADMIN ? <div className={'course-nav'}>
                 <Button variant="outlined" onClick={() => setActiveCreate(true)}>Додати контент</Button>
                 <Button variant="outlined" color="warning" onClick={() => setActiveUpdateCourse(true)}>Редагувати
                     курс</Button>
                 <Button variant="outlined" color="error" onClick={() => setActiveDeleteCourse(true)}>Видалити
                     курс</Button>
-            </div>
+            </div> : null}
+
 
             <div className={'course-wrapper'}>
                 <span className={'course-title'}>{data?.data?.title}</span>

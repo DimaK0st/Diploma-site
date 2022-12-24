@@ -1,12 +1,14 @@
-.little-course{
+.little-course {
 
     padding: 10px;
     margin: 10px 5px;
-    background: #0c63e4;
+    background: #c2daff;
+    border: gray 1px solid;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
 
-    &-title{
+    &-title {
         font-weight: 600;
         display: -webkit-box;
         -webkit-line-clamp: 2; // количество строк
@@ -14,7 +16,7 @@
         overflow: hidden;
     }
 
-    &-description{
+    &-description {
         margin: 10px 0;
         display: -webkit-box;
         -webkit-line-clamp: 2; // количество строк
@@ -22,8 +24,12 @@
         overflow: hidden;
     }
 
-    &-user{
-        font-weight: 600;
-    }
+    &-bottom {
+        display: flex;
+        justify-content: space-between;
 
+        &-user {
+            font-weight: 600;
+        }
+    }
 }

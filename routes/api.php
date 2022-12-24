@@ -33,6 +33,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
 
 
         Route::group(['prefix' => 'course', 'middleware' => 'auth:sanctum'], function () {
+            Route::post('/subscribe_course', [CourseController::class, 'subscribeCourse'])->name('');
             Route::post('/create', [CourseController::class, 'create'])->name('');
             Route::post('/update', [CourseController::class, 'update'])->name('');
             Route::post('/delete', [CourseController::class, 'delete'])->name('');

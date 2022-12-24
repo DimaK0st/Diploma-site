@@ -5,6 +5,8 @@ import moment from "moment-timezone";
 
 function ContentCourse(props) {
     const {content} = props
+
+    
     return (
         <div className={'content'}>
             <span className={'content-title'}>{content?.url!==''?<a href={content?.url}>{content?.title}</a> :<span>{content?.title}</span> }</span>

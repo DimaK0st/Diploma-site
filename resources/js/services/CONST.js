@@ -23,3 +23,7 @@ export const headers = {
     },
 }
 export const _apiBase = 'http://127.0.0.1:8000/api/v1/'
+export const USER = 1
+export const ADMIN = 2
+export const TEACHER = 3
+export const HEADMEN = 4

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CourseController;
 
 use App\Http\Requests\Course\CreateCourseRequest;
 use App\Http\Requests\Course\DeleteCourseRequest;
+use App\Http\Requests\Course\SubscribeCourseRequest;
 use App\Http\Requests\Course\UpdateCourseRequest;
 use App\Models\Course;
 use Illuminate\Routing\Controller as BaseController;
@@ -81,5 +82,12 @@ class CourseController extends BaseController
         return Course::query()->where('id', '=', $request->getId())->delete();
     }
 
-
+    public function subscribeCourse(SubscribeCourseRequest $request)
+    {
+        if($request->getSubscribe()){
+            return Auth::user()->courses()->detach(Course::find($request->getId()));
+        }else{
+            return Auth::user()->courses()->attach(Course::find($request->getId()));
+        }
+    }
 }
