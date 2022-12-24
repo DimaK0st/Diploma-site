@@ -32,7 +32,7 @@ class CourseContentController extends BaseController
         $courseContent->title = $request->getTitle();
         $courseContent->course_id = $request->getCourseId();
         $courseContent->description = $request->getDescription();
-        $courseContent->url = $request->getUrl()?:'';
+        $courseContent->url = $request->getUrl() ?: '';
 
         $courseContent->save();
 
@@ -55,7 +55,9 @@ class CourseContentController extends BaseController
 
     public function delete(DeleteCourseContentRequest $request)
     {
-        return CourseContent::query()->where('id', '=', $request->getId())->delete();
+        return CourseContent::query()
+            ->where('id', '=', $request->getId())
+            ->delete();
     }
 
 }

@@ -20,6 +20,7 @@
     "dependencies": {
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
+        "@mui/icons-material": "^5.11.0",
         "@mui/material": "^5.11.1",
         "bootstrap-icons": "^1.10.2",
         "formik": "^2.2.9",

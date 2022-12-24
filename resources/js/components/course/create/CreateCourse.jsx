@@ -19,7 +19,6 @@ function CreateCourse(props) {
 
     const onSubmit=(value)=>{
         courseService.createCourse(value).then(()=>{setActive(false)})
-        console.log('aaaaaaaaaaaaaaaaa', value)
     }
 
     return (

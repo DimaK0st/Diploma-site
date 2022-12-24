@@ -65,7 +65,23 @@ export const useCourseService = (state, setState) => {
         })
 
     }
+    const deleteCourseContent = (data) => {
+        console.log('adfasdfasfasdffas', data)
+        return axios.post(_apiBase + 'course/content/delete', data, {...headers}).then(res => {
+            return res.data
+        })
+
+    }
 
 
-    return {getCourseById, searchCourse, createCourse, updateCourse, deleteCourse, createCourseContent, subscribeCourse}
+    return {
+        getCourseById,
+        searchCourse,
+        createCourse,
+        updateCourse,
+        deleteCourse,
+        createCourseContent,
+        subscribeCourse,
+        deleteCourseContent
+    }
 }

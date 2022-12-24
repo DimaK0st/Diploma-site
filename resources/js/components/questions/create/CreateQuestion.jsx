@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import * as yup from "yup";
 import {Form, Formik} from "formik";
-import {TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
+import Variant from "./variant/Variant";
 
 function CreateQuestion(props) {
 
@@ -22,20 +23,19 @@ function CreateQuestion(props) {
     })
 
     const onSubmit = (value) => {
-        courseService.createCourseContent({...value, 'course_id': courseId}).then(() => {
-            setActive(false)
-        })
+
     }
 
     return (
         <Formik
             validationSchema={validationsSchema}
-            key={new Date().toLocaleTimeString()}
+            // key={new Date().toLocaleTimeString()}
             initialValues={sendData}
             onSubmit={(values) => {
                 onSubmit(values)
             }}
             validateOnChange={false}
+            validateOnBlur={false}
         >
             {(formik) => (
                 // {({errors, touched}) => (
@@ -57,52 +57,21 @@ function CreateQuestion(props) {
                         multiline
                     />
 
-                    {
-                        sendData.variants.map((item, key) => {
-
-                            return (
-                                <>
-                                    {console.log({
-                                        ...sendData,
-                                        variants: [...sendData.variants.filter((i) => i.id !== item.id), {
-                                            id: item.id,
-                                            'text': 'event.target.value'
-                                        }]
-                                    })}
-
-                                    <TextField
-                                        id="outlined-textarea"
-                                        className={'create-course-input'}
-                                        key={item.id}
-                                        label="Назва питання"
-                                        value={item?.text}
-                                        name={'title'}
-                                        onChange={(event) => {
-                                            formik.setFieldValue('variants', event.target.value)
-                                            // formik.setFieldValue('id', value.id)
-                                            setSendData({
-                                                ...sendData,
-                                                variants: [...sendData.variants.filter((i) => i.id !== item.id), {
-                                                    id: item.id,
-                                                    'text': event.target.value
-                                                }]
-                                            })
-                                        }}
-                                        placeholder="Placeholder"
-                                        error={formik.errors['title']}
-                                        multiline
-                                    />
-                                </>
-                            )
-
-                        })
+                    {sendData.variants.map((item, key) => {
+                        return (<>
+                            <Variant key={item.id} item={item} formik={formik} setSendData={setSendData}
+                                     sendData={sendData}/>
+                        </>)
+                    })
                     }
-                    <button className={'add'} onClick={() => setSendData({
+                    <Button variant="contained" color={'warning'} style={{marginBottom: '10px'}} className={'add'} onClick={() => setSendData({
                         ...sendData,
                         variants: [...sendData.variants, {id: sendData.variants.length, 'text': ''}]
                     })}>
                         Додати варіант
-                    </button>
+                    </Button>
+
+                    <Button variant="contained">Створити питання</Button>
 
                 </Form>
             )}

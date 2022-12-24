@@ -1,3 +1,5 @@
+import {ADMIN} from "../CONST";
+
 export class User {
 
     constructor() {
@@ -11,6 +13,10 @@ export class User {
         this.shortFullName = jsonStr?.shortFullName
         this.role_id = jsonStr?.role_id
         this.group_id = jsonStr?.group_id
+    }
+
+    isAdmin(){
+        return this.role_id===ADMIN
     }
 }
 

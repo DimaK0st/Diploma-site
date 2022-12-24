@@ -18,9 +18,7 @@ function FindCourse(props) {
     const courseService = useCourseService(search, setSearch)
 
     let user = new User()
-    console.log('hui2',user)
     const onChange = (str) => {
-        console.log('str', str)
         courseService.searchCourse(my ? 1 : 0, str)
     }
 

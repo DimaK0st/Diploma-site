@@ -21,9 +21,9 @@ function ShowCourse(props) {
     const [activeCreate, setActiveCreate] = useState(false)
     const [activeUpdateCourse, setActiveUpdateCourse] = useState(false)
     const [activeDeleteCourse, setActiveDeleteCourse] = useState(false)
+    const [activeDeleteCourseContent, setActiveDeleteCourseContent] = useState(false)
     const courseService = useCourseService(data, setData)
     let user = new User()
-    console.log(data)
     useEffect(() => {
         courseService.getCourseById(courseId)
     }, [])
@@ -34,9 +34,9 @@ function ShowCourse(props) {
 
     useEffect(() => {
         if (data.loaded) {
-            courseService.getCourseById(courseId)
+            courseService.getCourseById(courseId).then(setActiveDeleteCourseContent(false))
         }
-    }, [activeCreate, activeUpdateCourse])
+    }, [activeCreate, activeUpdateCourse,activeDeleteCourseContent])
 
     return (
         <div className={'course'}>
@@ -48,7 +48,7 @@ function ShowCourse(props) {
                               setActive={setActiveUpdateCourse}/></Modal>
             <Modal active={activeDeleteCourse} setActive={setActiveDeleteCourse}>
                 <DeleteCourse id={courseId} setActive={setActiveDeleteCourse}/></Modal>
-            {data?.data?.user_id === user.id || user.role_id===ADMIN ? <div className={'course-nav'}>
+            {data?.data?.user_id === user.id || user.isAdmin() ? <div className={'course-nav'}>
                 <Button variant="outlined" onClick={() => setActiveCreate(true)}>Додати контент</Button>
                 <Button variant="outlined" color="warning" onClick={() => setActiveUpdateCourse(true)}>Редагувати
                     курс</Button>
@@ -64,7 +64,7 @@ function ShowCourse(props) {
 
             <div className={'course-content'}>
                 {(data?.data?.contents?.length) ? data?.data?.contents?.map((content) => {
-                    return <ContentCourse content={content}/>
+                    return <ContentCourse content={content} setActive={setActiveDeleteCourseContent} courseService={courseService} ownerId={data?.data?.user_id}/>
                 }) : <span className={'course-content-empty'}>Поки що нічого немає</span>}
             </div>
 

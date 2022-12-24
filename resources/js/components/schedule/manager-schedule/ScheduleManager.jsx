@@ -18,14 +18,12 @@ function ScheduleManager(props) {
     })
 
     useEffect(() => {
-        console.log('tuta')
         scheduleService.getAddScheduleData().then((data) => {
             setEditData(data, editData)
         })
     }, [])
 
     useEffect(() => {
-        console.log('tuta')
         if (editData) {
             setEditData(data, editData)
         } else if (editData === undefined) {
@@ -42,10 +40,6 @@ function ScheduleManager(props) {
             }
         )
     }
-
-    useEffect(() => {
-        console.log('asdfasfdafasfdasdfasfasdfadfdfg', defaultData)
-    }, [defaultData])
 
     const onSubmit = (values) => {
         let sendObj = {
@@ -111,7 +105,6 @@ function ScheduleManager(props) {
                             setDefaultData((value) => ({...value, 'teacher': b}))
                             formId ? formik.setFieldValue('form', formId) : null
                         }}
-                        // onChange={(a, b) => console.log(b.id)}
                         renderInput={(params) => <TextField {...params} error={formik.errors['teacher']}
                                                             label="Викладач"/>}
                         getOptionLabel={(option) => option.shortFullName || ""}

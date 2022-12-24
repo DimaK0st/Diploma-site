@@ -26,7 +26,6 @@ function ShowDay(props) {
     }
 
     const deleteNewLesson = (id) => {
-        console.log('asdfasdfasdfasdf',id)
         deleteLesson(id)
     }
 
@@ -44,7 +43,6 @@ function ShowDay(props) {
                             <>
                                 <th className="table-edit">
                                     <PencilSquare style={{marginRight: '5px'}} onClick={() => {
-                                        console.log('huita?')
                                         addNewLesson(inc, day.id, type, {
                                             id: data?.id,
                                             teacher: data?.teacher?.id,
