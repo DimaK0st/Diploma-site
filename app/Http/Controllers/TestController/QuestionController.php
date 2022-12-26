@@ -14,7 +14,6 @@ class QuestionController extends BaseController
     public function create(CreateQuestionRequest $request)
     {
         $question = new Question();
-
         $question->title = $request->getTitle();
         $question->test_id = $request->getTestId();
 
@@ -26,7 +25,7 @@ class QuestionController extends BaseController
             $variantModel->text = $variant['text'];
             $variantModel->correct = $variant['correct'];
 
-            $variant->save();
+            $variantModel->save();
         }
 
         return $question;

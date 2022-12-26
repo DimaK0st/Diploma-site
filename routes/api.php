@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseController\CourseContentController;
 use App\Http\Controllers\CourseController\CourseController;
 use App\Http\Controllers\ScheduleController\ScheduleController;
+use App\Http\Controllers\TestController\QuestionController;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/groupList', [Controller::class, 'getGroupList']);
 
-    Route::group(['middleware'=>'auth:sanctum'], function () {
+    Route::group(['middleware' => 'auth:sanctum'], function () {
 
 
         Route::group(['prefix' => 'course', 'middleware' => 'auth:sanctum'], function () {
@@ -40,25 +41,30 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
             Route::get('/search', [CourseController::class, 'searchCourse'])->name('');
             Route::get('/my', [CourseController::class, 'myCourse'])->name('');
             Route::get('/{id}', [CourseController::class, 'index'])->name('');
-        });
 
-        Route::group(['prefix' => 'course/content'], function () {
-            Route::post('/create', [CourseContentController::class, 'create'])->name('');
-            Route::post('/update', [CourseContentController::class, 'update'])->name('');
-            Route::post('/delete', [CourseContentController::class, 'delete'])->name('');
-            Route::get('/{id}', [CourseContentController::class, 'index'])->name('');
-        });
 
+            Route::group(['prefix' => 'content'], function () {
+                Route::post('/create', [CourseContentController::class, 'create'])->name('');
+                Route::post('/update', [CourseContentController::class, 'update'])->name('');
+                Route::post('/delete', [CourseContentController::class, 'delete'])->name('');
+                Route::get('/{id}', [CourseContentController::class, 'index'])->name('');
+
+                Route::group(['prefix' => 'question'], function () {
+                    Route::post('/create', [QuestionController::class, 'create'])->name('');
+                    Route::post('/update', [QuestionController::class, 'update'])->name('');
+                    Route::post('/delete', [QuestionController::class, 'delete'])->name('');
+                });
+            });
 
 //    Route::group(['middleware'=>'auth:sanctum'], function () {
 
-        Route::get('/schedule/data', [ScheduleController::class, 'getScheduleData'])->name('');
-        Route::get('/schedule/add_schedule_data', [ScheduleController::class, 'getAddScheduleData'])->name('');
-        Route::post('/schedule/add', [ScheduleController::class, 'addSchedule'])->name('');
-        Route::post('/schedule/edit', [ScheduleController::class, 'editSchedule'])->name('');
-        Route::post('/schedule/delete', [ScheduleController::class, 'deleteSchedule'])->name('');
-        Route::get('/schedule/{group}', [ScheduleController::class, 'showSchedule'])->name('');
-
+            Route::get('/schedule/data', [ScheduleController::class, 'getScheduleData'])->name('');
+            Route::get('/schedule/add_schedule_data', [ScheduleController::class, 'getAddScheduleData'])->name('');
+            Route::post('/schedule/add', [ScheduleController::class, 'addSchedule'])->name('');
+            Route::post('/schedule/edit', [ScheduleController::class, 'editSchedule'])->name('');
+            Route::post('/schedule/delete', [ScheduleController::class, 'deleteSchedule'])->name('');
+            Route::get('/schedule/{group}', [ScheduleController::class, 'showSchedule'])->name('');
+        });
 //    });
         Route::get('/user_courses', function (Request $request) {
             return json_encode([['title' => 'asd2fasdf', 'label' => 'asda2sd'], ['title' => 'a2sdfa3sdf', 'label' => 'asd4asd'], ['title' => 'asdfas5df', 'label' => 'asda6sd'], ['title' => 'asdfasd7f', 'label' => 'a8sdasd'],]);
@@ -67,21 +73,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
         });
 
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
