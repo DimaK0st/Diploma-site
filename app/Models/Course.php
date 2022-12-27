@@ -25,6 +25,11 @@ class Course extends Model
         return $this->hasMany(CourseContent::class, 'course_id', 'id');
     }
 
+    public function tests()
+    {
+        return $this->hasMany(Test::class, 'course_id', 'id');
+    }
+
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -33,11 +38,6 @@ class Course extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
-    }
-
-    public function tests()
-    {
-        return $this->belongsTo(Test::class, 'id', 'course_id');
     }
 
     public function getSubscribeAttribute(): int

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property string $description
  * @property int $course_id
+ * @property int $count
  */
 class Test extends Model
 {

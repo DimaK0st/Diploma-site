@@ -18,6 +18,7 @@ class TestController extends BaseController
         $test->title = $request->getTitle();
         $test->description = $request->getDescription();
         $test->course_id = $request->getCourseId();
+        $test->count = $request->getCount();
 
         $test->save();
 
@@ -30,7 +31,7 @@ class TestController extends BaseController
 
         $test->title = $request->getTitle();
         $test->description = $request->getDescription();
-        $test->course_id = $request->getCourseId();
+        $test->count = $request->getCount();
 
         $test->save();
 

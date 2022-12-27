@@ -21,7 +21,7 @@ class CourseController extends BaseController
     public function index(Request $request, $id)
     {
 
-        $course = Course::query()->with('contents')->where('id', $id)->first();
+        $course = Course::query()->with('contents')->with('tests')->where('id', $id)->first();
 
         return $course;
     }

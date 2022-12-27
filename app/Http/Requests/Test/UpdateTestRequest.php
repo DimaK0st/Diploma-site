@@ -17,7 +17,7 @@ class UpdateTestRequest extends FormRequest
             'id' => 'required|int',
             'title' => 'required|string',
             'description' => 'required|string',
-            'course-id' => 'required|int',
+            'count' => 'required|int',
         ];
     }
 
@@ -40,9 +40,9 @@ class UpdateTestRequest extends FormRequest
     /**
      * @return int
      */
-    public function getCourseId(): int
+    public function getCount(): int
     {
-        return $this->input('course-id');
+        return $this->input('count');
     }
 
     /**

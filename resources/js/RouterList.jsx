@@ -12,6 +12,8 @@ import FindCourse from "./components/course/find-course/FindCourse";
 import ShowCourse from "./components/course/show-course/ShowCourse";
 import Questions from "./components/questions/Questions";
 import CreateQuestion from "./components/questions/create/CreateQuestion";
+import UpdateTest from "./pages/test/update/UpdateTest";
+import CreateTest from "./pages/test/create/CreateTest";
 
 function RouterList(props){
     return <Router >
@@ -24,6 +26,8 @@ function RouterList(props){
             <Route path="/course/my" element={<Main><FindCourse my={true}/></Main>}/>
             <Route path="/course/:courseId" element={<Main><ShowCourse/></Main>}/>
 
+            <Route path="/test/create" element={<Main><CreateTest/></Main>}/>
+            <Route path="/test/update" element={<Main><UpdateTest/></Main>}/>
 
 
             <Route path="/question/create" element={<Main><CreateQuestion/></Main>}/>

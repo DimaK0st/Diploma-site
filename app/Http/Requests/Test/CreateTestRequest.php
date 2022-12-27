@@ -17,6 +17,7 @@ class CreateTestRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'required|string',
             'course-id' => 'required|int',
+            'count' => 'required|int',
         ];
     }
 
@@ -34,6 +35,14 @@ class CreateTestRequest extends FormRequest
     public function getCourseId(): int
     {
         return $this->input('course-id');
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->input('count');
     }
 
     /**

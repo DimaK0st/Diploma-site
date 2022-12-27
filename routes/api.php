@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController\CourseContentController;
 use App\Http\Controllers\CourseController\CourseController;
 use App\Http\Controllers\ScheduleController\ScheduleController;
 use App\Http\Controllers\TestController\QuestionController;
+use App\Http\Controllers\TestController\TestController;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,13 +50,19 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                 Route::post('/delete', [CourseContentController::class, 'delete'])->name('');
                 Route::get('/{id}', [CourseContentController::class, 'index'])->name('');
 
+            });
+
+            Route::group(['prefix' => 'test'], function () {
+                Route::post('/create', [TestController::class, 'create'])->name('');
+                Route::post('/update', [TestController::class, 'update'])->name('');
+                Route::post('/delete', [TestController::class, 'delete'])->name('');
+
                 Route::group(['prefix' => 'question'], function () {
                     Route::post('/create', [QuestionController::class, 'create'])->name('');
                     Route::post('/update', [QuestionController::class, 'update'])->name('');
                     Route::post('/delete', [QuestionController::class, 'delete'])->name('');
                 });
             });
-
 //    Route::group(['middleware'=>'auth:sanctum'], function () {
 
             Route::get('/schedule/data', [ScheduleController::class, 'getScheduleData'])->name('');

@@ -7,7 +7,7 @@ export const useTestService = (state, setState) => {
     let varSetState = setState
 
     const createTest = (data) => {
-        return axios.post(_apiBase + 'test/create', data, {
+        return axios.post(_apiBase + 'course/test/create', data, {
             headers: {
                 ...postRequest.headers
             }
@@ -28,7 +28,7 @@ export const useTestService = (state, setState) => {
     }
 
     const updateTest = (data) => {
-        return axios.post(_apiBase + 'test/update', data, {
+        return axios.post(_apiBase + 'course/test/update', data, {
             headers: {
                 ...postRequest.headers
             }
@@ -38,7 +38,7 @@ export const useTestService = (state, setState) => {
     }
 
     const deleteTest = (data) => {
-        return axios.post(_apiBase + 'test/delete', data, {
+        return axios.post(_apiBase + 'course/test/delete', data, {
             headers: {
                 ...postRequest.headers
             }
@@ -47,5 +47,5 @@ export const useTestService = (state, setState) => {
         })
     }
 
-    return {createTest}
+    return {createTest,updateTest,deleteTest}
 }

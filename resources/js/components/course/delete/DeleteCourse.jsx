@@ -14,7 +14,7 @@ function DeleteSchedule(props) {
 
     return (
         <div className={'delete'}>
-            <span className={'delete-title'}>Видалити запис?</span>
+            <span className={'delete-title'}>Видалити курс?</span>
             <Button onClick={onSubmit} variant="contained" color="error">Видалити</Button>
         </div>
     );

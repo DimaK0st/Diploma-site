@@ -4,7 +4,7 @@ import axios from 'axios';
 export const useQuestionService = () => {
 
     const createQuestion = (data, setError) => {
-        return axios.post(_apiBase + 'course/content/question/create', data, {...headers}).then(res => {
+        return axios.post(_apiBase + 'course/test/question/create', data, {...headers}).then(res => {
             setError([])
             // document.location.href="/";
 
