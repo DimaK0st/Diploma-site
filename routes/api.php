@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController\CourseContentController;
 use App\Http\Controllers\CourseController\CourseController;
 use App\Http\Controllers\ScheduleController\ScheduleController;
 use App\Http\Controllers\TestController\QuestionController;
+use App\Http\Controllers\TestController\ResultController;
 use App\Http\Controllers\TestController\TestController;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -49,18 +50,24 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                 Route::post('/update', [CourseContentController::class, 'update'])->name('');
                 Route::post('/delete', [CourseContentController::class, 'delete'])->name('');
                 Route::get('/{id}', [CourseContentController::class, 'index'])->name('');
-
             });
 
             Route::group(['prefix' => 'test'], function () {
                 Route::post('/create', [TestController::class, 'create'])->name('');
                 Route::post('/update', [TestController::class, 'update'])->name('');
                 Route::post('/delete', [TestController::class, 'delete'])->name('');
+                Route::get('/{id}', [TestController::class, 'index'])->name('');
 
                 Route::group(['prefix' => 'question'], function () {
                     Route::post('/create', [QuestionController::class, 'create'])->name('');
                     Route::post('/update', [QuestionController::class, 'update'])->name('');
                     Route::post('/delete', [QuestionController::class, 'delete'])->name('');
+                    Route::get('/{test}', [QuestionController::class, 'getByTestId'])->name('');
+                });
+
+                Route::group(['prefix' => 'result'], function () {
+                    Route::post('/create', [ResultController::class, 'create'])->name('');
+                    Route::get('/{test}', [ResultController::class, 'getByTestId'])->name('');
                 });
             });
 //    Route::group(['middleware'=>'auth:sanctum'], function () {

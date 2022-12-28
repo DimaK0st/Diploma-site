@@ -1,8 +1,9 @@
 import {_apiBase, headers, postRequest} from "./CONST";
 import axios from 'axios';
 
-export const useQuestionService = () => {
-
+export const useQuestionService = (state, setState) => {
+    let varState = state
+    let varSetState = setState
     const createQuestion = (data, setError) => {
         return axios.post(_apiBase + 'course/test/question/create', data, {...headers}).then(res => {
             setError([])
@@ -10,42 +11,34 @@ export const useQuestionService = () => {
 
             return res.data
         }).catch(function (error) {
-            let errors = error.response.data.errors
-            let res = []
-            for (let key in errors) {
-                if(errors.hasOwnProperty(key)){
-                    res.push(`${key}: ${errors[key]}`)
-                }
-            }
-            setError(res)
+            // let errors = error.response.data.errors
+            // let res = []
+            // for (let key in errors) {
+            //     if(errors.hasOwnProperty(key)){
+            //         res.push(`${key}: ${errors[key]}`)
+            //     }
+            // }
+            // setError(res)
         })
     }
 
-    const login = (data, setError) => {
-        return axios.post(_apiBase + 'login', data, {...headers}).then(res => {
-            console.log(res)
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('user', res.data.user)
-            document.location.href="/";
+    const deleteQuestion = (data) => {
+        return axios.post(_apiBase + 'course/test/question/delete', data, {...headers}).then(res => {
             return res.data
-        }).catch(function (error) {
-            let errors = error.response.data.errors
-            setError(error.response.data.message)
         })
     }
 
-
-    const getOptions = (input, setError) => {
-
-        return axios.get('http://127.0.0.1:8000/api/v1/groupList', {...headers})
-            .then(function (response) {
-                let options = response.data.map( category => ({ value: category.id, label: category.name }));
-
-                return options;
-            })
-            .catch(function (error) {
-            });
+    const getQuestionById = (id) => {
+        return axios.get(_apiBase + 'course/test/question/'+id, {...headers}).then(res => {
+            varSetState(res.data)
+            return res.data
+        })
     }
 
-    return {createQuestion}
+    const saveResult = (data) => {
+        return axios.post(_apiBase + 'course/test/result/create',data, {...headers}).then(res => {
+        })
+    }
+
+    return {createQuestion,deleteQuestion,getQuestionById,saveResult}
 }

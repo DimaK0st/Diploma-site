@@ -14,6 +14,7 @@ import Questions from "./components/questions/Questions";
 import CreateQuestion from "./components/questions/create/CreateQuestion";
 import UpdateTest from "./pages/test/update/UpdateTest";
 import CreateTest from "./pages/test/create/CreateTest";
+import IndexTest from "./pages/test/index/IndexTest";
 
 function RouterList(props){
     return <Router >
@@ -28,6 +29,9 @@ function RouterList(props){
 
             <Route path="/test/create" element={<Main><CreateTest/></Main>}/>
             <Route path="/test/update" element={<Main><UpdateTest/></Main>}/>
+
+            <Route path="/test/edit/:testId" element={<Main><IndexTest/></Main>}/>
+            <Route path="/test/:testId" element={<Main><Questions/></Main>}/>
 
 
             <Route path="/question/create" element={<Main><CreateQuestion/></Main>}/>

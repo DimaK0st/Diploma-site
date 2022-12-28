@@ -21,7 +21,7 @@ class CourseContentSeeder extends Seeder
     public function run()
     {
         $this->faker = Factory::create();
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             CourseContent::insert(['course_id' => 1, 'title' => (string)$this->faker->realText(), 'description' => (string)$this->faker->realText(), 'url' => (string)$this->faker->url()]);
         }
     }

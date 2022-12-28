@@ -1,4 +1,4 @@
-import {_apiBase, postRequest} from "./CONST";
+import {_apiBase, headers, postRequest} from "./CONST";
 import axios from 'axios';
 import schedule from "../pages/schedule/Schedule";
 
@@ -47,5 +47,14 @@ export const useTestService = (state, setState) => {
         })
     }
 
-    return {createTest,updateTest,deleteTest}
+    function getTestById(id) {
+        return axios.get(_apiBase + 'course/test/' + id, {...headers}).then(res => {
+            varSetState({data: res.data, loaded: true})
+            return res.data
+        }).catch(function (error) {
+            // let errors = error.response.data.errors
+        })
+    }
+
+    return {createTest,updateTest,deleteTest,getTestById}
 }

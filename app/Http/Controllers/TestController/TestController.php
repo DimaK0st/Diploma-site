@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TestController;
 use App\Http\Requests\Test\CreateTestRequest;
 use App\Http\Requests\Test\DeleteTestRequest;
 use App\Http\Requests\Test\UpdateTestRequest;
+use App\Models\Course;
 use App\Models\Test;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -41,5 +42,9 @@ class TestController extends BaseController
     public function delete(DeleteTestRequest $request)
     {
         return Test::query()->where('id', '=', $request->getId())->delete();
+    }
+
+    public function index($id){
+        return Test::query()->with('questions')->where('id', $id)->first();
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\Question\CreateQuestionRequest;
 use App\Http\Requests\Question\UpdateQuestionRequest;
 use App\Http\Requests\Test\DeleteTestRequest;
 use App\Models\Question;
+use App\Models\Test;
 use App\Models\Variant;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -54,5 +55,11 @@ class QuestionController extends BaseController
     public function delete(DeleteTestRequest $request)
     {
         return Question::query()->where('id', '=', $request->getId())->delete();
+    }
+
+    public function getByTestId(Test $test)
+    {
+        return Question::query()->with('variants')
+            ->where('test_id', '=', $test->id)->inRandomOrder()->limit($test->count)->get();
     }
 }

@@ -20,7 +20,7 @@ class CourseUserSeeder extends Seeder
     public function run()
     {
         $this->faker = Factory::create();
-        for ($i = 1; $i < 50; $i++) {
+        for ($i = 1; $i < 2; $i++) {
             DB::table('course_user')->insert(['user_id' => 1, 'course_id' => $i]);
         }
     }

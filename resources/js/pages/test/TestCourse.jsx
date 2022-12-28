@@ -9,6 +9,7 @@ import './test-course.scss'
 import Modal from "../../components/elements/modal/Modal";
 import UpdateTest from "./update/UpdateTest";
 import {useTestService} from "../../services/TestService";
+import {Link, useNavigate} from "react-router-dom";
 
 function TestCourse(props) {
 
@@ -17,6 +18,7 @@ function TestCourse(props) {
     const [activeUpdate, setActiveUpdate] = useState()
     const [data, setData] = useState()
     const testService = useTestService(data, setData)
+    let navigate = useNavigate();
 
     useEffect(() => {
         if (!activeUpdate)
@@ -32,17 +34,19 @@ function TestCourse(props) {
 
 
     return (
-        <div className={'content-test'}>
-            <Modal active={activeUpdate} setActive={setActiveUpdate}><UpdateTest setActive={setActiveUpdate}
-                                                                                 id={test.id} title={test.title}
-                                                                                 description={test.description}
-                                                                                 count={test.count}/></Modal>
-
-            <span className={'content-test-title'}>{test?.url !== '' ? <a href={test?.url}>{test?.title}</a> :
-                <span>{test?.title}</span>}</span>
+        <div className={`content-test ${test?.myResult?' result':''}`} >
+            <Modal active={activeUpdate} setActive={setActiveUpdate}>
+                <UpdateTest setActive={setActiveUpdate}
+                            id={test.id} title={test.title}
+                            description={test.description}
+                            count={test.count}/>
+            </Modal>
+            {console.log('asdfasdf',test)}
+            <span className={'content-test-title'}>{!test?.myResult ?
+                <Link to={'/test/' + test.id} href={test?.url}>{test?.title}</Link>:test?.title}</span>
             <span className={'content-test-description'}>{test?.description}</span>
             <div className={'content-test-bottom'}>
-                <span>Кількість питань: {test.count}</span>
+                <span>{!test?.myResult ?'Кількість питань: '+test.count: 'Оцінка '+test?.myResult}</span>
 
                 <div className={'content-test-bottom-right'}>
                     {
@@ -53,7 +57,7 @@ function TestCourse(props) {
                             <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
                                 <EditIcon/>
                             </IconButton>
-                            <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
+                            <IconButton aria-label="delete" onClick={() => navigate('/test/edit/'+test?.id)}>
                                 <AssignmentIcon/>
                             </IconButton>
                         </> : null

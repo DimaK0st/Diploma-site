@@ -7,6 +7,10 @@
     border-radius: 10px;
     margin-bottom: 20px;
 
+    &.result{
+        background: #f6f6a6;
+    }
+
     &-title {
         font-weight: 600;
         font-size: 18px;

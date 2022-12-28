@@ -7,9 +7,11 @@ import {useQuestionService} from "../../../services/QuestionService";
 
 function CreateQuestion(props) {
 
+    const {testId,setActive}=props
+    console.log('testId',testId)
     const [sendData, setSendData] = useState(
         {
-            test_id: 1,
+            'test_id': testId,
             title: 'fasdfasf',
             variants: [
                 {id: 0, text: '00000000', correct: true},
@@ -24,6 +26,7 @@ function CreateQuestion(props) {
     const questionService = useQuestionService(data, setData)
 
     const validationsSchema = yup.object().shape({
+        test_id: yup.string().required('Обов\'язково'),
         title: yup.string().required('Обов\'язково'),
         variants: yup.array().of(
             yup.object().shape({
@@ -35,7 +38,7 @@ function CreateQuestion(props) {
     })
 
     const onSubmit = (value) => {
-        questionService.createQuestion(value).then(alert('hui'))
+        questionService.createQuestion(value).then(setActive(false))
     }
 
     return (
@@ -52,8 +55,9 @@ function CreateQuestion(props) {
             {(formik) => (
                 // {({errors, touched}) => (
                 <Form className={'create-course-content'}>
-                    {console.log('formik', formik)}
-                    {console.log('sendData', sendData)}
+                    <span className={'create-course-content-title'}>
+                        {'Додавання питання'}
+                    </span>
                     <TextField
                         id="outlined-textarea"
                         className={'create-course-input'}
@@ -62,8 +66,7 @@ function CreateQuestion(props) {
                         name={'title'}
                         onChange={(event) => {
                             formik.setFieldValue('title', event.target.value)
-                            formik.setFieldValue('id', sendData.id)
-                            setSendData({...sendData, 'title': event.target.value})
+                            setSendData({...sendData, 'title': event.target.value,'test_id':testId})
                         }}
                         placeholder="Placeholder"
                         error={formik.errors['title']}

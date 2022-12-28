@@ -9,8 +9,6 @@ import {Button} from "@mui/material";
 import UpdateCourse from "../update/UpdateCourse";
 import DeleteCourse from "../delete/DeleteCourse";
 import {User} from "../../../services/User";
-import {ADMIN} from "../../../CONST";
-import CreateCourse from "../create/CreateCourse";
 import CreateTest from "../../../pages/test/create/CreateTest";
 import TestCourse from "../../../pages/test/TestCourse";
 
@@ -63,9 +61,6 @@ function ShowCourse(props) {
                 <Button variant="outlined" color="error" onClick={() => setActiveDeleteCourse(true)}>Видалити
                     курс</Button>
             </div> : null}
-
-
-
 
             <div className={'course-wrapper'}>
                 <span className={'course-title'}>{data?.data?.title}</span>

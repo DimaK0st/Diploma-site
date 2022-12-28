@@ -20,7 +20,7 @@ class CourseSeeder extends Seeder
     public function run()
     {
         $this->faker = Factory::create();
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Course::insert(['user_id' => 1, 'title' => (string)$this->faker->realText(), 'description' => (string)$this->faker->realText()]);
         }
     }

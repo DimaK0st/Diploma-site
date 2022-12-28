@@ -1,46 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './questions.scss'
+import {useNavigate, useParams} from "react-router-dom";
+import {useTestService} from "../../services/TestService";
+import {useQuestionService} from "../../services/QuestionService";
 
 function Questions(props) {
 
-    const questions = [
-        {
-            question: 'Aloha havayou',
-            variants: [
-                {text: 'Variant 1', correct: false},
-                {text: 'Variant 21', correct: true},
-                {text: 'Variant 3', correct: false},
-                {text: 'Variant 4', correct: false},
-            ]
-        },
-        {
-            question: 'Aloha havayou2',
-            variants: [
-                {text: 'Variant 1', correct: false},
-                {text: 'Variant 22', correct: true},
-                {text: 'Variant 3', correct: false},
-                {text: 'Variant 4', correct: false},
-            ]
-        },
-        {
-            question: 'Aloha havayou3',
-            variants: [
-                {text: 'Variant 1', correct: false},
-                {text: 'Variant 23', correct: true},
-                {text: 'Variant 3', correct: false},
-                {text: 'Variant 4', correct: false},
-            ]
-        },
-        {
-            question: 'Aloha havayou4',
-            variants: [
-                {text: 'Variant 1', correct: false},
-                {text: 'Variant 24', correct: true},
-                {text: 'Variant 3', correct: false},
-                {text: 'Variant 4', correct: false},
-            ]
-        },
-    ]
+    const {testId} = useParams()
+    const navigate = useNavigate()
+    const [questions, setQuestions] = useState([])
+    const questionService = useQuestionService(questions, setQuestions)
+    useEffect(() => {
+        questionService.getQuestionById(testId).then((data) => {
+            if (data.length === 0) {
+                navigate('/')
+            }
+        })
+    }, [testId])
+
+    console.log('questions', questions)
 
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [score, setScore] = useState(0)
@@ -53,9 +31,15 @@ function Questions(props) {
 
         const nextQuestion = currentQuestion + 1
 
-        if (nextQuestion < questions.length) {
+        if (nextQuestion < questions?.length) {
             setCurrentQuestion(nextQuestion)
         } else {
+            questionService.saveResult({
+                'test_id': testId,
+                result: Math.floor(score / questions.length * 100)
+            }).then(() => {
+                setTimeout(() => navigate('/'), 3000)
+            })
             setShowScore(true)
         }
     }
@@ -69,15 +53,15 @@ function Questions(props) {
                     </div> : <>
                         <div className={'test-question'}>
                             <div className={'test-question-count'}>
-                                <span>Питання {currentQuestion + 1}</span> / {questions.length}
+                                <span>Питання {currentQuestion + 1}</span> / {questions?.length}
                             </div>
                             <div className={'test-question-text'}>
-                                {questions[currentQuestion].question}
+                                {questions[currentQuestion]?.title}
                             </div>
                         </div>
 
                         <div className={'test-answer'}>
-                            {questions[currentQuestion].variants.map(item => (
+                            {questions[currentQuestion]?.variants.map(item => (
                                 <button onClick={() => handleAnswerOptionClick(item.correct)}>
                                     {item.text}</button>
                             ))}
