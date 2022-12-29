@@ -15,6 +15,7 @@ export const useCourseService = (state, setState) => {
     }
 
     function searchCourse(my, search) {
+        console.log('...headers', {...headers})
         return axios.get(_apiBase + 'course/search', {
             params: {
                 my: my,
@@ -26,9 +27,21 @@ export const useCourseService = (state, setState) => {
             varSetState({data: [...res.data], loaded: true})
             return res.data
 
-        }).catch(function (error) {
-            console.log(error)
-            // let errors = error.response.data.errors
+        })
+    }
+
+    function searchCourseUnAuth(my, search) {
+        return axios.get(_apiBase + 'course/all', {
+            params: {
+                my: 0,
+                search: ''
+            },
+            ...headers
+        }).then(res => {
+            console.log('res', res)
+            varSetState({data: [...res.data], loaded: true})
+            return res.data
+
         })
     }
 
@@ -82,6 +95,7 @@ export const useCourseService = (state, setState) => {
         deleteCourse,
         createCourseContent,
         subscribeCourse,
-        deleteCourseContent
+        deleteCourseContent,
+        searchCourseUnAuth,
     }
 }

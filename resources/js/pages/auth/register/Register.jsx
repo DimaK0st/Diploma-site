@@ -6,11 +6,14 @@ import {Formik, Form, Field} from "formik";
 import * as yup from 'yup'
 import MultiSelect from "../../../components/elements/MultiSelect";
 import {value} from "lodash/seq";
+import {Button} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 function Register(props) {
 
     const authService = useAuthService()
     const [error, setError] = useState([])
+    const navigate = useNavigate()
     const [options, setOptions] = useState([
         {value: 'one', label: 'One'},
         {value: 'two', label: 'Two'},
@@ -98,6 +101,7 @@ function Register(props) {
                     </div>
 
                     <button type={"submit"} className={'button register-button'}>Зареєструватись</button>
+                    <Button style={{marginBottom: '10px'}} color="success" onClick={()=>navigate('/login')}>Авторизуватись</Button>
 
                 </Form>
             )}

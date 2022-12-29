@@ -1,4 +1,5 @@
 import {ADMIN} from "../CONST";
+import {TEACHER} from "./CONST";
 
 export class User {
 
@@ -15,8 +16,16 @@ export class User {
         this.group_id = jsonStr?.group_id
     }
 
+    isAuth(){
+        return !!localStorage.getItem('user')
+    }
+
     isAdmin(){
         return this.role_id===ADMIN
+    }
+
+    isTeacher(){
+        return this.role_id===TEACHER
     }
 }
 

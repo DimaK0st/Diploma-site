@@ -6,8 +6,8 @@ export const useAuthService = () => {
     const register = (data, setError) => {
         return axios.post(_apiBase + 'register', data, {...headers}).then(res => {
             setError([])
-            localStorage.setItem('token', data.token)
-            localStorage.setItem('user', data.user)
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('user', res.data.user)
             document.location.href="/";
 
             return res.data

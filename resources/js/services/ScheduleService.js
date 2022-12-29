@@ -9,7 +9,7 @@ export const useScheduleService = (state, setState) => {
 
     const getSchedule = (input, setError) => {
 
-        return axios.get(_apiBase + 'schedule/1', {...headers})
+        return axios.get(_apiBase + 'course/schedule/1', {...headers})
             .then(function (response) {
                 varSetState({...response.data, loaded: true,})
             })
@@ -18,7 +18,7 @@ export const useScheduleService = (state, setState) => {
     }
 
     const getAddScheduleData = (input, setError) => {
-        return axios.get(_apiBase + 'schedule/add_schedule_data', {...headers})
+        return axios.get(_apiBase + 'course/schedule/add_schedule_data', {...headers})
             .then(function (response) {
                 varSetState({...response.data})
                 return {...response.data}
@@ -28,7 +28,7 @@ export const useScheduleService = (state, setState) => {
     }
 
     const addSchedule = (data) => {
-        return axios.post(_apiBase + 'schedule/add', data, {...headers}).then(res => {
+        return axios.post(_apiBase + 'course/schedule/add', data, {...headers}).then(res => {
             // setError([])
             return res.data
         })
@@ -45,13 +45,13 @@ export const useScheduleService = (state, setState) => {
     }
 
     const editSchedule = (data) => {
-        return axios.post(_apiBase + 'schedule/edit', data, {...headers}).then(res => {
+        return axios.post(_apiBase + 'course/schedule/edit', data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const deleteSchedule = (data) => {
-        return axios.post(_apiBase + 'schedule/delete', data, {...headers}).then(res => {
+        return axios.post(_apiBase + 'course/schedule/delete', data, {...headers}).then(res => {
             return res.data
         })
     }

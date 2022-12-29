@@ -32,15 +32,17 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/groupList', [Controller::class, 'getGroupList']);
 
+    Route::get('/course/all', [CourseController::class, 'searchCourse'])->name('');
+
     Route::group(['middleware' => 'auth:sanctum'], function () {
 
 
         Route::group(['prefix' => 'course', 'middleware' => 'auth:sanctum'], function () {
             Route::post('/subscribe_course', [CourseController::class, 'subscribeCourse'])->name('');
+            Route::get('/search', [CourseController::class, 'searchCourse'])->name('');
             Route::post('/create', [CourseController::class, 'create'])->name('');
             Route::post('/update', [CourseController::class, 'update'])->name('');
             Route::post('/delete', [CourseController::class, 'delete'])->name('');
-            Route::get('/search', [CourseController::class, 'searchCourse'])->name('');
             Route::get('/my', [CourseController::class, 'myCourse'])->name('');
             Route::get('/{id}', [CourseController::class, 'index'])->name('');
 
@@ -70,7 +72,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                     Route::get('/{test}', [ResultController::class, 'getByTestId'])->name('');
                 });
             });
-//    Route::group(['middleware'=>'auth:sanctum'], function () {
 
             Route::get('/schedule/data', [ScheduleController::class, 'getScheduleData'])->name('');
             Route::get('/schedule/add_schedule_data', [ScheduleController::class, 'getAddScheduleData'])->name('');
@@ -79,7 +80,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
             Route::post('/schedule/delete', [ScheduleController::class, 'deleteSchedule'])->name('');
             Route::get('/schedule/{group}', [ScheduleController::class, 'showSchedule'])->name('');
         });
-//    });
+
         Route::get('/user_courses', function (Request $request) {
             return json_encode([['title' => 'asd2fasdf', 'label' => 'asda2sd'], ['title' => 'a2sdfa3sdf', 'label' => 'asd4asd'], ['title' => 'asdfas5df', 'label' => 'asda6sd'], ['title' => 'asdfasd7f', 'label' => 'a8sdasd'],]);
 

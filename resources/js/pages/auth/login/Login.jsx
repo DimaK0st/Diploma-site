@@ -5,6 +5,7 @@ import Input from "../../../components/elements/input/Input";
 import * as yup from "yup";
 import './login.scss'
 import {useAuthService} from "../../../services/AuthService";
+import {Button} from "@mui/material";
 
 function Login(props) {
     const authService = useAuthService()
@@ -44,6 +45,8 @@ function Login(props) {
                     </div>
 
                     <button className={'login-btn button register-button'}>Вхід</button>
+                    <Button color="warning" onClick={()=>navigate('/register')}>Зареєструватись</Button>
+
                 </Form>
 
             )}

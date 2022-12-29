@@ -40,7 +40,7 @@ function Schedule(props) {
 
     useEffect(() => {
         if (state.loaded) {
-            state.days_list.map((value) => {
+            state?.days_list?.map((value) => {
                     if (state[value.id]) {
                         res.push(<ShowDay root={true} addLesson={addLesson} deleteLesson={deleteLesson} group={state.group}
                                           day={value} data={state[value.id]}/>)

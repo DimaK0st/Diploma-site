@@ -23,9 +23,16 @@ function FindCourse(props) {
     }
 
     useEffect(() => {
-        courseService.searchCourse(my ? 1 : 0, '').then((data) => {
+        if (user.isAuth()){
+            courseService.searchCourse(my ? 1 : 0, '').then((data) => {
             setSelect(data)
         })
+        }else {
+            courseService.searchCourseUnAuth(my ? 1 : 0, '').then((data) => {
+                setSelect(data)
+            })
+        }
+
     }, [])
 
     useEffect(() => {
@@ -55,8 +62,10 @@ function FindCourse(props) {
                                                     label={"Пошук серед " + `${my ? 'ваших' : 'всіх'}` + " курсів"}/>}
                 getOptionLabel={(option) => option.title || ""}
             />
-
-            <Button onClick={() => setActive(true)}>Створити курс</Button>
+            {
+                user.isAdmin() || user.isTeacher() ?
+                    <Button onClick={() => setActive(true)}>Створити курс</Button>:null
+            }
 
             <div key={my}>
                 {search?.data?.length
