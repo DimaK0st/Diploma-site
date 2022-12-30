@@ -75,8 +75,8 @@ function Variant(props) {
             <IconButton color="error" sx={{p: '10px'}} aria-label="directions" onClick={() => deleteVariant()}>
                 <DeleteIcon/>
             </IconButton>
-            <FormControlLabel value="female" onChange={() => checkBoxHandler(item.id)} checked={item.correct}
-                              control={<Radio/>} label="Female"/>
+            <FormControlLabel value="" onChange={() => checkBoxHandler(item.id)} checked={item.correct}
+                              control={<Radio/>} label=""/>
         </Paper>
     );
 }

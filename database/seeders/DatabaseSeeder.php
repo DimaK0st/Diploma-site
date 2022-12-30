@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
             FormsSeeder::class,
             EvaluationsSeeder::class,
             SchedulesSeeder::class,
-            CourseSeeder::class,
-            CourseUserSeeder::class,
-            CourseContentSeeder::class,
+//            CourseSeeder::class,
+//            CourseUserSeeder::class,
+//            CourseContentSeeder::class,
         ]);
     }
 }

@@ -3,7 +3,7 @@ import './my-course.scss'
 import {useAuthService} from "../../../services/AuthService";
 import {useCourseService} from "../../../services/CourseService";
 import {Button} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {User} from "../../../services/User";
 
 function MyCourse(props) {
@@ -25,22 +25,29 @@ function MyCourse(props) {
         }
     }, [])
 
+    const getInitials = function (string) {
+        let names = string.split(' '),
+            initials = names[0].substring(0, 1).toUpperCase();
+        let count = (names.length-1>8)?8:names.length-1
+
+        for(let i=1; i<count; i++){
+            initials += names[i].substring(0, 1).toUpperCase();
+        }
+        return initials;
+    };
+
     return (
         <div className={'my-course'}>
             {
                 user.isAuth() ? <>
                         <div className={'my-course-content'}>
                             <span className={'my-course-content-title'}>Мої курси:</span>
-
                             <ol>
-                                {console.log('search?.data',search?.data)}
                                 {
-                                    search?.data?.map((item) => <li>{item.title}</li>)
+                                    search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{item.title}</Link></li>)
+                                    // search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{getInitials(item.title)}</Link></li>)
                                 }
-
                             </ol>
-
-
                         </div>
                     </> :
                     <>
@@ -50,8 +57,6 @@ function MyCourse(props) {
                                 onClick={() => navigate('/register')}>Зареєструватись</Button>
                     </>
             }
-
-
         </div>
     );
 }

@@ -68,7 +68,7 @@ function Register(props) {
                     {
                         error.map((item) => <span key={item} className={'register-error'}>{item}</span>)
                     }
-                    <span className={'register-error'}>{error.message} asdasasdas</span>
+                    <span className={'register-error'}>{error.message}</span>
 
                     <div className={'register-fields'}>
                         <Input label={'Прізвище'} className={'half'} type={'text'} name={'lastname'}

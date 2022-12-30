@@ -11,8 +11,9 @@ use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\TestController\QuestionController;
 use App\Http\Controllers\TestController\ResultController;
 use App\Http\Controllers\TestController\TestController;
-use App\Models\Subject;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,7 +46,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
             Route::post('/update', [CourseController::class, 'update'])->name('');
             Route::post('/delete', [CourseController::class, 'delete'])->name('');
             Route::get('/my', [CourseController::class, 'myCourse'])->name('');
-            Route::get('/{id}', [CourseController::class, 'index'])->name('');
 
             Route::group(['prefix' => 'content'], function () {
                 Route::post('/create', [CourseContentController::class, 'create'])->name('');
@@ -81,6 +81,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                 Route::post('/delete', [ScheduleController::class, 'deleteSchedule'])->name('');
                 Route::get('/', [ScheduleController::class, 'showSchedule'])->name('');
             });
+
+            Route::get('/{id}', [CourseController::class, 'index'])->name('');
         });
 
         Route::group(['prefix' => 'headman', 'middleware' => 'auth:sanctum'], function () {

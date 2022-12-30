@@ -18,15 +18,12 @@ class ScheduleController extends BaseController
 
     public function showSchedule(Request $request)
     {
-        dd('asdasdasd');
-
-        $group = $request->get('groupId');
+        $group = (int)$request->get('groupId');
         $my = (bool)$request->get('my');
 //dd($my);
         if ($my){
             $group = Auth::user()->group_id;
         }
-
         return $this->scheduleService->index($group);
     }
 

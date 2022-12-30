@@ -15,15 +15,15 @@ use App\Models\Teacher;
 
 class ScheduleRepository
 {
-
     public function index($groupId)
     {
-        $list2 = Schedule::query()->with(['subject', 'group', 'day', 'teacher', 'form', 'evaluation'])->orderBy('day_id')->get();
+        $list2 = Schedule::query()->with(['subject', 'group', 'day', 'teacher', 'form', 'evaluation'])->where('group_id', $groupId)->orderBy('day_id')->get();
 
         $collection = collect($list2->toArray());
         $grouped = $collection->sortBy('form')->groupBy(['day_id', 'subject_num']);
         $grouped ['days_list'] = Day::all();
         $grouped ['group'] = Group::findOrFail($groupId);
+        $grouped ['groups'] = Group::all();
 
         return (json_encode($grouped));
     }

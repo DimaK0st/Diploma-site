@@ -75,7 +75,7 @@ function CreateQuestion(props) {
 
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="female"
+                        defaultValue=""
                         name="radio-buttons-group"
                     >
 
