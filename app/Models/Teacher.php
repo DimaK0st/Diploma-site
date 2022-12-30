@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $surname
  * @property string $name
  * @property string $patronymic
+ * @property string $email
  * @property string $shortFullName
  */
 class Teacher extends Model

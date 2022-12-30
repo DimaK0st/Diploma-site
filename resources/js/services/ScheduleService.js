@@ -7,9 +7,13 @@ export const useScheduleService = (state, setState) => {
     let varSetState = setState
 
 
-    const getSchedule = (input, setError) => {
-
-        return axios.get(_apiBase + 'course/schedule/1', {...headers})
+    const getSchedule = (my, groupId) => {
+        return axios.get(_apiBase + 'course/schedule', {
+            params: {
+                my: my,
+                groupId: groupId
+            }, ...headers
+        })
             .then(function (response) {
                 varSetState({...response.data, loaded: true,})
             })
@@ -56,5 +60,5 @@ export const useScheduleService = (state, setState) => {
         })
     }
 
-    return {getSchedule,addSchedule,getAddScheduleData,editSchedule, deleteSchedule}
+    return {getSchedule, addSchedule, getAddScheduleData, editSchedule, deleteSchedule}
 }

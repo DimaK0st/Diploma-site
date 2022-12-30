@@ -16,6 +16,7 @@ import CreateTest from "./pages/test/create/CreateTest";
 import IndexTest from "./pages/test/index/IndexTest";
 import RequireAuth from "./hoc/RequireAuth";
 import Main from "./pages/main/Main";
+import MainHeadman from "./components/headman/MainHeadman";
 
 function RouterList(props){
     return <Router >
@@ -23,7 +24,10 @@ function RouterList(props){
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/schedule" element={<RequireAuth><Schedule /></RequireAuth>} />
+
+            <Route path="/schedule/:groupId" element={<RequireAuth><Schedule my={false}/></RequireAuth>} />
+            <Route path="/schedule/my" element={<RequireAuth><Schedule my={true}/></RequireAuth>} />
+
             <Route path="/course" element={<RequireAuth><FindCourse my={false}/></RequireAuth>}/>
             <Route path="/course/my" element={<RequireAuth><FindCourse my={true}/></RequireAuth>}/>
             <Route path="/course/:courseId" element={<RequireAuth><ShowCourse/></RequireAuth>}/>
@@ -33,6 +37,9 @@ function RouterList(props){
 
             <Route path="/test/edit/:testId" element={<RequireAuth><IndexTest/></RequireAuth>}/>
             <Route path="/test/:testId" element={<RequireAuth><Questions/></RequireAuth>}/>
+
+
+            <Route path="/headman" element={<RequireAuth><MainHeadman/></RequireAuth>}/>
 
 
             <Route path="/question/create" element={<RequireAuth><CreateQuestion/></RequireAuth>}/>

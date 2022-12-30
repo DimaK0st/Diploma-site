@@ -4,13 +4,15 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseController\CourseContentController;
 use App\Http\Controllers\CourseController\CourseController;
+use App\Http\Controllers\Group\GroupController;
 use App\Http\Controllers\ScheduleController\ScheduleController;
+use App\Http\Controllers\Subject\SubjectController;
+use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\TestController\QuestionController;
 use App\Http\Controllers\TestController\ResultController;
 use App\Http\Controllers\TestController\TestController;
-use App\Models\Course;
+use App\Models\Subject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +38,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
 
-
         Route::group(['prefix' => 'course', 'middleware' => 'auth:sanctum'], function () {
             Route::post('/subscribe_course', [CourseController::class, 'subscribeCourse'])->name('');
             Route::get('/search', [CourseController::class, 'searchCourse'])->name('');
@@ -45,7 +46,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
             Route::post('/delete', [CourseController::class, 'delete'])->name('');
             Route::get('/my', [CourseController::class, 'myCourse'])->name('');
             Route::get('/{id}', [CourseController::class, 'index'])->name('');
-
 
             Route::group(['prefix' => 'content'], function () {
                 Route::post('/create', [CourseContentController::class, 'create'])->name('');
@@ -73,21 +73,36 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                 });
             });
 
-            Route::get('/schedule/data', [ScheduleController::class, 'getScheduleData'])->name('');
-            Route::get('/schedule/add_schedule_data', [ScheduleController::class, 'getAddScheduleData'])->name('');
-            Route::post('/schedule/add', [ScheduleController::class, 'addSchedule'])->name('');
-            Route::post('/schedule/edit', [ScheduleController::class, 'editSchedule'])->name('');
-            Route::post('/schedule/delete', [ScheduleController::class, 'deleteSchedule'])->name('');
-            Route::get('/schedule/{group}', [ScheduleController::class, 'showSchedule'])->name('');
+            Route::group(['prefix' => 'schedule'], function () {
+                Route::get('/data', [ScheduleController::class, 'getScheduleData'])->name('');
+                Route::get('/add_schedule_data', [ScheduleController::class, 'getAddScheduleData'])->name('');
+                Route::post('/add', [ScheduleController::class, 'addSchedule'])->name('');
+                Route::post('/edit', [ScheduleController::class, 'editSchedule'])->name('');
+                Route::post('/delete', [ScheduleController::class, 'deleteSchedule'])->name('');
+                Route::get('/', [ScheduleController::class, 'showSchedule'])->name('');
+            });
+        });
+
+        Route::group(['prefix' => 'headman', 'middleware' => 'auth:sanctum'], function () {
+            Route::group(['prefix' => 'teacher'], function () {
+                Route::post('/create', [TeacherController::class, 'create'])->name('');
+                Route::post('/update', [TeacherController::class, 'update'])->name('');
+                Route::post('/delete', [TeacherController::class, 'delete'])->name('');
+            });
+            Route::group(['prefix' => 'group'], function () {
+                Route::post('/create', [GroupController::class, 'create'])->name('');
+                Route::post('/update', [GroupController::class, 'update'])->name('');
+                Route::post('/delete', [GroupController::class, 'delete'])->name('');
+            });
+            Route::group(['prefix' => 'subject'], function () {
+                Route::post('/create', [SubjectController::class, 'create'])->name('');
+                Route::post('/update', [SubjectController::class, 'update'])->name('');
+                Route::post('/delete', [SubjectController::class, 'delete'])->name('');
+            });
         });
 
         Route::get('/user_courses', function (Request $request) {
             return json_encode([['title' => 'asd2fasdf', 'label' => 'asda2sd'], ['title' => 'a2sdfa3sdf', 'label' => 'asd4asd'], ['title' => 'asdfas5df', 'label' => 'asda6sd'], ['title' => 'asdfasd7f', 'label' => 'a8sdasd'],]);
-
-
         });
-
     });
-
-
 });

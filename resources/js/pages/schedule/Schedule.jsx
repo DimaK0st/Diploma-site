@@ -5,8 +5,13 @@ import Modal from "../../components/elements/modal/Modal";
 import ScheduleManager from "../../components/schedule/manager-schedule/ScheduleManager";
 import {root} from "postcss";
 import DeleteSchedule from "../../components/schedule/delete-schedule/DeleteSchedule";
+import {useParams} from "react-router-dom";
 
 function Schedule(props) {
+
+    const {groupId}=useParams()
+    const {my}=props
+
     const [state, setState] = useState({
         loaded: false,
     })
@@ -28,8 +33,8 @@ function Schedule(props) {
     }
 
     useEffect(() => {
-        scheduleService.getSchedule()
-    }, [])
+        scheduleService.getSchedule(my?1:0,groupId)
+    }, [groupId])
 
     useEffect(() => {
         if (state.loaded && !active)
