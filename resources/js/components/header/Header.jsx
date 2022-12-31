@@ -16,7 +16,7 @@ function Header(props) {
                     <Nav className="me-auto">
                         <Nav.Link><Link to={'/'}>Головна</Link></Nav.Link>
                         <NavDropdown title="Навігація" id="basic-nav-dropdown">
-                            <NavDropdown.Item><Link to={'/schedule'}>Розклад</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to={'/schedule/my'}>Розклад</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/course'}>Всі курси</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/course/my'}>Мої курси</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/headman'}>Керування</Link></NavDropdown.Item>

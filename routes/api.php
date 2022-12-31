@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseController\CourseContentController;
 use App\Http\Controllers\CourseController\CourseController;
 use App\Http\Controllers\Group\GroupController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScheduleController\ScheduleController;
 use App\Http\Controllers\Subject\SubjectController;
 use App\Http\Controllers\Teacher\TeacherController;
@@ -86,6 +87,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
         });
 
         Route::group(['prefix' => 'headman', 'middleware' => 'auth:sanctum'], function () {
+            Route::get('/get_all_data', [HomeController::class, 'getHeadmanData'])->name('');
+
             Route::group(['prefix' => 'teacher'], function () {
                 Route::post('/create', [TeacherController::class, 'create'])->name('');
                 Route::post('/update', [TeacherController::class, 'update'])->name('');

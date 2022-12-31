@@ -99,6 +99,17 @@ export const useHeadmanService = (state, setState) => {
         })
     }
 
+    const getAllData = (data) => {
+        return axios.get(_apiBase + 'headman/get_all_data', {
+            headers: {
+                ...postRequest.headers
+            }
+        }).then(res => {
+            varSetState(res.data)
+            return res.data
+        })
+    }
+
     return {
         createTeacher,
         createGroup,
@@ -108,6 +119,7 @@ export const useHeadmanService = (state, setState) => {
         deleteGroup,
         createSubject,
         updateSubject,
-        deleteSubject
+        deleteSubject,
+        getAllData,
     }
 }

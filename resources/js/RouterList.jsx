@@ -38,9 +38,7 @@ function RouterList(props){
             <Route path="/test/edit/:testId" element={<RequireAuth><IndexTest/></RequireAuth>}/>
             <Route path="/test/:testId" element={<RequireAuth><Questions/></RequireAuth>}/>
 
-
             <Route path="/headman" element={<RequireAuth><MainHeadman/></RequireAuth>}/>
-
 
             <Route path="/question/create" element={<RequireAuth><CreateQuestion/></RequireAuth>}/>
             <Route path="/question" element={<RequireAuth><Questions/></RequireAuth>}/>
