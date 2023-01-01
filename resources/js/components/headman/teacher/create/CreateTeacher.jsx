@@ -36,7 +36,6 @@ function CreateTeacher(props) {
             validateOnChange={false}
         >
             {(formik) => (
-                // {({errors, touched}) => (
                 <Form className={'create-teacher'}>
                     <span className={'create-test-title'}>
                         {'Додавання вчителя'}

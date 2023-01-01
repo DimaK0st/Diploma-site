@@ -46,9 +46,9 @@ class CourseController extends BaseController
             });
         }
 
-//        dd($course->dd());
+//        dd($course->get());
 
-        return $course->get();
+        return $course->select('courses.*')->get();
     }
 
     public function create(CreateCourseRequest $request)

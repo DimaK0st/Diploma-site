@@ -35,7 +35,6 @@ function CreateCourse(props) {
             validateOnChange={false}
         >
             {(formik) => (
-            // {({errors, touched}) => (
                 <Form className={'create-course'}>
                     <span className={'create-course-title'}>
                         {'Додавання курсу'}

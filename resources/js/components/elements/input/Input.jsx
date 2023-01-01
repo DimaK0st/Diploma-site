@@ -5,7 +5,6 @@ import {ErrorMessage, Field} from "formik";
 function Input(props) {
     const {label, className, name, type, placeholder, required, errors} = props
 
-    // required={required??false}
     return (
 
         <div className={'field ' + ` ${(errors && errors[name]!==undefined) ? 'error' : ''}`}

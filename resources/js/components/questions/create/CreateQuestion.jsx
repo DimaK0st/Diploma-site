@@ -44,7 +44,6 @@ function CreateQuestion(props) {
     return (
         <Formik
             validationSchema={validationsSchema}
-            // key={new Date().toLocaleTimeString()}
             initialValues={sendData}
             onSubmit={(values) => {
                 onSubmit(values)
@@ -53,7 +52,6 @@ function CreateQuestion(props) {
             validateOnBlur={false}
         >
             {(formik) => (
-                // {({errors, touched}) => (
                 <Form className={'create-course-content'}>
                     <span className={'create-course-content-title'}>
                         {'Додавання питання'}

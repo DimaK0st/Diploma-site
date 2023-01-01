@@ -45,7 +45,6 @@ function MyCourse(props) {
                             <ol>
                                 {
                                     search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{item.title}</Link></li>)
-                                    // search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{getInitials(item.title)}</Link></li>)
                                 }
                             </ol>
                         </div>

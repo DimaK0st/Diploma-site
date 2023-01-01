@@ -38,7 +38,6 @@ function CreateCourseContent(props) {
             validateOnChange={false}
         >
             {(formik) => (
-                // {({errors, touched}) => (
                 <Form className={'create-course-content'}>
                     <span className={'create-course-content-title'}>
                         {'Додавання контенту'}

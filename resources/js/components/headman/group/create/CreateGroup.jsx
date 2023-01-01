@@ -31,7 +31,6 @@ function CreateGroup(props) {
             validateOnChange={false}
         >
             {(formik) => (
-                // {({errors, touched}) => (
                 <Form className={'create-test'}>
                     <span className={'create-test-title'}>
                         {'Додавання групи'}
