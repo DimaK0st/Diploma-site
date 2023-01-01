@@ -59,6 +59,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                 Route::post('/create', [TestController::class, 'create'])->name('');
                 Route::post('/update', [TestController::class, 'update'])->name('');
                 Route::post('/delete', [TestController::class, 'delete'])->name('');
+                Route::get('/results/{id}', [TestController::class, 'results'])->name('');
                 Route::get('/{id}', [TestController::class, 'index'])->name('');
 
                 Route::group(['prefix' => 'question'], function () {

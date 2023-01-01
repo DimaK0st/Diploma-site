@@ -38,7 +38,7 @@ class Test extends Model
     }
 
     public function result() {
-        return $this->hasOne(Result::class)->where('user_id', '=', Auth::user()->id)->oldestOfMany();
+        return $this->hasOne(Result::class)->where('user_id', '=', Auth::user()->id);
     }
 
     public function getMyResultAttribute()

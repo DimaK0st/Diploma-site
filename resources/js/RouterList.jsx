@@ -17,6 +17,7 @@ import IndexTest from "./pages/test/index/IndexTest";
 import RequireAuth from "./hoc/RequireAuth";
 import Main from "./pages/main/Main";
 import MainHeadman from "./components/headman/MainHeadman";
+import ResultsTest from "./pages/test/results/ResultsTest";
 
 function RouterList(props){
     return <Router >
@@ -36,6 +37,7 @@ function RouterList(props){
             <Route path="/test/update" element={<RequireAuth><UpdateTest/></RequireAuth>}/>
 
             <Route path="/test/edit/:testId" element={<RequireAuth><IndexTest/></RequireAuth>}/>
+            <Route path="/test/results/:testId" element={<RequireAuth><ResultsTest/></RequireAuth>}/>
             <Route path="/test/:testId" element={<RequireAuth><Questions/></RequireAuth>}/>
 
             <Route path="/headman" element={<RequireAuth><MainHeadman/></RequireAuth>}/>

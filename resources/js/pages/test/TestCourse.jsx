@@ -3,6 +3,7 @@ import {IconButton} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import InventoryOutlinedIcon from '@mui/icons-material/InventoryOutlined';
 import moment from "moment-timezone";
 import {User} from "../../services/User";
 import './test-course.scss'
@@ -59,6 +60,9 @@ function TestCourse(props) {
                             </IconButton>
                             <IconButton aria-label="delete" onClick={() => navigate('/test/edit/'+test?.id)}>
                                 <AssignmentIcon/>
+                            </IconButton>
+                            <IconButton aria-label="delete" onClick={() => navigate('/test/results/'+test?.id)}>
+                                <InventoryOutlinedIcon/>
                             </IconButton>
                         </> : null
                     }

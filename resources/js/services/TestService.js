@@ -56,5 +56,14 @@ export const useTestService = (state, setState) => {
         })
     }
 
-    return {createTest,updateTest,deleteTest,getTestById}
+    function getResultByTestId(id) {
+        return axios.get(_apiBase + 'course/test/results/' + id, {...headers}).then(res => {
+            varSetState(res.data)
+            return res.data
+        }).catch(function (error) {
+            // let errors = error.response.data.errors
+        })
+    }
+
+    return {createTest,updateTest,deleteTest,getTestById,getResultByTestId}
 }

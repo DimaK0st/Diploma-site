@@ -44,6 +44,11 @@ class TestController extends BaseController
         return Test::query()->where('id', '=', $request->getId())->delete();
     }
 
+    public function results($id)
+    {
+        return Test::query()->with(['results'])->where('id', '=', $id)->first()->toArray();
+    }
+
     public function index($id){
         return Test::query()->with('questions')->where('id', $id)->first();
     }

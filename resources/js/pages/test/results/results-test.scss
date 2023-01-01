@@ -1,0 +1,9 @@
+.result {
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+        font-size: 30px;
+        margin: auto auto 20px;
+    }
+}

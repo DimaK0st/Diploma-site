@@ -59,6 +59,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     protected $appends = ['shortFullName'];
+    protected $with = ['groups'];
 
     public function groups()
     {
@@ -82,6 +83,6 @@ class User extends Authenticatable
 
     public function getShortFullNameAttribute(): string
     {
-        return $this->firstname . ' ' . mb_substr($this->lastname, 0, 1) . '.' . mb_substr($this->patronymic, 0, 1) . '.';
+        return $this->lastname . ' ' . mb_substr($this->firstname, 0, 1) . '.' . mb_substr($this->patronymic, 0, 1) . '.';
     }
 }
