@@ -33,8 +33,6 @@ function ResultsTest(props) {
                 </thead>
                 <tbody>
                 {
-                    console.log('data?.results?', data?.results)}
-                {
                     data?.results?.map((result, index) => {
                         return (<ItemTable
                             index={index+1}
