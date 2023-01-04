@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
-import './create-group.scss'
-import {useHeadmanService} from "../../../../services/HeadmanService";
-import * as yup from "yup";
 import {Form, Formik} from "formik";
 import {Button, TextField} from "@mui/material";
+import {useHeadmanService} from "../../../../services/HeadmanService";
+import * as yup from "yup";
 
-function CreateGroup(props) {
+function UpdateGroup(props) {
 
-    const {active, setActive} = props
-    const [data, setData] = useState()
+    const {active, setActive, editData,updateComponent} = props
+    const [data, setData] = useState(editData)
     const headmanService = useHeadmanService(data, setData)
 
     const onSubmit = (data) => {
-        headmanService.createGroup(data).then(setActive(false))
+        headmanService.updateGroup(data).then(setActive(false)).then(()=>updateComponent())
     }
 
     const validationsSchema = yup.object().shape({
@@ -22,10 +21,8 @@ function CreateGroup(props) {
     return (
         <Formik
             validationSchema={validationsSchema}
-            key={new Date().toLocaleTimeString()}
-            initialValues={{
-                name: "",
-            }}
+            key={data.id}
+            initialValues={data}
             onSubmit={(values) => {
                 onSubmit(values)
             }}
@@ -41,8 +38,10 @@ function CreateGroup(props) {
                         className={'create-test-input'}
                         label="Назва групи"
                         name={'name'}
+                        value={data?.name}
                         onChange={(event) => {
                             formik.setFieldValue('name', event.target.value)
+                            setData(()=>({...data, name:event.target.value}))
                         }}
                         placeholder="Placeholder"
                         error={formik.errors['name']}
@@ -59,4 +58,4 @@ function CreateGroup(props) {
     );
 }
 
-export default CreateGroup;
+export default UpdateGroup;
