@@ -14,7 +14,7 @@ class UpdateTeacherRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|id',
+            'id' => 'required|int',
             'surname' => 'required|string',
             'name' => 'required|string',
             'patronymic' => 'required|string',

@@ -1,0 +1,9 @@
+.teachers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &-btn{
+        margin: 20px auto 10px;
+    }
+}

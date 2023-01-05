@@ -9,6 +9,7 @@ import CreateSubject from "./subject/CreateSubject";
 import {useHeadmanService} from "../../services/HeadmanService";
 import IndexGroup from "./group/index/IndexGroup";
 import ShowGroups from "./group/show/ShowGroups";
+import ShowTeachers from "./teacher/show/ShowTeachers";
 
 function MainHeadman(props) {
     const [activeCreateTeacher, setActiveCreateTeacher] = useState()
@@ -39,7 +40,8 @@ function MainHeadman(props) {
                 setActive={setActiveCreateSubject}/></Modal>
 
             <ShowGroups groups={data?.groups} updateComponent={updateComponent}/>
-
+            <ShowTeachers teachers={data?.teachers} updateComponent={updateComponent}/>
+            {console.log('data?.teachers',data?.teachers)}
             <div className={'main-headman-wrapper'}>
                 <Button onClick={() => setActiveCreateTeacher(true)} style={{marginBottom: "10px", marginTop: "10px"}}
                         variant="contained">Додати вчителя</Button>
