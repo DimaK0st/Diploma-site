@@ -18,22 +18,17 @@ function IndexTest(props) {
     const {testId} = useParams()
     const testService = useTestService(data, setData)
 
-
     useEffect(() => {
         testService.getTestById(testId).then(setUpdate(false))
-    }, [testId, activeAddQuestion,update])
+    }, [testId, activeAddQuestion, update])
 
     return (
         <div>
-            {console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqq',data?.data?.id)}
-            <Modal active={activeAddQuestion} setActive={setActiveAddQuestion}><CreateQuestion key={data?.data?.id} testId={data?.data?.id} setActive={setActiveAddQuestion}/></Modal>
-
-            {console.log(data?.data)}
-
+            <Modal active={activeAddQuestion} setActive={setActiveAddQuestion}><CreateQuestion
+                key={new Date().toLocaleTimeString()} testId={data?.data?.id} setActive={setActiveAddQuestion}/></Modal>
             <div className={'course-nav'}>
                 <Button variant="outlined" onClick={() => setActiveAddQuestion(true)}>Додати питання</Button>
             </div>
-
             <div className={'course-wrapper'}>
                 <span className={'course-title'}>{data?.data?.title}</span>
                 <span className={'course-description'}><strong>Опис:</strong> {data?.data?.description}</span>
@@ -43,7 +38,6 @@ function IndexTest(props) {
                     return <ShowQuestion setUpdate={setUpdate} question={item}/>
                 })}
             </div>
-
         </div>
     );
 }

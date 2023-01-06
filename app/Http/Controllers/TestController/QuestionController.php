@@ -5,61 +5,34 @@ namespace App\Http\Controllers\TestController;
 use App\Http\Requests\Question\CreateQuestionRequest;
 use App\Http\Requests\Question\UpdateQuestionRequest;
 use App\Http\Requests\Test\DeleteTestRequest;
-use App\Models\Question;
 use App\Models\Test;
-use App\Models\Variant;
+use App\Services\test\QuestionService;
 use Illuminate\Routing\Controller as BaseController;
 
 class QuestionController extends BaseController
 {
+
+    public function __construct(private QuestionService $questionService)
+    {
+    }
+
     public function create(CreateQuestionRequest $request)
     {
-        $question = new Question();
-        $question->title = $request->getTitle();
-        $question->test_id = $request->getTestId();
-
-        $question->save();
-
-        foreach ($request->getVariants() as $variant) {
-            $variantModel = new Variant();
-            $variantModel->question_id = $question->id;
-            $variantModel->text = $variant['text'];
-            $variantModel->correct = $variant['correct'];
-
-            $variantModel->save();
-        }
-
-        return $question;
+        return $this->questionService->create($request);
     }
 
     public function update(UpdateQuestionRequest $request)
     {
-        $question = Question::findOrFail($request->getId());
-        $question->title = $request->getTitle();
-        $question->test_id = $request->getTestId();
-        $question->save();
-
-        foreach ($request->getVariants() as $variant) {
-            $variantModel = Variant::query()
-                ->where('id', '=', $variant['id']);
-
-            $variantModel->text = $variant['text'];
-            $variantModel->correct = $variant['correct'];
-
-            $variant->save();
-        }
-
-        return $question;
+        return $this->questionService->update($request);
     }
 
     public function delete(DeleteTestRequest $request)
     {
-        return Question::query()->where('id', '=', $request->getId())->delete();
+        return $this->questionService->delete($request);
     }
 
     public function getByTestId(Test $test)
     {
-        return Question::query()->with('variants')
-            ->where('test_id', '=', $test->id)->inRandomOrder()->limit($test->count)->get();
+        return $this->questionService->getByTestId($test);
     }
 }

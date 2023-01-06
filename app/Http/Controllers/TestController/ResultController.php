@@ -4,27 +4,23 @@ namespace App\Http\Controllers\TestController;
 
 use App\Http\Requests\Result\CreateResultRequest;
 use App\Models\Result;
+use App\Services\test\ResultService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 
 class ResultController extends BaseController
 {
+    public function __construct(private ResultService $resultService)
+    {
+    }
+
     public function create(CreateResultRequest $request)
     {
-        $result = new Result();
-        $result->test_id = $request->getTestId();
-        $result->user_id = Auth::user()->id;
-        $result->result = $request->getResult();
-
-        $result->save();
-        return $result;
+        return $this->resultService->create($request);
     }
+
     public function getByTestId(int $id)
     {
-        $result = Result::query()->with('user')->where('test_id', $id);
-
-        return $result;
+        return $this->resultService->getByTestId($id);
     }
-
-
 }
