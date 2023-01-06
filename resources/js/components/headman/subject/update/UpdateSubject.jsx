@@ -1,17 +1,19 @@
 import React, {useState} from 'react';
-import * as yup from "yup";
 import {Form, Formik} from "formik";
 import {Button, TextField} from "@mui/material";
-import {useHeadmanService} from "../../../services/HeadmanService";
+import {useHeadmanService} from "../../../../services/HeadmanService";
+import * as yup from "yup";
 
-function CreateSubject(props) {
-    const {active, setActive} = props
-    const [data, setData] = useState()
-    const headmanService = useHeadmanService(data,setData)
+function UpdateSubject(props) {
 
-    const onSubmit = (data)=>{
-        headmanService.createSubject(data).then(setActive(false))
+    const {active, setActive, editData,updateComponent} = props
+    const [data, setData] = useState(editData)
+    const headmanService = useHeadmanService(data, setData)
+
+    const onSubmit = (data) => {
+        headmanService.updateSubject(data).then(setActive(false)).then(()=>updateComponent())
     }
+
     const validationsSchema = yup.object().shape({
         name: yup.string().required('Обов\'язково'),
     })
@@ -19,10 +21,8 @@ function CreateSubject(props) {
     return (
         <Formik
             validationSchema={validationsSchema}
-            key={new Date().toLocaleTimeString()}
-            initialValues={{
-                name: "",
-            }}
+            key={data.id}
+            initialValues={data}
             onSubmit={(values) => {
                 onSubmit(values)
             }}
@@ -36,16 +36,17 @@ function CreateSubject(props) {
                     <TextField
                         id="outlined-textarea"
                         className={'create-test-input'}
-                        label="Назва групи"
+                        label="Назва"
                         name={'name'}
+                        value={data?.name}
                         onChange={(event) => {
                             formik.setFieldValue('name', event.target.value)
+                            setData(()=>({...data, name:event.target.value}))
                         }}
                         placeholder="Placeholder"
                         error={formik.errors['name']}
                         multiline
                     />
-
                     <div className={'create-test-submit'}>
                         <Button className={'create-test-submit-btn'} type={"submit"}
                                 variant="contained">Додати</Button>
@@ -56,4 +57,4 @@ function CreateSubject(props) {
     );
 }
 
-export default CreateSubject;
+export default UpdateSubject;
