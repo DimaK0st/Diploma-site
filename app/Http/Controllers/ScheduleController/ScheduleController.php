@@ -20,10 +20,10 @@ class ScheduleController extends BaseController
     {
         $group = (int)$request->get('groupId');
         $my = (bool)$request->get('my');
-//dd($my);
-        if ($my){
+        if ($my) {
             $group = Auth::user()->group_id;
         }
+
         return $this->scheduleService->index($group);
     }
 

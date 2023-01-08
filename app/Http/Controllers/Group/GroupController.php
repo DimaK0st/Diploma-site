@@ -10,7 +10,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 class GroupController extends BaseController
 {
-
     public function create(CreateGroupRequest $request)
     {
         $group = new Group();
@@ -41,7 +40,4 @@ class GroupController extends BaseController
     {
         return Group::query()->where('id', '=', $request->getId())->delete();
     }
-
-
-
 }
