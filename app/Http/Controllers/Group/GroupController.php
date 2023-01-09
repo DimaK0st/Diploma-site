@@ -5,39 +5,27 @@ namespace App\Http\Controllers\Group;
 use App\Http\Requests\Group\CreateGroupRequest;
 use App\Http\Requests\Group\DeleteGroupRequest;
 use App\Http\Requests\Group\UpdateGroupRequest;
-use App\Models\Group;
+use App\Services\GroupService;
 use Illuminate\Routing\Controller as BaseController;
 
 class GroupController extends BaseController
 {
+    public function __construct(private GroupService $groupService)
+    {
+    }
+
     public function create(CreateGroupRequest $request)
     {
-        $group = new Group();
-
-        $group->name = $request->getName();
-        $group->course = $request->getCourse()?:1;
-        $group->faculty_id = $request->getFacultyId()?:1;
-
-        $group->save();
-
-        return $group;
+        return $this->groupService->create($request);
     }
 
     public function update(UpdateGroupRequest $request)
     {
-        $group = Group::findOrFail($request->getId());
-
-        $group->name = $request->getName();
-        $group->course = $request->getCourse()?:1;
-        $group->faculty_id = $request->getFacultyId()?:1;
-
-        $group->save();
-
-        return $group;
+        return $this->groupService->update($request);
     }
 
     public function delete(DeleteGroupRequest $request)
     {
-        return Group::query()->where('id', '=', $request->getId())->delete();
+        return $this->groupService->delete($request);
     }
 }

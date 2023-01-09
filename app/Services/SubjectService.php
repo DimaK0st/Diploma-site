@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Http\Requests\Subject\CreateSubjectRequest;
 use App\Http\Requests\Subject\DeleteSubjectRequest;
 use App\Http\Requests\Subject\UpdateSubjectRequest;
-use App\Models\Subject;
 use App\Repositories\SubjectRepository;
 
 class SubjectService

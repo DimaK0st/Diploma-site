@@ -3,9 +3,7 @@
 namespace App\Services\test;
 
 use App\Http\Requests\Result\CreateResultRequest;
-use App\Models\Result;
 use App\Repositories\test\ResultRepository;
-use Illuminate\Support\Facades\Auth;
 
 class ResultService
 {

@@ -74,8 +74,7 @@ class AuthController extends Controller
                     'token' => $user->createToken("API TOKEN")->plainTextToken,
                     'user' => $user->toJson()
                 ], 200);
-//            return $this->sendResponse($success, 'User login successfully.');
-            } else{
+            } else {
                 return response()->json([
                     'status' => false,
                     'message' => 'Введіть коректні дані'

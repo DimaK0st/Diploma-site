@@ -1,39 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\CourseController;
+namespace App\Services;
 
 use App\Http\Requests\CourseContent\CreateCourseContentRequest;
 use App\Http\Requests\CourseContent\DeleteCourseContentRequest;
 use App\Http\Requests\CourseContent\UpdateCourseContenRequest;
-use App\Models\CourseContent;
 use App\Repositories\CourseContentRepository;
-use App\Services\CourseContentService;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Request;
 
-class CourseContentController extends BaseController
+class CourseContentService
 {
-    public function __construct(private CourseContentService $courseContentService)
+    public function __construct(private CourseContentRepository $courseContentRepository)
     {
     }
 
     public function index(Request $request, $id)
     {
-        return $this->courseContentService->index($request, $id);
+        return $this->courseContentRepository->index($request, $id);
     }
 
     public function create(CreateCourseContentRequest $request)
     {
-        return $this->courseContentService->create($request);
+        return $this->courseContentRepository->create($request);
     }
 
     public function update(UpdateCourseContenRequest $request)
     {
-        return $this->courseContentService->update($request);
+        return $this->courseContentRepository->update($request);
     }
 
     public function delete(DeleteCourseContentRequest $request)
     {
-        return $this->courseContentService->delete($request);
+        return $this->courseContentRepository->delete($request);
     }
 }
