@@ -4,7 +4,6 @@ import Main from "../pages/main/Main";
 const RequireAuth = ({children}) => {
     let user = localStorage.getItem('user')
 
-    console.log('user', user)
     if (!user) {
         return <Navigate to={'/login'}/>
     }

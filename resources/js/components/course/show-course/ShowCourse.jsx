@@ -38,20 +38,20 @@ function ShowCourse(props) {
         if (data.loaded) {
             courseService.getCourseById(courseId).then(setActiveDeleteCourseContent(false))
         }
-    }, [activeCreate, activeUpdateCourse,activeDeleteCourseContent,activeCreateTest])
+    }, [activeCreate, activeUpdateCourse, activeDeleteCourseContent, activeCreateTest])
 
     return (
         <div className={'course'}>
-            <Modal active={activeCreate} setActive={setActiveCreate}><CreateCourseContent courseId={courseId}
-                                                                                          setActive={setActiveCreate}/></Modal>
+            <Modal active={activeCreate} setActive={setActiveCreate}>
+                <CreateCourseContent courseId={courseId} setActive={setActiveCreate}/></Modal>
             <Modal active={activeUpdateCourse} setActive={setActiveUpdateCourse}>
                 <UpdateCourse key={data?.data?.description} description={data?.data?.description}
                               title={data?.data?.title} id={courseId}
                               setActive={setActiveUpdateCourse}/></Modal>
             <Modal active={activeDeleteCourse} setActive={setActiveDeleteCourse}>
                 <DeleteCourse id={courseId} setActive={setActiveDeleteCourse}/></Modal>
-
-            <Modal active={activeCreateTest} setActive={setActiveCreateTest}> <CreateTest courseId={courseId} setActive={setActiveCreateTest}/> </Modal>
+            <Modal active={activeCreateTest} setActive={setActiveCreateTest}>
+                <CreateTest courseId={courseId} setActive={setActiveCreateTest}/></Modal>
 
             {data?.data?.user_id === user.id || user.isAdmin() ? <div className={'course-nav'}>
                 <Button variant="outlined" onClick={() => setActiveCreate(true)}>Додати контент</Button>
@@ -66,18 +66,18 @@ function ShowCourse(props) {
                 <span className={'course-title'}>{data?.data?.title}</span>
                 <span className={'course-description'}><strong>Опис:</strong> {data?.data?.description}</span>
             </div>
-
             <div className={'course-content'}>
                 {(data?.data?.contents?.length) ? data?.data?.contents?.map((content) => {
-                    return <ContentCourse content={content} setActive={setActiveDeleteCourseContent} courseService={courseService} ownerId={data?.data?.user_id}/>
+                    return <ContentCourse content={content} setActive={setActiveDeleteCourseContent}
+                                          courseService={courseService} ownerId={data?.data?.user_id}/>
                 }) : <span className={'course-content-empty'}>Поки що нічого немає</span>}
             </div>
             <div className={'test-content'}>
                 {(data?.data?.tests?.length) ? data?.data?.tests?.map((item) => {
-                    return <TestCourse test={item} setActive={setActiveDeleteCourseContent} courseService={courseService} ownerId={data?.data?.user_id}/>
+                    return <TestCourse test={item} setActive={setActiveDeleteCourseContent}
+                                       courseService={courseService} ownerId={data?.data?.user_id}/>
                 }) : <span className={'course-content-empty'}>Поки що нічого немає</span>}
             </div>
-
         </div>
     );
 }

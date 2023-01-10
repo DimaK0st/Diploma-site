@@ -1,8 +1,8 @@
-.course{
+.course {
     display: flex;
     flex-direction: column;
 
-    &-wrapper{
+    &-wrapper {
         display: flex;
         flex-direction: column;
         border: gray 1px solid;
@@ -10,7 +10,7 @@
         border-radius: 10px;
     }
 
-    &-nav{
+    &-nav {
         display: flex;
         justify-content: space-around;
         margin-top: 5px;
@@ -18,7 +18,7 @@
 
     }
 
-    &-title{
+    &-title {
         text-align: center;
         width: 90%;
         margin: auto;
@@ -27,12 +27,12 @@
         margin-bottom: 10px;
     }
 
-    &-description{
+    &-description {
         text-indent: 20px;
         color: #656565;
     }
 
-    &-content{
+    &-content {
         display: flex;
         flex-direction: column;
         margin-top: 10px;

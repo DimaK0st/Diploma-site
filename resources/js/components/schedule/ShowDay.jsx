@@ -67,7 +67,6 @@ function ShowDay(props) {
     if (data) {
         for (let i = 1; i < 9; i++) {
             if (data[i]) {
-                console.log('qqqqqqqqqqqqqqqqqqqqqqqqq', data)
                 if (data[i].length === 2) {
                     lesson.push(
                         <>

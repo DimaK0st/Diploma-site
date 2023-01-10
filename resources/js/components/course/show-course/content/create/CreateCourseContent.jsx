@@ -6,7 +6,6 @@ import './create-course-content.scss'
 import {useCourseService} from "../../../../../services/CourseService";
 
 function CreateCourseContent(props) {
-
     const {setActive, courseId} = props
     const [data, setData] = useState([])
     const courseService = useCourseService(data, setData)
@@ -54,7 +53,6 @@ function CreateCourseContent(props) {
                         error={formik.errors['title']}
                         multiline
                     />
-
                     <TextField
                         id="outlined-textarea"
                         className={'create-course-content-input'}
@@ -67,7 +65,6 @@ function CreateCourseContent(props) {
                         error={formik.errors['description']}
                         multiline
                     />
-
                     <TextField
                         id="outlined-textarea"
                         className={'create-course-content-input'}
@@ -80,7 +77,6 @@ function CreateCourseContent(props) {
                         error={formik.errors['url']}
                         multiline
                     />
-
                     <div className={'create-course-content-submit'}>
                         <Button className={'create-course-content-submit-btn'} type={"submit"}
                                 variant="contained">Додати</Button>

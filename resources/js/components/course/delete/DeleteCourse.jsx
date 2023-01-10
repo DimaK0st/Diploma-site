@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useScheduleService} from "../../../services/ScheduleService";
 import './delete-course.scss'
 import {Button} from "@mui/material";
 import {useCourseService} from "../../../services/CourseService";

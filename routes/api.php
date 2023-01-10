@@ -12,9 +12,7 @@ use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\TestController\QuestionController;
 use App\Http\Controllers\TestController\ResultController;
 use App\Http\Controllers\TestController\TestController;
-use App\Models\Course;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,15 +29,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
-
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/groupList', [Controller::class, 'getGroupList']);
-
     Route::get('/course/all', [CourseController::class, 'searchCourse'])->name('');
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
-
         Route::group(['prefix' => 'course', 'middleware' => 'auth:sanctum'], function () {
             Route::post('/subscribe_course', [CourseController::class, 'subscribeCourse'])->name('');
             Route::get('/search', [CourseController::class, 'searchCourse'])->name('');
@@ -95,20 +90,18 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                 Route::post('/update', [TeacherController::class, 'update'])->name('');
                 Route::post('/delete', [TeacherController::class, 'delete'])->name('');
             });
+
             Route::group(['prefix' => 'group'], function () {
                 Route::post('/create', [GroupController::class, 'create'])->name('');
                 Route::post('/update', [GroupController::class, 'update'])->name('');
                 Route::post('/delete', [GroupController::class, 'delete'])->name('');
             });
+
             Route::group(['prefix' => 'subject'], function () {
                 Route::post('/create', [SubjectController::class, 'create'])->name('');
                 Route::post('/update', [SubjectController::class, 'update'])->name('');
                 Route::post('/delete', [SubjectController::class, 'delete'])->name('');
             });
-        });
-
-        Route::get('/user_courses', function (Request $request) {
-            return json_encode([['title' => 'asd2fasdf', 'label' => 'asda2sd'], ['title' => 'a2sdfa3sdf', 'label' => 'asd4asd'], ['title' => 'asdfas5df', 'label' => 'asda6sd'], ['title' => 'asdfasd7f', 'label' => 'a8sdasd'],]);
         });
     });
 });

@@ -20,7 +20,6 @@ function Header(props) {
                             <NavDropdown.Item><Link to={'/course'}>Всі курси</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/course/my'}>Мої курси</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/headman'}>Керування</Link></NavDropdown.Item>
-
                             <NavDropdown.Divider />
                         </NavDropdown>
                     </Nav>

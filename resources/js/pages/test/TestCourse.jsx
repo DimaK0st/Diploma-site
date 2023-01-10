@@ -35,19 +35,18 @@ function TestCourse(props) {
 
 
     return (
-        <div className={`content-test ${test?.myResult?' result':''}`} >
+        <div className={`content-test ${test?.myResult ? ' result' : ''}`}>
             <Modal active={activeUpdate} setActive={setActiveUpdate}>
                 <UpdateTest setActive={setActiveUpdate}
                             id={test.id} title={test.title}
                             description={test.description}
                             count={test.count}/>
             </Modal>
-            {console.log('asdfasdf',test)}
             <span className={'content-test-title'}>{!test?.myResult ?
-                <Link to={'/test/' + test.id} href={test?.url}>{test?.title}</Link>:test?.title}</span>
+                <Link to={'/test/' + test.id} href={test?.url}>{test?.title}</Link> : test?.title}</span>
             <span className={'content-test-description'}>{test?.description}</span>
             <div className={'content-test-bottom'}>
-                <span>{!test?.myResult ?'Кількість питань: '+test.count: 'Оцінка '+test?.myResult}</span>
+                <span>{!test?.myResult ? 'Кількість питань: ' + test.count : 'Оцінка ' + test?.myResult}</span>
 
                 <div className={'content-test-bottom-right'}>
                     {
@@ -58,10 +57,10 @@ function TestCourse(props) {
                             <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
                                 <EditIcon/>
                             </IconButton>
-                            <IconButton aria-label="delete" onClick={() => navigate('/test/edit/'+test?.id)}>
+                            <IconButton aria-label="delete" onClick={() => navigate('/test/edit/' + test?.id)}>
                                 <AssignmentIcon/>
                             </IconButton>
-                            <IconButton aria-label="delete" onClick={() => navigate('/test/results/'+test?.id)}>
+                            <IconButton aria-label="delete" onClick={() => navigate('/test/results/' + test?.id)}>
                                 <InventoryOutlinedIcon/>
                             </IconButton>
                         </> : null

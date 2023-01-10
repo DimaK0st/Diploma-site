@@ -23,27 +23,26 @@ function FindCourse(props) {
     }
 
     useEffect(() => {
-        if (user.isAuth()){
+        if (user.isAuth()) {
             courseService.searchCourse(my ? 1 : 0, '').then((data) => {
-            setSelect(data)
-        })
-        }else {
+                setSelect(data)
+            })
+        } else {
             courseService.searchCourseUnAuth(my ? 1 : 0, '').then((data) => {
                 setSelect(data)
             })
         }
-
     }, [])
 
     useEffect(() => {
         if (search.loaded && !active) {
             courseService.searchCourse(my ? 1 : 0, '').then((data) => {
                 setSelect(data)
-            }).then(()=>{
+            }).then(() => {
                 setActiveSubscribe(false)
             })
         }
-    }, [active,my,activeSubscribe])
+    }, [active, my, activeSubscribe])
 
     return (
         <div className={'find'}>
@@ -62,15 +61,16 @@ function FindCourse(props) {
                                                     label={"Пошук серед " + `${my ? 'ваших' : 'всіх'}` + " курсів"}/>}
                 getOptionLabel={(option) => option.title || ""}
             />
+
             {
                 user.isAdmin() || user.isTeacher() ?
-                    <Button onClick={() => setActive(true)}>Створити курс</Button>:null
+                    <Button onClick={() => setActive(true)}>Створити курс</Button> : null
             }
 
             <div key={my}>
                 {search?.data?.length
                     ? search?.data
-                        ?.map(({title, description, id, owner,subscribe}) =>
+                        ?.map(({title, description, id, owner, subscribe}) =>
                             <LittleCourse
                                 title={title}
                                 description={description}

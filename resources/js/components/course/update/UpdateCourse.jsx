@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import {useCourseService} from "../../../services/CourseService";
 import {Form, Formik} from "formik";
 import * as yup from "yup";
-import {Autocomplete, Button, TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import './update-course.scss'
-function CreateCourse(props) {
 
-    const {setActive,id ,title,description}=props
-    const [data, setData]= useState([])
-    const [value, setValue]= useState({
-        'id':id,
-        'title':title,
-        'description':description,
+function CreateCourse(props) {
+    const {setActive, id, title, description} = props
+    const [data, setData] = useState([])
+    const [value, setValue] = useState({
+        'id': id,
+        'title': title,
+        'description': description,
     })
     const courseService = useCourseService(data, setData)
 
@@ -20,14 +20,16 @@ function CreateCourse(props) {
         description: yup.string().required('Обов\'язково'),
     })
 
-    const onSubmit=(value)=>{
-        courseService.updateCourse(value).then(()=>{setActive(false)})
+    const onSubmit = (value) => {
+        courseService.updateCourse(value).then(() => {
+            setActive(false)
+        })
     }
 
     return (
         <Formik
             validationSchema={validationsSchema}
-            initialValues={value?value:{
+            initialValues={value ? value : {
                 id: "",
                 title: "",
                 description: "",
@@ -53,13 +55,12 @@ function CreateCourse(props) {
                         onChange={(event) => {
                             formik.setFieldValue('title', event.target.value)
                             formik.setFieldValue('id', value.id)
-                            setValue({...value,'title':event.target.value})
+                            setValue({...value, 'title': event.target.value})
                         }}
                         placeholder="Placeholder"
                         error={formik.errors['title']}
                         multiline
                     />
-
                     <TextField
                         id="outlined-textarea"
                         className={'create-course-input'}
@@ -68,13 +69,12 @@ function CreateCourse(props) {
                         name={'description'}
                         onChange={(event) => {
                             formik.setFieldValue('description', event.target.value)
-                            setValue((data)=>({...data,'description':event.target.value}))
+                            setValue((data) => ({...data, 'description': event.target.value}))
                         }}
                         placeholder="Placeholder"
                         error={formik.errors['description']}
                         multiline
                     />
-
                     <div className={'create-course-submit'}>
                         <Button className={'create-course-submit-btn'} type={"submit"}
                                 variant="contained">Редагувати</Button>

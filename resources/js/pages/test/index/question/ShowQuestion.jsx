@@ -6,7 +6,6 @@ import {useQuestionService} from "../../../../services/QuestionService";
 
 function ShowQuestion(props) {
     const {question, setUpdate} = props
-    console.log('11111111111111111111111', question)
     const [data, setData] = useState()
 
     const questionService = useQuestionService(data, setData)

@@ -24,7 +24,6 @@ export const useAuthService = () => {
 
     const login = (data, setError) => {
         return axios.post(_apiBase + 'login', data, {...headers}).then(res => {
-            console.log(res)
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user', res.data.user)
             document.location.href = "/";

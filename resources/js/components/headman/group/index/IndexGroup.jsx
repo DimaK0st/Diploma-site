@@ -14,7 +14,7 @@ function IndexGroup(props) {
     const [data, setData] = useState()
     const headmanService = useHeadmanService(data, setData)
 
-    const deleteGroup = ()=>{
+    const deleteGroup = () => {
         headmanService.deleteGroup({id: group.id}).then(updateComponent)
     }
 
@@ -27,7 +27,6 @@ function IndexGroup(props) {
             <IconButton aria-label="delete" onClick={deleteGroup}>
                 <DeleteIcon/>
             </IconButton>
-
             <Modal active={activeUpdate} setActive={setActiveUpdate}><UpdateGroup
                 editData={{id: group.id, name: group.name}}
                 setActive={setActiveUpdate}

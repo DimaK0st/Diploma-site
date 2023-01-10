@@ -1,22 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import './my-course.scss'
-import {useAuthService} from "../../../services/AuthService";
 import {useCourseService} from "../../../services/CourseService";
 import {Button} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import {User} from "../../../services/User";
 
 function MyCourse(props) {
-
-    const {state, setState} = useState([])
     const navigate = useNavigate()
     const user = new User()
-
     const [search, setSearch] = useState([])
 
     useEffect(() => {
         const courseService = useCourseService(search, setSearch)
-        console.log('user.isAuth()',user.isAuth())
         if (user.isAuth()){
 
             courseService.searchCourse(1, '')
@@ -44,7 +39,8 @@ function MyCourse(props) {
                             <span className={'my-course-content-title'}>Мої курси:</span>
                             <ol>
                                 {
-                                    search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{item.title}</Link></li>)
+                                    // search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{item.title}</Link></li>)
+                                    search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{getInitials(item.title)}</Link></li>)
                                 }
                             </ol>
                         </div>

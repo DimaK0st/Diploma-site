@@ -31,7 +31,6 @@ function MainHeadman(props) {
 
     return (
         <div className={'main-headman'}>
-            {console.log('data?.subjects',data?.subjects)}
             <ShowGroups groups={data?.groups} updateComponent={updateComponent}/>
             <ShowTeachers teachers={data?.teachers} updateComponent={updateComponent}/>
             <ShowSubjects subjects={data?.subjects} updateComponent={updateComponent}/>

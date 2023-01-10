@@ -48,7 +48,6 @@ function CreateGroup(props) {
                         error={formik.errors['name']}
                         multiline
                     />
-
                     <div className={'create-test-submit'}>
                         <Button className={'create-test-submit-btn'} type={"submit"}
                                 variant="contained">Додати</Button>

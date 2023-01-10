@@ -1,12 +1,11 @@
-.react-select{
-    &__input-container{
+.react-select {
+    &__input-container {
         margin-top: 0px;
         padding-top: 0;
 
     }
 
-    &__value-container, &__indicators{
+    &__value-container, &__indicators {
         margin-top: -5px !important;
     }
-
 }

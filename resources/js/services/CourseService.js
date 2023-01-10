@@ -15,7 +15,6 @@ export const useCourseService = (state, setState) => {
     }
 
     function searchCourse(my, search) {
-        console.log('...headers', {...headers})
         return axios.get(_apiBase + 'course/search', {
             params: {
                 my: my,
@@ -23,7 +22,6 @@ export const useCourseService = (state, setState) => {
             },
             ...headers
         }).then(res => {
-            console.log('res', res)
             varSetState({data: [...res.data], loaded: true})
             return res.data
 
@@ -38,7 +36,6 @@ export const useCourseService = (state, setState) => {
             },
             ...headers
         }).then(res => {
-            console.log('res', res)
             varSetState({data: [...res.data], loaded: true})
             return res.data
 
@@ -65,21 +62,18 @@ export const useCourseService = (state, setState) => {
     }
 
     const subscribeCourse = (data) => {
-        console.log('adfasdfasfasdffas', data)
         return axios.post(_apiBase + 'course/subscribe_course', data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const createCourseContent = (data) => {
-        console.log('adfasdfasfasdffas', data)
         return axios.post(_apiBase + 'course/content/create', data, {...headers}).then(res => {
             return res.data
         })
 
     }
     const deleteCourseContent = (data) => {
-        console.log('adfasdfasfasdffas', data)
         return axios.post(_apiBase + 'course/content/delete', data, {...headers}).then(res => {
             return res.data
         })

@@ -6,9 +6,7 @@ import Variant from "./variant/Variant";
 import {useQuestionService} from "../../../services/QuestionService";
 
 function CreateQuestion(props) {
-
-    const {testId,setActive}=props
-    console.log('testId',testId)
+    const {testId, setActive} = props
     const [sendData, setSendData] = useState(
         {
             'test_id': testId,
@@ -20,9 +18,7 @@ function CreateQuestion(props) {
             ]
         }
     )
-
     const [data, setData] = useState()
-
     const questionService = useQuestionService(data, setData)
 
     const validationsSchema = yup.object().shape({
@@ -64,7 +60,7 @@ function CreateQuestion(props) {
                         name={'title'}
                         onChange={(event) => {
                             formik.setFieldValue('title', event.target.value)
-                            setSendData({...sendData, 'title': event.target.value,'test_id':testId})
+                            setSendData({...sendData, 'title': event.target.value, 'test_id': testId})
                         }}
                         placeholder="Placeholder"
                         error={formik.errors['title']}
@@ -89,7 +85,11 @@ function CreateQuestion(props) {
                     <Button variant="contained" color={'warning'} style={{marginBottom: '10px'}} className={'add'}
                             onClick={() => setSendData({
                                 ...sendData,
-                                variants: [...sendData.variants, {id: sendData.variants.length, 'text': '', correct: false}]
+                                variants: [...sendData.variants, {
+                                    id: sendData.variants.length,
+                                    'text': '',
+                                    correct: false
+                                }]
                             })}>
                         Додати варіант
                     </Button>

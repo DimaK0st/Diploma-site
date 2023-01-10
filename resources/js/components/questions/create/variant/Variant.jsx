@@ -3,7 +3,6 @@ import {FormControlLabel, IconButton, Paper, Radio, TextField} from "@mui/materi
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function Variant(props) {
-
     const {item, formik, setSendData, sendData} = props
 
     const deleteVariant = () => {
@@ -64,9 +63,7 @@ function Variant(props) {
                         ...sendData,
                         ...varian
                     }))
-
                     formik.setFieldValue('variants', [...varian.variants])
-                    console.log('asdasdadsdasdasdas',formik.values)
                 }}
                 placeholder="Placeholder"
                 error={formik.errors['title']}
