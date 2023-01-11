@@ -68,13 +68,13 @@ function ShowCourse(props) {
             </div>
             <div className={'course-content'}>
                 {(data?.data?.contents?.length) ? data?.data?.contents?.map((content) => {
-                    return <ContentCourse content={content} setActive={setActiveDeleteCourseContent}
+                    return <ContentCourse key={content.id} content={content} setActive={setActiveDeleteCourseContent}
                                           courseService={courseService} ownerId={data?.data?.user_id}/>
                 }) : <span className={'course-content-empty'}>Поки що нічого немає</span>}
             </div>
             <div className={'test-content'}>
                 {(data?.data?.tests?.length) ? data?.data?.tests?.map((item) => {
-                    return <TestCourse test={item} setActive={setActiveDeleteCourseContent}
+                    return <TestCourse key={item.id} test={item} setActive={setActiveDeleteCourseContent}
                                        courseService={courseService} ownerId={data?.data?.user_id}/>
                 }) : <span className={'course-content-empty'}>Поки що нічого немає</span>}
             </div>

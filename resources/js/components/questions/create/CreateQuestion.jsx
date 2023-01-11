@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as yup from "yup";
 import {Form, Formik} from "formik";
-import {Button, FormControlLabel, Radio, RadioGroup, TextField} from "@mui/material";
+import {Button, RadioGroup, TextField} from "@mui/material";
 import Variant from "./variant/Variant";
 import {useQuestionService} from "../../../services/QuestionService";
 
@@ -66,13 +66,11 @@ function CreateQuestion(props) {
                         error={formik.errors['title']}
                         multiline
                     />
-
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue=""
                         name="radio-buttons-group"
                     >
-
                         {sendData.variants.map((item, key) => {
                             return (<>
                                 <Variant key={item.id} item={item} formik={formik} setSendData={setSendData}
@@ -81,7 +79,6 @@ function CreateQuestion(props) {
                         })
                         }
                     </RadioGroup>
-
                     <Button variant="contained" color={'warning'} style={{marginBottom: '10px'}} className={'add'}
                             onClick={() => setSendData({
                                 ...sendData,
@@ -93,9 +90,7 @@ function CreateQuestion(props) {
                             })}>
                         Додати варіант
                     </Button>
-
                     <Button variant="contained" type={"submit"}>Створити питання</Button>
-
                 </Form>
             )}
         </Formik>

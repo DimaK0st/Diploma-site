@@ -12,10 +12,9 @@ function MyCourse(props) {
 
     useEffect(() => {
         const courseService = useCourseService(search, setSearch)
-        if (user.isAuth()){
-
+        if (user.isAuth()) {
             courseService.searchCourse(1, '')
-        }else {
+        } else {
             courseService.searchCourseUnAuth(0, '')
         }
     }, [])
@@ -23,9 +22,9 @@ function MyCourse(props) {
     const getInitials = function (string) {
         let names = string.split(' '),
             initials = names[0].substring(0, 1).toUpperCase();
-        let count = (names.length-1>8)?8:names.length-1
+        let count = (names.length - 1 > 8) ? 8 : names.length - 1
 
-        for(let i=1; i<count; i++){
+        for (let i = 1; i < count; i++) {
             initials += names[i].substring(0, 1).toUpperCase();
         }
         return initials;
@@ -40,7 +39,9 @@ function MyCourse(props) {
                             <ol>
                                 {
                                     // search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{item.title}</Link></li>)
-                                    search?.data?.map((item) => <li><Link relative="path" to={'/course/'+item.id}>{getInitials(item.title)}</Link></li>)
+                                    search?.data?.map((item) => <li key={item.id}><Link relative="path"
+                                                                          to={'/course/' + item.id}>{getInitials(item.title)}</Link>
+                                    </li>)
                                 }
                             </ol>
                         </div>

@@ -15,7 +15,7 @@ function ShowGroups(props) {
                 <Button onClick={() => setActiveCreate(true)} variant="contained">Додати групу</Button>
                 {
                     groups?.map((group) => {
-                        return <IndexGroup updateComponent={updateComponent} group={group} key={group}/>
+                        return <IndexGroup updateComponent={updateComponent} group={group} key={group.id}/>
                     })
                 }
             </div>

@@ -15,7 +15,7 @@ function ShowTeachers(props) {
                 <div className={'teachers-btn'}>
                     <Button onClick={() => setActiveCreate(true)} variant="contained">Додати вчителя</Button>
                 </div>
-                <Table striped bordered hover>
+                <Table>
                     <thead>
                     <tr>
                         <th>#</th>
@@ -29,10 +29,9 @@ function ShowTeachers(props) {
                     <tbody>
                     {
                         teachers?.map((teacher) => {
-                            return <IndexTeacher updateComponent={updateComponent} teacher={teacher} key={teacher}/>
+                            return <IndexTeacher updateComponent={updateComponent} teacher={teacher} key={teacher.id}/>
                         })
                     }
-
                     </tbody>
                 </Table>
 

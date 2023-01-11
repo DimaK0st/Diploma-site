@@ -75,6 +75,7 @@ function FindCourse(props) {
                                 title={title}
                                 description={description}
                                 id={id}
+                                key={id}
                                 subscribe={subscribe}
                                 user={owner}
                                 active={activeSubscribe}

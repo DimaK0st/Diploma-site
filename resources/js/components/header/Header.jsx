@@ -11,16 +11,16 @@ function Header(props) {
         <Navbar bg="light" expand="lg">
             <Container>
                 <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link><Link to={'/'}>Головна</Link></Nav.Link>
+                        <Nav.Item><Link to={'/'}>Головна</Link></Nav.Item>
                         <NavDropdown title="Навігація" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link to={'/schedule/my'}>Розклад</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/course'}>Всі курси</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/course/my'}>Мої курси</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={'/headman'}>Керування</Link></NavDropdown.Item>
-                            <NavDropdown.Divider />
+                            {/*<NavDropdown.Divider />*/}
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

@@ -26,7 +26,7 @@ function ContentCourse(props) {
                         </IconButton> : null
                 }
                 <span
-                    className={'content-bottom-date'}>{moment(content?.created_at + "03:00", 'YYYY-MM-DD HH:mm:ssZ').lang("ru").format('LL')}</span>
+                    className={'content-bottom-date'}>{moment(content?.created_at + "03:00", 'YYYY-MM-DD HH:mm:ssZ').format('LL')}</span>
             </div>
         </div>
     );

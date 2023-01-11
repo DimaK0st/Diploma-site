@@ -19,7 +19,7 @@ function ShowSubjects(props) {
                 <div className={'teachers-btn'}>
                         <Button onClick={() => setActiveCreate(true)} variant="contained">Додати предмет</Button>
                 </div>
-                <Table striped bordered hover>
+                <Table>
                     <thead>
                     <tr>
                         <th>#</th>
@@ -30,7 +30,7 @@ function ShowSubjects(props) {
                     <tbody>
                     {
                         subjects?.map((subject) => {
-                            return <IndexSubject updateComponent={updateComponent} subject={subject} key={subject}/>
+                            return <IndexSubject updateComponent={updateComponent} subject={subject} key={subject.id}/>
                         })
                     }
 

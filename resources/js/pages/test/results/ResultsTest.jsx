@@ -19,7 +19,7 @@ function ResultsTest(props) {
     return (
         <div className={'result'}>
             <span className={'result-title'}>Тест: {data?.title}</span>
-            <Table striped bordered hover>
+            <Table>
                 <thead>
                 <tr>
                     <th>#</th>
@@ -63,7 +63,7 @@ const ItemTable = (props) => {
         <td>{patronymic}</td>
         <td>{groups}</td>
         <td>{result2 + '/' + result1 + '%'}</td>
-        <td>{moment(date + "03:00", 'YYYY-MM-DD HH:mm:ssZ').lang("ru").format('LLL')}</td>
+        <td>{moment(date + "03:00", 'YYYY-MM-DD HH:mm:ssZ').format('LLL')}</td>
     </tr>)
 }
 

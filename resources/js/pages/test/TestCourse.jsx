@@ -67,7 +67,7 @@ function TestCourse(props) {
                     }
 
                     <span
-                        className={'content-test-bottom-date'}>{moment(test?.created_at + "03:00", 'YYYY-MM-DD HH:mm:ssZ').lang("ru").format('LL')}</span>
+                        className={'content-test-bottom-date'}>{moment(test?.created_at + "03:00", 'YYYY-MM-DD HH:mm:ssZ').format('LL')}</span>
 
                 </div>
             </div>
