@@ -25,7 +25,7 @@ function UpdateGroup(props) {
         <Formik
             validationSchema={validationsSchema}
             key={data.id}
-            initialValues={data}
+            initialValues={editData}
             onSubmit={(values) => {
                 onSubmit(values)
             }}
@@ -83,7 +83,7 @@ function UpdateGroup(props) {
                         className={'create-test-input'}
                         label="Пошта"
                         name={'email'}
-                        value={data?.email}
+                        value={data?.email??''}
                         onChange={(event) => {
                             formik.setFieldValue('email', event.target.value)
                             setData(()=>({...data, email:event.target.value}))

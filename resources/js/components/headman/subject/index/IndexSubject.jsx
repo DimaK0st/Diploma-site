@@ -14,7 +14,7 @@ function IndexSubject(props) {
     const [data, setData] = useState()
     const headmanService = useHeadmanService(data, setData)
 
-    const deleteSubject = ()=>{
+    const deleteSubject = () => {
         headmanService.deleteSubject({id: subject.id}).then(updateComponent)
     }
 
@@ -23,19 +23,20 @@ function IndexSubject(props) {
             <td>{subject?.id}</td>
             <td>{subject?.name}</td>
             <td>
-            <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
-                <EditIcon/>
-            </IconButton>
-            <IconButton aria-label="delete" onClick={deleteSubject}>
-                <DeleteIcon/>
-            </IconButton>
+                <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
+                    <EditIcon/>
+                </IconButton>
+                <IconButton aria-label="delete" onClick={deleteSubject}>
+                    <DeleteIcon/>
+                </IconButton>
+                <Modal active={activeUpdate} setActive={setActiveUpdate}><UpdateSubject
+                    editData={{
+                        id: subject.id,
+                        name: subject.name,
+                    }}
+                    setActive={setActiveUpdate}
+                    updateComponent={updateComponent}/></Modal>
             </td>
-            <Modal active={activeUpdate} setActive={setActiveUpdate}><UpdateSubject
-                editData={{
-                    id: subject.id,
-                    name: subject.name,}}
-                setActive={setActiveUpdate}
-                updateComponent={updateComponent}/></Modal>
         </tr>
     );
 }

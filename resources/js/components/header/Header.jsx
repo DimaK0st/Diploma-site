@@ -16,10 +16,10 @@ function Header(props) {
                     <Nav className="me-auto">
                         <Nav.Item><Link to={'/'}>Головна</Link></Nav.Item>
                         <NavDropdown title="Навігація" id="basic-nav-dropdown">
-                            <NavDropdown.Item><Link to={'/schedule/my'}>Розклад</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to={'/course'}>Всі курси</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to={'/course/my'}>Мої курси</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to={'/headman'}>Керування</Link></NavDropdown.Item>
+                            <NavDropdown.ItemText><Link to={'/schedule/my'}>Розклад</Link></NavDropdown.ItemText>
+                            <NavDropdown.ItemText><Link to={'/course'}>Всі курси</Link></NavDropdown.ItemText>
+                            <NavDropdown.ItemText><Link to={'/course/my'}>Мої курси</Link></NavDropdown.ItemText>
+                            <NavDropdown.ItemText><Link to={'/headman'}>Керування</Link></NavDropdown.ItemText>
                             {/*<NavDropdown.Divider />*/}
                         </NavDropdown>
                     </Nav>

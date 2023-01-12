@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Schedule;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
 class AddScheduleRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class AddScheduleRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    #[ArrayShape(['course' => "string", 'group-id' => "string", 'day-id' => "string", 'subject-num' => "string", 'teacher-id' => "string", 'form-id' => "string", 'subject-id' => "string", 'evaluation-id' => "string"])] public function rules()
     {
         return [
             'course' => 'required|int',

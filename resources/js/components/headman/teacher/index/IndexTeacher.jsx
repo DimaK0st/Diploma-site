@@ -14,7 +14,7 @@ function IndexTeacher(props) {
     const [data, setData] = useState()
     const headmanService = useHeadmanService(data, setData)
 
-    const deleteTeacher = ()=>{
+    const deleteTeacher = () => {
         headmanService.deleteTeacher({id: teacher.id}).then(updateComponent)
     }
 
@@ -24,24 +24,25 @@ function IndexTeacher(props) {
             <td>{teacher?.surname}</td>
             <td>{teacher?.name}</td>
             <td>{teacher?.patronymic}</td>
-            <td>{teacher?.email}</td>
+            <td>{teacher?.email ?? 'hui na'}</td>
             <td>
-            <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
-                <EditIcon/>
-            </IconButton>
-            <IconButton aria-label="delete" onClick={deleteTeacher}>
-                <DeleteIcon/>
-            </IconButton>
+                <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
+                    <EditIcon/>
+                </IconButton>
+                <IconButton aria-label="delete" onClick={deleteTeacher}>
+                    <DeleteIcon/>
+                </IconButton>
+                <Modal active={activeUpdate} setActive={setActiveUpdate}><UpdateTeacher
+                    editData={{
+                        id: teacher.id,
+                        surname: teacher.surname,
+                        name: teacher.name,
+                        patronymic: teacher.patronymic,
+                        email: teacher.email !== '' ? teacher.email : ' ',
+                    }}
+                    setActive={setActiveUpdate}
+                    updateComponent={updateComponent}/></Modal>
             </td>
-            <Modal active={activeUpdate} setActive={setActiveUpdate}><UpdateTeacher
-                editData={{
-                    id: teacher.id,
-                    surname: teacher.surname,
-                    name: teacher.name,
-                    patronymic: teacher.patronymic,
-                    email: teacher.email!==''?teacher.email:' ',}}
-                setActive={setActiveUpdate}
-                updateComponent={updateComponent}/></Modal>
         </tr>
     );
 }
