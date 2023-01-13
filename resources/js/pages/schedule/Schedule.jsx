@@ -47,17 +47,17 @@ function Schedule(props) {
 
     useEffect(() => {
         if (state.loaded) {
-            state?.days_list?.map((value) => {
+            setDays(state?.days_list?.map((value) => {
                     if (state[value.id]) {
-                        res.push(<ShowDay root={true} addLesson={addLesson} deleteLesson={deleteLesson} group={state.group}
-                                          day={value} data={state[value.id]}/>)
+                        return (<ShowDay root={true} addLesson={addLesson} deleteLesson={deleteLesson} group={state.group}
+                                          day={value} data={state[value.id]} key={value.id}/>)
                     } else {
-                        res.push(<ShowDay root={true} addLesson={addLesson} deleteLesson={deleteLesson} group={state.group}
-                                          day={value}/>)
+                        return (<ShowDay root={true} addLesson={addLesson} deleteLesson={deleteLesson} group={state.group}
+                                          day={value} key={value.id}/>)
                     }
                 }
             )
-            setDays(res)
+            )
         }
     }, [state])
 

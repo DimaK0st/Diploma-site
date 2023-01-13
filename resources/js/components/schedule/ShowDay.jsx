@@ -51,7 +51,7 @@ function ShowDay(props) {
                                             evaluation: data?.evaluation?.id,
                                         })
                                     }}/>
-                                    <XSquare onClick={()=>{
+                                    <XSquare onClick={() => {
                                         deleteNewLesson(data?.id)
                                     }}/>
                                 </th>
@@ -66,37 +66,38 @@ function ShowDay(props) {
 
     if (data) {
         for (let i = 1; i < 9; i++) {
-            if (data[i]) {
-                if (data[i].length === 2) {
-                    lesson.push(
-                        <>
-                            {oneLesson(i, data[i][0], 1)}
-                            {oneLesson(i, data[i][1], 2)}
-                        </>)
-                } else if (data[i][0].form.id === 1) {
-                    lesson.push(
-                        <>
-                            {oneLesson(i, data[i][0], 1)}
-                            {oneLesson(i, null, 2)}
-                        </>)
-                } else if (data[i][0].form.id === 2) {
-                    lesson.push(
-                        <>
-                            {oneLesson(i, null, 1)}
-                            {oneLesson(i, data[i][0], 2)}
-                        </>)
-                } else if (data[i][0].form.id === 3) {
-                    lesson.push(
-                        oneLesson(i, data[i][0], 3)
-                    )
-                }
-            } else {
+
+            if (!data[i]) {
+                lesson.push(oneLesson(i, null, null))
+                continue;
+            }
+
+            if (data[i].length === 2) {
                 lesson.push(
-                    oneLesson(i, null, null)
+                    <>
+                        {oneLesson(i, data[i][0], 1)}
+                        {oneLesson(i, data[i][1], 2)}
+                    </>)
+            } else if (data[i][0].form.id === 1) {
+                lesson.push(
+                    <>
+                        {oneLesson(i, data[i][0], 1)}
+                        {oneLesson(i, null, 2)}
+                    </>)
+            } else if (data[i][0].form.id === 2) {
+                lesson.push(
+                    <>
+                        {oneLesson(i, null, 1)}
+                        {oneLesson(i, data[i][0], 2)}
+                    </>)
+            } else if (data[i][0].form.id === 3) {
+                lesson.push(
+                    oneLesson(i, data[i][0], 3)
                 )
             }
+
         }
-    } else{
+    } else {
         for (let i = 1; i < 9; i++) {
             lesson.push(
                 oneLesson(i, null, null)
@@ -105,26 +106,26 @@ function ShowDay(props) {
     }
 
     return (
-                <tbody>
-                <tr>
-                    <th className="table-day"></th>
-                    <th className="table-num">№</th>
-                    <th className="table-num">Тип</th>
-                    <th className="table-subject">Предмет</th>
-                    <th className="table-teacher">Викладач</th>
-                    <th className="table-teacher">Оцінювання</th>
-                    {
-                        root ? <>
-                            <th className="table-edit">Дія</th>
-                        </> : null
-                    }
-                </tr>
+        <tbody>
+        <tr>
+            <th className="table-day"></th>
+            <th className="table-num">№</th>
+            <th className="table-num">Тип</th>
+            <th className="table-subject">Предмет</th>
+            <th className="table-teacher">Викладач</th>
+            <th className="table-teacher">Оцінювання</th>
+            {
+                root ? <>
+                    <th className="table-edit">Дія</th>
+                </> : ''
+            }
+        </tr>
 
-                <td rowSpan="15">
-                    {dayList}
-                </td>
-                {lesson}
-                </tbody>
+        <td rowSpan="15">
+            {dayList}
+        </td>
+        {lesson}
+        </tbody>
     )
 }
 
