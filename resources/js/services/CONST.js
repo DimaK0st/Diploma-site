@@ -27,3 +27,15 @@ export const USER = 1
 export const ADMIN = 2
 export const TEACHER = 3
 export const HEADMEN = 4
+
+export const CREATE = 'create'
+export const UPDATE = 'update'
+export const DELETE = 'delete'
+
+export const GROUP_HEADMAN = 'headman/'
+export const GROUP_TEACHER = 'teacher/'
+export const GROUP_GROUP = 'group/'
+export const GROUP_SUBJECT = 'subject/'
+export const GROUP_COURSE = 'course/'
+export const GROUP_CONTENT = 'content/'
+export const GROUP_ = ''

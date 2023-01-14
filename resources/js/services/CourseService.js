@@ -1,12 +1,15 @@
-import {_apiBase, headers, postRequest} from "./CONST";
+import {_apiBase, CREATE, DELETE, GROUP_CONTENT, GROUP_COURSE, headers, postRequest, UPDATE} from "./CONST";
 import axios from 'axios';
 
 export const useCourseService = (state, setState) => {
     let varState = state
     let varSetState = setState
 
+    const courseRoute = _apiBase + GROUP_COURSE
+    const contentRoute = courseRoute + GROUP_CONTENT
+
     function getCourseById(id) {
-        return axios.get(_apiBase + 'course/' + id, {...headers}).then(res => {
+        return axios.get(courseRoute + id, {...headers}).then(res => {
             varSetState({data: res.data, loaded: true})
             return res.data
         }).catch(function (error) {
@@ -15,7 +18,7 @@ export const useCourseService = (state, setState) => {
     }
 
     function searchCourse(my, search) {
-        return axios.get(_apiBase + 'course/search', {
+        return axios.get(courseRoute + 'search', {
             params: {
                 my: my,
                 search: search
@@ -29,7 +32,7 @@ export const useCourseService = (state, setState) => {
     }
 
     function searchCourseUnAuth(my, search) {
-        return axios.get(_apiBase + 'course/all', {
+        return axios.get(courseRoute + 'all', {
             params: {
                 my: 0,
                 search: ''
@@ -44,37 +47,37 @@ export const useCourseService = (state, setState) => {
 
 
     const createCourse = (data) => {
-        return axios.post(_apiBase + 'course/create', data, {...headers}).then(res => {
+        return axios.post(courseRoute + CREATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const updateCourse = (data) => {
-        return axios.post(_apiBase + 'course/update', data, {...headers}).then(res => {
+        return axios.post(courseRoute + UPDATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const deleteCourse = (data) => {
-        return axios.post(_apiBase + 'course/delete', data, {...headers}).then(res => {
+        return axios.post(courseRoute + DELETE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const subscribeCourse = (data) => {
-        return axios.post(_apiBase + 'course/subscribe_course', data, {...headers}).then(res => {
+        return axios.post(courseRoute + 'subscribe_course', data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const createCourseContent = (data) => {
-        return axios.post(_apiBase + 'course/content/create', data, {...headers}).then(res => {
+        return axios.post(contentRoute + CREATE, data, {...headers}).then(res => {
             return res.data
         })
 
     }
     const deleteCourseContent = (data) => {
-        return axios.post(_apiBase + 'course/content/delete', data, {...headers}).then(res => {
+        return axios.post(contentRoute + DELETE, data, {...headers}).then(res => {
             return res.data
         })
 
