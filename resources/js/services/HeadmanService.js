@@ -9,66 +9,65 @@ import {
     postRequest, UPDATE
 } from "./CONST";
 import axios from 'axios';
-import schedule from "../pages/schedule/Schedule";
 
 export const useHeadmanService = (state, setState) => {
     let varState = state
     let varSetState = setState
 
-    const teacherRoute = GROUP_HEADMAN + GROUP_TEACHER
-    const groupRoute = GROUP_HEADMAN + GROUP_GROUP
-    const subjectRoute = GROUP_HEADMAN + GROUP_SUBJECT
+    const teacherRoute = _apiBase + GROUP_HEADMAN + GROUP_TEACHER
+    const groupRoute = _apiBase + GROUP_HEADMAN + GROUP_GROUP
+    const subjectRoute = _apiBase + GROUP_HEADMAN + GROUP_SUBJECT
 
     const createTeacher = (data) => {
-        return axios.post(_apiBase + teacherRoute + CREATE, data, {...headers}).then(res => {
+        return axios.post(teacherRoute + CREATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const updateTeacher = (data) => {
-        return axios.post(_apiBase + teacherRoute + UPDATE, data, {...headers}).then(res => {
+        return axios.post(teacherRoute + UPDATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const deleteTeacher = (data) => {
-        return axios.post(_apiBase + teacherRoute + DELETE, data, {...headers}).then(res => {
+        return axios.post(teacherRoute + DELETE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const createGroup = (data) => {
-        return axios.post(_apiBase + groupRoute + CREATE, data, {...headers}).then(res => {
+        return axios.post(groupRoute + CREATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const updateGroup = (data) => {
-        return axios.post(_apiBase + groupRoute + UPDATE, data, {...headers}).then(res => {
+        return axios.post(groupRoute + UPDATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const deleteGroup = (data) => {
-        return axios.post(_apiBase + groupRoute + DELETE, data, {...headers}).then(res => {
+        return axios.post(groupRoute + DELETE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const createSubject = (data) => {
-        return axios.post(_apiBase + groupRoute + CREATE, data, {...headers}).then(res => {
+        return axios.post(subjectRoute + CREATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const updateSubject = (data) => {
-        return axios.post(_apiBase + groupRoute + UPDATE, data, {...headers}).then(res => {
+        return axios.post(subjectRoute + UPDATE, data, {...headers}).then(res => {
             return res.data
         })
     }
 
     const deleteSubject = (data) => {
-        return axios.post(_apiBase + groupRoute + DELETE, data, {...headers}).then(res => {
+        return axios.post(subjectRoute + DELETE, data, {...headers}).then(res => {
             return res.data
         })
     }

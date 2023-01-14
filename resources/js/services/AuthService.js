@@ -1,50 +1,37 @@
-import {_apiBase, headers, postRequest} from "./CONST";
+import {_apiBase, getArrayErrors, headers} from "./CONST";
 import axios from 'axios';
 
 export const useAuthService = () => {
 
     const register = (data, setError) => {
         return axios.post(_apiBase + 'register', data, {...headers}).then(res => {
-            setError([])
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('user', res.data.user)
-            document.location.href = "/";
+            saveRequest(res)
             return res.data
         }).catch(function (error) {
-            let errors = error.response.data.errors
-            let res = []
-            for (let key in errors) {
-                if (errors.hasOwnProperty(key)) {
-                    res.push(`${key}: ${errors[key]}`)
-                }
-            }
-            setError(res)
+            setError(getArrayErrors(error))
         })
     }
 
     const login = (data, setError) => {
         return axios.post(_apiBase + 'login', data, {...headers}).then(res => {
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('user', res.data.user)
-            document.location.href = "/";
+            saveRequest(res)
             return res.data
         }).catch(function (error) {
-            let errors = error.response.data.errors
             setError(error.response.data.message)
         })
     }
 
-
-    const getOptions = (input, setError) => {
-
-        return axios.get('http://127.0.0.1:8000/api/v1/groupList', {...headers})
+    const getOptions = () => {
+        return axios.get(_apiBase + 'groupList', {...headers})
             .then(function (response) {
-                let options = response.data.map(category => ({value: category.id, label: category.name}));
-
-                return options;
+                return response.data.map(category => ({value: category.id, label: category.name}));
             })
-            .catch(function (error) {
-            });
+    }
+
+    const saveRequest = (res) => {
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('user', res.data.user)
+        document.location.href = "/";
     }
 
     return {getOptions, register, login}
