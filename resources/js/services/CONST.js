@@ -51,6 +51,7 @@ export const GROUP_SUBJECT = 'subject/'
 
 export const GROUP_COURSE = 'course/'
 export const GROUP_CONTENT = 'content/'
+export const GROUP_SCHEDULE = 'schedule'
 export const GROUP_TEST = 'test/'
 export const GROUP_QUESTION = 'question/'
 export const GROUP_RESULT = 'result/'

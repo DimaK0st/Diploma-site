@@ -7,7 +7,6 @@ import {
     GROUP_RESULT,
     GROUP_TEST,
     headers,
-    postRequest
 } from "./CONST";
 import axios from 'axios';
 

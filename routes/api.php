@@ -73,8 +73,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
             Route::group(['prefix' => 'schedule'], function () {
                 Route::get('/data', [ScheduleController::class, 'getScheduleData'])->name('');
                 Route::get('/add_schedule_data', [ScheduleController::class, 'getAddScheduleData'])->name('');
-                Route::post('/add', [ScheduleController::class, 'addSchedule'])->name('');
-                Route::post('/edit', [ScheduleController::class, 'editSchedule'])->name('');
+                Route::post('/create', [ScheduleController::class, 'addSchedule'])->name('');
+                Route::post('/update', [ScheduleController::class, 'editSchedule'])->name('');
                 Route::post('/delete', [ScheduleController::class, 'deleteSchedule'])->name('');
                 Route::get('/', [ScheduleController::class, 'showSchedule'])->name('');
             });

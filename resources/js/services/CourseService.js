@@ -1,4 +1,4 @@
-import {_apiBase, CREATE, DELETE, GROUP_CONTENT, GROUP_COURSE, headers, postRequest, UPDATE} from "./CONST";
+import {_apiBase, CREATE, DELETE, GROUP_CONTENT, GROUP_COURSE, headers, UPDATE} from "./CONST";
 import axios from 'axios';
 
 export const useCourseService = (state, setState) => {
@@ -12,8 +12,6 @@ export const useCourseService = (state, setState) => {
         return axios.get(courseRoute + id, {...headers}).then(res => {
             varSetState({data: res.data, loaded: true})
             return res.data
-        }).catch(function (error) {
-            // let errors = error.response.data.errors
         })
     }
 
@@ -27,11 +25,10 @@ export const useCourseService = (state, setState) => {
         }).then(res => {
             varSetState({data: [...res.data], loaded: true})
             return res.data
-
         })
     }
 
-    function searchCourseUnAuth(my, search) {
+    function searchCourseUnAuth() {
         return axios.get(courseRoute + 'all', {
             params: {
                 my: 0,
@@ -41,10 +38,8 @@ export const useCourseService = (state, setState) => {
         }).then(res => {
             varSetState({data: [...res.data], loaded: true})
             return res.data
-
         })
     }
-
 
     const createCourse = (data) => {
         return axios.post(courseRoute + CREATE, data, {...headers}).then(res => {
@@ -82,7 +77,6 @@ export const useCourseService = (state, setState) => {
         })
 
     }
-
 
     return {
         getCourseById,

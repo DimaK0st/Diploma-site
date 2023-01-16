@@ -1,12 +1,11 @@
 import {
     _apiBase,
-    CREATE, DELETE,
+    CREATE, DELETE, UPDATE,
     GROUP_GROUP,
     GROUP_HEADMAN,
     GROUP_SUBJECT,
     GROUP_TEACHER,
     headers,
-    postRequest, UPDATE
 } from "./CONST";
 import axios from 'axios';
 
