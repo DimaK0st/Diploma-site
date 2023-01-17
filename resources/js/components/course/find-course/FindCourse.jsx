@@ -6,6 +6,7 @@ import './find-course.scss'
 import CreateCourse from "../create/CreateCourse";
 import Modal from "../../elements/modal/Modal";
 import {User} from "../../../services/User";
+import LittleCourseList from "../little-course-list/LittleCourseList";
 
 function FindCourse(props) {
     const {my} = props
@@ -67,22 +68,11 @@ function FindCourse(props) {
                     <Button onClick={() => setActive(true)}>Створити курс</Button> : null
             }
 
-            <div key={my}>
-                {search?.data?.length
-                    ? search?.data
-                        ?.map(({title, description, id, owner, subscribe}) =>
-                            <LittleCourse
-                                title={title}
-                                description={description}
-                                id={id}
-                                key={id}
-                                subscribe={subscribe}
-                                user={owner}
-                                active={activeSubscribe}
-                                setActive={setActiveSubscribe}
-                                courseService={courseService}
-                            />)
-                    : 'sdfasdfasdf'}
+            <div key={search?.data?.id}>
+                <LittleCourseList courseList={search?.data}
+                                  active={activeSubscribe}
+                                  setActive={setActiveSubscribe}
+                                  courseService={courseService}/>
             </div>
         </div>
     );
