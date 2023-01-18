@@ -23,8 +23,10 @@ function Questions(props) {
     const [showScore, setShowScore] = useState(false)
 
     const handleAnswerOptionClick = (correct) => {
+        let scoreCurrent = 0
         if (correct) {
-            setScore(score + 1)
+            scoreCurrent = score + 1
+            setScore((score) => score + 1)
         }
 
         const nextQuestion = currentQuestion + 1
@@ -34,7 +36,7 @@ function Questions(props) {
         } else {
             questionService.saveResult({
                 'test_id': testId,
-                result: Math.floor(score / questions.length * 100)
+                result: Math.floor(scoreCurrent / questions.length * 100)
             }).then(() => {
                 setTimeout(() => navigate('/'), 3000)
             })
