@@ -21,18 +21,6 @@ function CreateQuestion(props) {
     const [data, setData] = useState()
     const questionService = useQuestionService(data, setData)
 
-    const validationsSchema = yup.object().shape({
-        test_id: yup.string().required('Обов\'язково'),
-        title: yup.string().required('Обов\'язково'),
-        variants: yup.array().of(
-            yup.object().shape({
-                text: yup.string().required('Обов\'язково'),
-                correct: yup.boolean(),
-            })
-        )
-            .required('Обов\'язково'),
-    })
-
     const onSubmit = (value) => {
         questionService.createQuestion(value).then(setActive(false))
     }
@@ -42,7 +30,7 @@ function CreateQuestion(props) {
             validationSchema={validationsSchema}
             initialValues={sendData}
             onSubmit={(values) => {
-                onSubmit(values)
+                onSubmit(sendData)
             }}
             validateOnChange={false}
             validateOnBlur={false}
@@ -71,11 +59,9 @@ function CreateQuestion(props) {
                         defaultValue=""
                         name="radio-buttons-group"
                     >
-                        {sendData.variants.map((item, key) => {
-                            return (<>
-                                <Variant key={item.id} item={item} formik={formik} setSendData={setSendData}
-                                         sendData={sendData}/>
-                            </>)
+                        {sendData?.variants?.map((item, key) => {
+                            return (<Variant key={item.id} item={item} formik={formik} setSendData={setSendData}
+                                             sendData={sendData}/>)
                         })
                         }
                     </RadioGroup>
@@ -96,5 +82,17 @@ function CreateQuestion(props) {
         </Formik>
     )
 }
+
+const validationsSchema = yup.object().shape({
+    test_id: yup.string().required('Обов\'язково'),
+    title: yup.string().required('Обов\'язково'),
+    variants: yup.array().of(
+        yup.object().shape({
+            text: yup.string().required('Обов\'язково'),
+            correct: yup.boolean(),
+        })
+    )
+        .required('Обов\'язково'),
+})
 
 export default CreateQuestion;

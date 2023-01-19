@@ -35,7 +35,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
     Route::get('/course/all', [CourseController::class, 'searchCourse'])->name('');
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::group(['prefix' => 'course', 'middleware' => 'auth:sanctum'], function () {
+        Route::group(['prefix' => 'course'], function () {
             Route::post('/subscribe_course', [CourseController::class, 'subscribeCourse'])->name('');
             Route::get('/search', [CourseController::class, 'searchCourse'])->name('');
             Route::post('/create', [CourseController::class, 'create'])->name('');

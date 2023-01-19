@@ -19,7 +19,7 @@ export const useQuestionService = (state, setState) => {
     const resultRoute = testRoute + GROUP_RESULT
 
     const createQuestion = (data, setError) => {
-        return axios.post(GROUP_QUESTION + CREATE, data, {...headers}).then(res => {
+        return axios.post(questionRoute + CREATE, data, {...headers}).then(res => {
             setError([])
             return res.data
         })

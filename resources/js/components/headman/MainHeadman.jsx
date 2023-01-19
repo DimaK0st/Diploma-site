@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Modal from "../elements/modal/Modal";
 import './main-headman.scss'
 import CreateTeacher from "./teacher/create/CreateTeacher";
@@ -15,15 +15,15 @@ function MainHeadman(props) {
     const [data, setData] = useState()
     const headmanService = useHeadmanService(data, setData)
 
-    const [update, setUpdate] = useState()
+    const [update, setUpdate] = useState(null)
 
-    const updateComponent = () => {
+    const updateComponent = useCallback(()=> {
         setUpdate((update) => !update)
-    }
-
-    useEffect(() => {
-        headmanService.getAllData()
     }, [])
+    //
+    // useEffect(() => {
+    //     headmanService.getAllData()
+    // }, [])
 
     useEffect(() => {
         headmanService.getAllData()
