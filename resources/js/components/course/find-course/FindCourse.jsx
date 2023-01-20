@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Autocomplete, Button, TextField} from "@mui/material";
 import {useCourseService} from "../../../services/CourseService";
-import LittleCourse from "../little-course/LittleCourse";
 import './find-course.scss'
 import CreateCourse from "../create/CreateCourse";
 import Modal from "../../elements/modal/Modal";
@@ -54,7 +53,7 @@ function FindCourse(props) {
                 className={'find-search'}
                 name="teacher"
                 options={select ?? []}
-                sx={{width: 300}}
+                sx={{maxWidth: 300,width:'100%'}}
                 onChange={(a, b) => {
                     onChange(b?.title ?? b)
                 }}

@@ -12,10 +12,14 @@
 
     &-nav {
         display: flex;
+        flex-flow: wrap;
         justify-content: space-around;
         margin-top: 5px;
         margin-bottom: 10px;
 
+        button{
+            margin-bottom: 5px;
+        }
     }
 
     &-title {

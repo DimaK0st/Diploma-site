@@ -2,4 +2,8 @@
     width: 500px;
     display: flex;
     flex-direction: column;
+
+    @media(max-width: 700px){
+        width: 100%;
+    }
 }

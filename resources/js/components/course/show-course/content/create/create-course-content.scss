@@ -4,6 +4,10 @@
     width: 500px;
     max-width: 600px;
 
+    @media(max-width: 700px){
+        width: 100%;
+    }
+
     &-title {
         font-size: 20px;
         text-align: center;

@@ -6,4 +6,9 @@
         font-size: 30px;
         margin: auto auto 20px;
     }
+
+    &-table{
+        overflow-y: scroll;
+        width: 100%;
+    }
 }

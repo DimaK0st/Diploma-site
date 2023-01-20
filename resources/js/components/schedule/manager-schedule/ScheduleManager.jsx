@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Field, Form, Formik} from "formik";
-import {Autocomplete, Button, CircularProgress, TextField} from "@mui/material";
+import {Form, Formik} from "formik";
+import {Autocomplete, Button, TextField} from "@mui/material";
 import * as yup from "yup";
 import {useScheduleService} from "../../../services/ScheduleService";
 import './schedule-manager.scss'
@@ -99,7 +99,7 @@ function ScheduleManager(props) {
                         className={'auto-select'}
                         name="teacher"
                         options={data?.teachers ?? []}
-                        sx={{width: 300}}
+                        sx={{maxWidth: 300,width:'100%'}}
                         onChange={(a, b) => {
                             formik.setFieldValue('teacher', b?.id)
                             setDefaultData((value) => ({...value, 'teacher': b}))
@@ -117,7 +117,7 @@ function ScheduleManager(props) {
                         className={'auto-select'}
                         name="subject"
                         options={data?.subjects ?? []}
-                        sx={{width: 300}}
+                        sx={{maxWidth: 300,width:'100%'}}
                         onChange={(a, b) => {
                             formik.setFieldValue('subject', b?.id ?? '')
                             setDefaultData((value) => ({...value, 'subject': b}))
@@ -136,7 +136,7 @@ function ScheduleManager(props) {
                             className={'auto-select'}
                             name="form"
                             options={data.forms ?? []}
-                            sx={{width: 300}}
+                            sx={{maxWidth: 300,width:'100%'}}
                             onChange={(a, b) => {
                                 formik.setFieldValue('form', b?.id)
                                 setDefaultData((value) => ({...value, 'form': b}))
@@ -152,7 +152,7 @@ function ScheduleManager(props) {
                         className={'auto-select'}
                         name="evaluation"
                         options={data.evaluations ?? []}
-                        sx={{width: 300}}
+                        sx={{maxWidth: 300,width:'100%'}}
                         onChange={(a, b) => {
                             formik.setFieldValue('evaluation', b?.id)
                             setDefaultData((value) => ({...value, 'evaluation': b}))

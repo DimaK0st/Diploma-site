@@ -3,7 +3,6 @@ import {useScheduleService} from "../../services/ScheduleService";
 import ShowDay from "../../components/schedule/ShowDay";
 import Modal from "../../components/elements/modal/Modal";
 import ScheduleManager from "../../components/schedule/manager-schedule/ScheduleManager";
-import {root} from "postcss";
 import DeleteSchedule from "../../components/schedule/delete-schedule/DeleteSchedule";
 import {useNavigate, useParams} from "react-router-dom";
 import {Autocomplete, TextField} from "@mui/material";
@@ -43,8 +42,6 @@ function Schedule(props) {
             scheduleService.getSchedule(my ? 1 : 0, groupId)
     }, [active])
 
-    let res = []
-
     useEffect(() => {
         if (state.loaded) {
             setDays(state?.days_list?.map((value) => {
@@ -72,7 +69,7 @@ function Schedule(props) {
                 className={'auto-select'}
                 name="evaluation"
                 options={state?.groups ?? []}
-                sx={{width: 300}}
+                sx={{maxWidth: 300,width:'100%'}}
                 onChange={(a, b) => {
                     navigate('/schedule/' + b?.id)
                 }}
