@@ -33,8 +33,8 @@ export const getArrayErrors = (error) => {
     }
     return (res)
 }
-
-export const _apiBase = 'http://127.0.0.1:8000/api/v1/'
+// export const _apiBase = 'http://127.0.0.1:8000/api/v1/'
+export const _apiBase = document.location.protocol + '//'+ document.location.host +'/api/v1/'
 export const USER = 1
 export const ADMIN = 2
 export const TEACHER = 3
