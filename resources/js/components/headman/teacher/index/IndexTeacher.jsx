@@ -24,7 +24,7 @@ function IndexTeacher(props) {
             <td>{teacher?.surname}</td>
             <td>{teacher?.name}</td>
             <td>{teacher?.patronymic}</td>
-            <td>{teacher?.email ?? 'hui na'}</td>
+            <td>{teacher?.email ?? ''}</td>
             <td>
                 <IconButton aria-label="delete" onClick={() => setActiveUpdate(true)}>
                     <EditIcon/>

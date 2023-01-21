@@ -10,37 +10,39 @@ function ShowTeachers(props) {
     const [activeCreate, setActiveCreate] = useState()
 
     return (
-        <div>
+        <>
             <div className={'teachers'}>
                 <div className={'teachers-btn'}>
                     <Button onClick={() => setActiveCreate(true)} variant="contained">Додати вчителя</Button>
                 </div>
-                <Table>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Прізвище</th>
-                        <th>Ім'я</th>
-                        <th>По батькові</th>
-                        <th>Пошта</th>
-                        <th>Дія</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        teachers?.map((teacher) => {
-                            return <IndexTeacher updateComponent={updateComponent} teacher={teacher} key={teacher.id}/>
-                        })
-                    }
-                    </tbody>
-                </Table>
-
+                <div className={'table-mobile'}>
+                    <table border="1" style={{textAlign: "center", width: '100%'}}>
+                        <tbody>
+                        <tr>
+                            <th>#</th>
+                            <th>Прізвище</th>
+                            <th>Ім'я</th>
+                            <th>По батькові</th>
+                            <th>Пошта</th>
+                            <th>Дія</th>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        {
+                            teachers?.map((teacher) => {
+                                return <IndexTeacher updateComponent={updateComponent} teacher={teacher}
+                                                     key={teacher.id}/>
+                            })
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <Modal active={activeCreate} setActive={setActiveCreate}><CreateTeacher
-                setActive={setActiveCreate}/></Modal>
+                setActive={setActiveCreate} update={updateComponent}/></Modal>
 
-        </div>
+        </>
     );
 }
 

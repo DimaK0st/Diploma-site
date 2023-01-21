@@ -21,7 +21,7 @@ function ShowGroups(props) {
             </div>
 
             <Modal active={activeCreate} setActive={setActiveCreate}><CreateGroup
-                setActive={setActiveCreate}/></Modal>
+                setActive={setActiveCreate} update={updateComponent}/></Modal>
         </div>
     );
 }

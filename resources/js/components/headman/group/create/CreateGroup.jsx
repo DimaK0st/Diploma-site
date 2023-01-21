@@ -7,12 +7,12 @@ import {Button, TextField} from "@mui/material";
 
 function CreateGroup(props) {
 
-    const {active, setActive} = props
-    const [data, setData] = useState()
-    const headmanService = useHeadmanService(data, setData)
+    const {active, setActive, update} = props
+    const {data, createGroup} = useHeadmanService()
 
     const onSubmit = (data) => {
-        headmanService.createGroup(data).then(setActive(false))
+        console.log('hui', data)
+        createGroup(data).then(setActive(false)).then(update())
     }
 
     const validationsSchema = yup.object().shape({

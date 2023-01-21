@@ -9,40 +9,42 @@ function ShowSubjects(props) {
     const {subjects, updateComponent} = props
     const [activeCreate, setActiveCreate] = useState()
 
-    useEffect(()=>{
+    useEffect(() => {
         updateComponent()
-    },[activeCreate])
+    }, [activeCreate])
 
     return (
-        <div>
+        <>
             <div className={'teachers'}>
                 <div className={'teachers-btn'}>
-                        <Button onClick={() => setActiveCreate(true)} variant="contained">Додати предмет</Button>
+                    <Button onClick={() => setActiveCreate(true)} variant="contained">Додати предмет</Button>
                 </div>
-                <Table>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Предмет</th>
-                        <th>Дія</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        subjects?.map((subject) => {
-                            return <IndexSubject updateComponent={updateComponent} subject={subject} key={subject.id}/>
-                        })
-                    }
+                <div className={'table-mobile'}>
+                    <table border="1" style={{textAlign: "center", width: '100%'}}>
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Предмет</th>
+                            <th>Дія</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            subjects?.map((subject) => {
+                                return <IndexSubject updateComponent={updateComponent} subject={subject}
+                                                     key={subject.id}/>
+                            })
+                        }
 
-                    </tbody>
-                </Table>
-
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <Modal active={activeCreate} setActive={setActiveCreate}><CreateSubject
-                setActive={setActiveCreate}/></Modal>
+                setActive={setActiveCreate} update={updateComponent}/></Modal>
 
-        </div>
+        </>
     );
 }
 

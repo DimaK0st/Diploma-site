@@ -7,12 +7,11 @@ import './create-teacher.scss'
 
 function CreateTeacher(props) {
 
-    const {active, setActive} = props
-    const [data, setData] = useState()
-    const headmanService = useHeadmanService(data,setData)
+    const {active, setActive, update} = props
+    const {data, createTeacher} = useHeadmanService()
 
     const onSubmit = (data)=>{
-        headmanService.createTeacher(data).then(setActive(false))
+        createTeacher(data).then(setActive(false)).then(update())
     }
     const validationsSchema = yup.object().shape({
         surname: yup.string().required('Обов\'язково'),

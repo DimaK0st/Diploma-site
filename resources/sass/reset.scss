@@ -104,3 +104,11 @@ select {
     color: #fff;
     outline: 0;
 }
+
+.table-mobile{
+    overflow-x: auto;
+    width: 100%;
+    //-ms-overflow-style: none;
+    //
+    //&::-webkit-scrollbar { width: 0 !important;background: transparent; }
+}

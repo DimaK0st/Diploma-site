@@ -7,12 +7,11 @@ import {Button, TextField} from "@mui/material";
 
 function CreateSubject(props) {
 
-    const {active, setActive} = props
-    const [data, setData] = useState()
-    const headmanService = useHeadmanService(data, setData)
+    const {active, setActive, update} = props
+    const {data, createSubject} = useHeadmanService()
 
     const onSubmit = (data) => {
-        headmanService.createSubject(data).then(setActive(false))
+        createSubject(data).then(setActive(false)).then(update())
     }
 
     const validationsSchema = yup.object().shape({

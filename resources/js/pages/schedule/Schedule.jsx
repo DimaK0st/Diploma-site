@@ -6,6 +6,7 @@ import ScheduleManager from "../../components/schedule/manager-schedule/Schedule
 import DeleteSchedule from "../../components/schedule/delete-schedule/DeleteSchedule";
 import {useNavigate, useParams} from "react-router-dom";
 import {Autocomplete, TextField} from "@mui/material";
+import './schedule.scss'
 
 function Schedule(props) {
 
@@ -76,7 +77,6 @@ function Schedule(props) {
                 renderInput={(params) => <TextField {...params} label="Група"/>}
                 getOptionLabel={(option) => option.name || ""}
             />
-
 
             <div className={'day'}>
                 <table border="1" style={{textAlign: "center", width: '100%'}}>

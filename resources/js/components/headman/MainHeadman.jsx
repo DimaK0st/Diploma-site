@@ -20,10 +20,6 @@ function MainHeadman(props) {
     const updateComponent = useCallback(()=> {
         setUpdate((update) => !update)
     }, [])
-    //
-    // useEffect(() => {
-    //     headmanService.getAllData()
-    // }, [])
 
     useEffect(() => {
         headmanService.getAllData()
