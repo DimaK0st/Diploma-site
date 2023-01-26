@@ -27,6 +27,7 @@
         "moment-timezone": "^0.5.40",
         "react-bootstrap": "^2.7.0",
         "react-bootstrap-icons": "^1.10.2",
+        "react-helmet": "^6.1.0",
         "react-router-dom": "^6.4.5",
         "react-select": "^5.7.0",
         "yup": "^0.32.11"

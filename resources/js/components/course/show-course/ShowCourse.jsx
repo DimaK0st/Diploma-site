@@ -11,8 +11,9 @@ import DeleteCourse from "../delete/DeleteCourse";
 import {User} from "../../../services/User";
 import CreateTest from "../../../pages/test/create/CreateTest";
 import TestCourse from "../../../pages/test/TestCourse";
+import {Helmet} from "react-helmet";
 
-function ShowCourse(props) {
+function ShowCourse() {
     const {courseId} = useParams()
 
     const [data, setData] = useState({
@@ -42,6 +43,11 @@ function ShowCourse(props) {
 
     return (
         <div className={'course'}>
+            <Helmet>
+                <title>{data?.data?.title} - EducationalSite</title>
+                <meta name="description" content={data?.data?.description}/>
+            </Helmet>
+
             <Modal active={activeCreate} setActive={setActiveCreate}>
                 <CreateCourseContent courseId={courseId} setActive={setActiveCreate}/></Modal>
             <Modal active={activeUpdateCourse} setActive={setActiveUpdateCourse}>
