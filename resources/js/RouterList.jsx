@@ -6,7 +6,6 @@ import Footer from "./components/footer/Footer";
 import Register from "./pages/auth/register/Register";
 import Login from "./pages/auth/login/Login";
 import Schedule from "./pages/schedule/Schedule";
-import SearchTest from "./pages/test/SearchTest";
 import FindCourse from "./components/course/find-course/FindCourse";
 import ShowCourse from "./components/course/show-course/ShowCourse";
 import Questions from "./components/questions/Questions";
@@ -19,7 +18,7 @@ import Main from "./pages/main/Main";
 import MainHeadman from "./components/headman/MainHeadman";
 import ResultsTest from "./pages/test/results/ResultsTest";
 
-function RouterList(props){
+function RouterList(){
     return <Router >
         <Header/>
         <Routes>
@@ -31,7 +30,7 @@ function RouterList(props){
 
             <Route path="/course" element={<RequireAuth><FindCourse my={false}/></RequireAuth>}/>
             <Route path="/course/my" element={<RequireAuth><FindCourse my={true}/></RequireAuth>}/>
-            <Route path="/course/:courseId" element={<RequireAuth><ShowCourse/></RequireAuth>}/>
+            <Route path="/course/:courseId" element={<ShowCourse/>}/>
 
             <Route path="/test/create" element={<RequireAuth><CreateTest/></RequireAuth>}/>
             <Route path="/test/update" element={<RequireAuth><UpdateTest/></RequireAuth>}/>

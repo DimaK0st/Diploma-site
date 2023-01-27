@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconButton, Link} from "@mui/material";
+import {IconButton} from "@mui/material";
 import './content-course.scss'
 import moment from "moment-timezone";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,7 +20,7 @@ function ContentCourse(props) {
             <span className={'content-description'}>{content?.description}</span>
             <div className={'content-bottom'}>
                 {
-                    user.isAdmin() || user.id === ownerId ?
+                    user.isAdmin() || user.id === (ownerId ?? false) ?
                         <IconButton aria-label="delete" onClick={() => deleteCourseContent()}>
                             <DeleteIcon/>
                         </IconButton> : null

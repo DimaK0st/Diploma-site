@@ -79,7 +79,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
                 Route::get('/', [ScheduleController::class, 'showSchedule'])->name('');
             });
 
-            Route::get('/{id}', [CourseController::class, 'index'])->name('');
+            Route::get('/{id}', [CourseController::class, 'index'])->name('')->withoutMiddleware(['auth:sanctum']);
         });
 
         Route::group(['prefix' => 'headman', 'middleware' => 'auth:sanctum'], function () {

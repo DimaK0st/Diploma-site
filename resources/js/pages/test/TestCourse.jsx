@@ -14,7 +14,7 @@ import {Link, useNavigate} from "react-router-dom";
 
 function TestCourse(props) {
 
-    const {test, setActive} = props
+    const {test, setActive, ownerId} = props
     const user = new User()
     const [activeUpdate, setActiveUpdate] = useState()
     const [data, setData] = useState()
