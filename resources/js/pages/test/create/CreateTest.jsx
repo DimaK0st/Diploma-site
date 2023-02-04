@@ -16,6 +16,7 @@ function CreateTest(props) {
     const validationsSchema = yup.object().shape({
         title: yup.string().required('Обов\'язково'),
         description: yup.string().required('Обов\'язково'),
+        count: yup.number().required('Обов\'язково'),
     })
 
     const onSubmit=(value)=>{
@@ -30,7 +31,7 @@ function CreateTest(props) {
                 title: "",
                 description: "",
                 'course-id':courseId,
-                'count':0,
+                'count':null,
             }}
             onSubmit={(values) => {
                 onSubmit(values)

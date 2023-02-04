@@ -13,7 +13,7 @@ import CreateTest from "../../../pages/test/create/CreateTest";
 import TestCourse from "../../../pages/test/TestCourse";
 import {Helmet} from "react-helmet";
 
-function ShowCourse() {
+function ShowCourse( ) {
     const {courseId} = useParams()
 
     const [data, setData] = useState({
@@ -44,7 +44,7 @@ function ShowCourse() {
     return (
         <div className={'course'}>
             <Helmet>
-                <title>{data?.data?.title} - EducationalSite</title>
+                <title>{`${data?.data?.title} - EducationalSite`}</title>
                 <meta name="description" content={data?.data?.description}/>
             </Helmet>
 

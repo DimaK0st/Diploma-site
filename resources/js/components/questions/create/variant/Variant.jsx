@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {FormControlLabel, IconButton, Paper, Radio, TextField} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -40,6 +40,17 @@ function Variant(props) {
         }))
     }
 
+    const onHandleClick = useCallback((event) => {
+        let varian = variantHandler(event)
+
+        setSendData((sendData) => ({
+            ...sendData,
+            ...varian
+        }))
+
+        formik.setFieldValue('variants', [...varian.variants])
+    }, [])
+
     return (
         <Paper
             elevation={0}
@@ -56,15 +67,7 @@ function Variant(props) {
                 label="Назва питання"
                 value={item?.text}
                 name={'title'}
-                onChange={(event) => {
-                    let varian = variantHandler(event)
-
-                    setSendData((sendData) => ({
-                        ...sendData,
-                        ...varian
-                    }))
-                    formik.setFieldValue('variants', [...varian.variants])
-                }}
+                onChange={onHandleClick}
                 placeholder="Placeholder"
                 error={formik.errors['title']}
                 multiline
