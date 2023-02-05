@@ -119,6 +119,10 @@ function ShowDay(props) {
                     <th className="table-edit">Дія</th>
                 </> : ''
             }
+
+            {root && (
+                <></>
+            )}
         </tr>
 
         <td rowSpan="15">

@@ -1,3 +1,5 @@
+import {useState, useMemo} from 'react'
+
 import {
     _apiBase,
     CREATE, DELETE, UPDATE,
@@ -10,8 +12,7 @@ import {
 import axios from 'axios';
 
 export const useHeadmanService = (state, setState) => {
-    let varState = state
-    let varSetState = setState
+    const [data, setData] = useState(null)
 
     const teacherRoute = _apiBase + GROUP_HEADMAN + GROUP_TEACHER
     const groupRoute = _apiBase + GROUP_HEADMAN + GROUP_GROUP
@@ -73,12 +74,13 @@ export const useHeadmanService = (state, setState) => {
 
     const getAllData = (data) => {
         return axios.get(_apiBase + GROUP_HEADMAN + 'get_all_data', {...headers}).then(res => {
-            varSetState(res.data)
+            setData(res.data)
             return res.data
         })
     }
 
-    return {
+    return useMemo(() => ({
+        data,
         createTeacher,
         createGroup,
         updateTeacher,
@@ -89,5 +91,17 @@ export const useHeadmanService = (state, setState) => {
         updateSubject,
         deleteSubject,
         getAllData,
-    }
+    }), [data])
+    // return useMemo(() => [data, {
+    //     createTeacher,
+    //     createGroup,
+    //     updateTeacher,
+    //     updateGroup,
+    //     deleteTeacher,
+    //     deleteGroup,
+    //     createSubject,
+    //     updateSubject,
+    //     deleteSubject,
+    //     getAllData
+    // }], [data])
 }

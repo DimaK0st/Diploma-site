@@ -12,7 +12,9 @@ function MainHeadman(props) {
     const [activeCreateTeacher, setActiveCreateTeacher] = useState()
     const [activeCreateSubject, setActiveCreateSubject] = useState()
 
-    const [data, setData] = useState()
+    const [, setData] = useState()
+    // const [data, actions] = useHeadmanService()
+    const {data, getAllData} = useHeadmanService()
     const headmanService = useHeadmanService(data, setData)
 
     const [update, setUpdate] = useState(null)
@@ -22,7 +24,7 @@ function MainHeadman(props) {
     }, [])
 
     useEffect(() => {
-        headmanService.getAllData()
+        getAllData();
     }, [update])
 
     return (
