@@ -11,7 +11,7 @@ import {
 } from "./CONST";
 import axios from 'axios';
 
-export const useHeadmanService = (state, setState) => {
+export const useHeadmanService = () => {
     const [data, setData] = useState(null)
 
     const teacherRoute = _apiBase + GROUP_HEADMAN + GROUP_TEACHER
@@ -72,7 +72,7 @@ export const useHeadmanService = (state, setState) => {
         })
     }
 
-    const getAllData = (data) => {
+    const getAllData = () => {
         return axios.get(_apiBase + GROUP_HEADMAN + 'get_all_data', {...headers}).then(res => {
             setData(res.data)
             return res.data

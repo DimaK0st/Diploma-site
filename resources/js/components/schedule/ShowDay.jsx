@@ -1,12 +1,8 @@
-import React, {useState} from 'react';
-import Modal from "../elements/modal/Modal";
+import React from 'react';
+
 import {
-    ArrowRight,
-    DashSquare,
-    DashSquareDotted,
-    DashSquareFill,
     PencilSquare,
-    Plus, PlusSquare,
+    PlusSquare,
     XSquare
 } from "react-bootstrap-icons";
 
