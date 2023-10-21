@@ -1,4 +1,4 @@
-import {_apiBase, CREATE, DELETE, GROUP_COURSE, GROUP_TEST, headers, UPDATE} from "./CONST";
+import {_apiBase, CREATE, DELETE, GENERATE, GROUP_COURSE, GROUP_TEST, headers, UPDATE} from "./CONST";
 import axios from 'axios';
 
 export const useTestService = (state, setState) => {
@@ -9,6 +9,11 @@ export const useTestService = (state, setState) => {
 
     const createTest = (data) => {
         return axios.post(testRoute + CREATE, data, {...headers}).then(res => {
+            return res.data
+        })
+    }
+    const generateTest = (data) => {
+        return axios.post(testRoute + GENERATE, data, {...headers}).then(res => {
             return res.data
         })
     }
@@ -39,5 +44,5 @@ export const useTestService = (state, setState) => {
         })
     }
 
-    return {createTest, updateTest, deleteTest, getTestById, getResultByTestId}
+    return {createTest, generateTest, updateTest, deleteTest, getTestById, getResultByTestId}
 }

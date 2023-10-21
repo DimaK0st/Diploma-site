@@ -7,10 +7,18 @@ import './crate-test.scss'
 import {useTestService} from "../../../services/TestService";
 
 function CreateTest(props) {
+    const AiGenerate = 1;
+    const ManualCreate = 2;
+    const buttonActions = {
+        AiGenerate: testService.generateTest,
+        ManualCreate: testService.createTest,
+        // Додайте інші кнопки та відповідні функції тут
+    };
 
-    const {setActive,courseId}=props
-    const [data, setData]= useState([])
+    const {setActive, courseId} = props
+    const [data, setData] = useState([])
     const testService = useTestService(data, setData)
+    const [lastClickedButton, setLastClickedButton] = useState(null);
 
 
     const validationsSchema = yup.object().shape({
@@ -19,8 +27,18 @@ function CreateTest(props) {
         count: yup.number().required('Обов\'язково'),
     })
 
-    const onSubmit=(value)=>{
-        testService.createTest(value).then(()=>{setActive(false)})
+    const onSubmit = (value) => {
+        if (lastClickedButton && buttonActions[lastClickedButton]) {
+            // Викличте відповідну функцію на основі останньої натиснутої кнопки
+            buttonActions[lastClickedButton](values)
+                .then(() => {
+                    setActive(false);
+                })
+                .catch((error) => {
+                    // Обработка ошибок при вызове функции
+                    console.error("Ошибка:", error);
+                });
+        }
     }
 
     return (
@@ -30,10 +48,10 @@ function CreateTest(props) {
             initialValues={{
                 title: "",
                 description: "",
-                'course-id':courseId,
-                'count':null,
+                'course-id': courseId,
+                'count': null,
             }}
-            onSubmit={(values) => {
+            onSubmit={(values, data) => {
                 onSubmit(values)
             }}
             validateOnChange={false}
@@ -71,7 +89,7 @@ function CreateTest(props) {
 
                     <TextField
                         type="number"
-                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                        inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
                         id="outlined-textarea"
                         className={'create-test-input'}
                         label="Кількість питань"
@@ -84,8 +102,12 @@ function CreateTest(props) {
                     />
 
                     <div className={'create-test-submit'}>
-                        <Button className={'create-test-submit-btn'} type={"submit"}
-                                variant="contained">Додати</Button>
+                        <button className={'create-test-submit-btn'} type="submit"
+                                onClick={() => setLastClickedButton(AiGenerate)}>Згенерувати ШІ
+                        </button>
+                        <button className={'create-test-submit-btn'} type="submit"
+                                onClick={() => setLastClickedButton(ManualCreate)}>Створити
+                        </button>
                     </div>
                 </Form>
             )}
