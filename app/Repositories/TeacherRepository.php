@@ -9,10 +9,8 @@ use App\Models\Teacher;
 
 class TeacherRepository
 {
-    public function create(CreateTeacherRequest $request)
+    public function create(CreateTeacherRequest $request, Teacher $teacher)
     {
-        $teacher = new Teacher();
-
         $teacher->surname = $request->getSurname();
         $teacher->name = $request->getName();
         $teacher->patronymic = $request->getPatronymic();
@@ -37,6 +35,7 @@ class TeacherRepository
 
     public function delete(DeleteTeacherRequest $request)
     {
-        return Teacher::query()->where('id', '=', $request->getId())->delete();
+        $teacher = Teacher::findOrFail($request->getId());
+        $teacher->delete();
     }
 }

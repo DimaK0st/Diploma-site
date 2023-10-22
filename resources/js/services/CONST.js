@@ -41,6 +41,7 @@ export const TEACHER = 3
 export const HEADMEN = 4
 
 export const CREATE = 'create'
+export const GENERATE = 'generate'
 export const UPDATE = 'update'
 export const DELETE = 'delete'
 

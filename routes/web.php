@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Ai\AiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/postRequest', [AiController::class, 'postRequest']);
 
 Route::view('{path}', 'welcome')->where('path', '([A-z\d\-\/_.]+)?');
 
@@ -25,3 +27,4 @@ Route::view('{path}', 'welcome')->where('path', '([A-z\d\-\/_.]+)?');
 //Auth::routes();
 //
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
