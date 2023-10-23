@@ -28,13 +28,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
+//Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
+Route::group(['prefix' => 'v1'], function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/groupList', [Controller::class, 'getGroupList']);
     Route::get('/course/all', [CourseController::class, 'searchCourse'])->name('');
 
-    Route::group(['middleware' => 'auth:sanctum'], function () {
+//    Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::group([], function () {
         Route::group(['prefix' => 'course'], function () {
             Route::post('/subscribe_course', [CourseController::class, 'subscribeCourse'])->name('');
             Route::get('/search', [CourseController::class, 'searchCourse'])->name('');
@@ -52,6 +54,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['cors']], function () {
 
             Route::group(['prefix' => 'test'], function () {
                 Route::post('/create', [TestController::class, 'create'])->name('');
+                Route::post('/generate', [TestController::class, 'generateWithAi'])->name('');
                 Route::post('/update', [TestController::class, 'update'])->name('');
                 Route::post('/delete', [TestController::class, 'delete'])->name('');
                 Route::get('/results/{id}', [TestController::class, 'results'])->name('');

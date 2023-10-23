@@ -2,6 +2,8 @@
 
 namespace App\Repositories\test;
 
+use App\Http\Dtos\CreateTestDTO;
+use App\Http\Dtos\GeneratedAiQuestionsDTO;
 use App\Http\Requests\Test\CreateTestRequest;
 use App\Http\Requests\Test\DeleteTestRequest;
 use App\Http\Requests\Test\UpdateTestRequest;
@@ -9,14 +11,14 @@ use App\Models\Test;
 
 class TestRepository
 {
-    public function create(CreateTestRequest $request)
+    public function create(string $title, string $description, int $courseId, int $count)
     {
         $test = new Test();
 
-        $test->title = $request->getTitle();
-        $test->description = $request->getDescription();
-        $test->course_id = $request->getCourseId();
-        $test->count = $request->getCount();
+        $test->title = $title;
+        $test->description = $description;
+        $test->course_id = $courseId;
+        $test->count = $count;
 
         $test->save();
 

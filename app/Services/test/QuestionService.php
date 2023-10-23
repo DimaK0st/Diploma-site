@@ -2,9 +2,11 @@
 
 namespace App\Services\test;
 
+use App\Http\Dtos\QuestionDTO;
 use App\Http\Requests\Question\CreateQuestionRequest;
 use App\Http\Requests\Question\UpdateQuestionRequest;
 use App\Http\Requests\Test\DeleteTestRequest;
+use App\Models\Question;
 use App\Models\Test;
 use App\Repositories\test\QuestionRepository;
 
@@ -16,8 +18,20 @@ class QuestionService
 
     public function create(CreateQuestionRequest $request)
     {
-        $question = $this->questionRepository->create($request);
+        $question = $this->questionRepository->create($request->getTestId(), $request->getTitle());
         $this->variantService->create($request->getVariants(), $question->id);
+
+        return $question;
+    }
+
+    public function createFromAi(int $testId, QuestionDTO $questionDTO)
+    {
+        $question = $this->questionRepository->create($testId, $questionDTO->question);
+
+//        $question = new Question();
+//        $question->test_id = $testId;
+
+        $this->variantService->createFromAi($questionDTO->options, $question->id);
 
         return $question;
     }
@@ -32,7 +46,7 @@ class QuestionService
 
     public function delete(DeleteTestRequest $request)
     {
-        return $this->questionRepository->delete($request);
+        return $this->questionRepository->delete($request->getId());
     }
 
     public function getByTestId(Test $test)

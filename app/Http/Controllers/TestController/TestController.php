@@ -19,6 +19,11 @@ class TestController extends BaseController
         return $this->testService->create($request);
     }
 
+    public function generateWithAi(CreateTestRequest $request)
+    {
+        return $this->testService->generateWithAi($request);
+    }
+
     public function update(UpdateTestRequest $request)
     {
         return $this->testService->update($request);

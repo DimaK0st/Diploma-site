@@ -7,19 +7,18 @@ import './crate-test.scss'
 import {useTestService} from "../../../services/TestService";
 
 function CreateTest(props) {
-    const AiGenerate = 1;
-    const ManualCreate = 2;
-    const buttonActions = {
-        AiGenerate: testService.generateTest,
-        ManualCreate: testService.createTest,
-        // Додайте інші кнопки та відповідні функції тут
-    };
-
     const {setActive, courseId} = props
     const [data, setData] = useState([])
     const testService = useTestService(data, setData)
     const [lastClickedButton, setLastClickedButton] = useState(null);
 
+    const AiGenerate = 1;
+    const ManualCreate = 2;
+    const buttonActions = {
+        [AiGenerate]: testService.generateTest,
+        [ManualCreate]: testService.createTest,
+        // Додайте інші кнопки та відповідні функції тут
+    };
 
     const validationsSchema = yup.object().shape({
         title: yup.string().required('Обов\'язково'),
@@ -30,12 +29,11 @@ function CreateTest(props) {
     const onSubmit = (value) => {
         if (lastClickedButton && buttonActions[lastClickedButton]) {
             // Викличте відповідну функцію на основі останньої натиснутої кнопки
-            buttonActions[lastClickedButton](values)
+            buttonActions[lastClickedButton](value)
                 .then(() => {
                     setActive(false);
                 })
                 .catch((error) => {
-                    // Обработка ошибок при вызове функции
                     console.error("Ошибка:", error);
                 });
         }

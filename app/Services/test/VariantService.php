@@ -17,6 +17,13 @@ class VariantService
         }
     }
 
+    public function createFromAi(array $variants, $id)
+    {
+        foreach ($variants as $variant) {
+            $this->variantRepository->createFromAi($variant, $id);
+        }
+    }
+
     public function update(array $variants)
     {
         foreach ($variants as $variant) {

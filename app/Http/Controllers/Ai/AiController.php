@@ -9,7 +9,7 @@ class AiController extends Controller
 {
     public function postRequest()
     {
-        GetDataFromAi::dispatch('test', 1);
+        GetDataFromAi::dispatch('test', 'test', 1);
     }
 
 }

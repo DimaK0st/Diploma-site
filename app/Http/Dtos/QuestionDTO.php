@@ -12,6 +12,11 @@ class QuestionDTO {
             $data = json_decode($data, true);
         }
         $this->fill($data);
+
+        return [
+            'question' => $this->question,
+            'options' => $this->options
+        ];
     }
 
     private function fill(array $data)
