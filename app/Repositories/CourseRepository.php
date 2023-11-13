@@ -75,6 +75,7 @@ class CourseRepository
 
     public function subscribeCourse(SubscribeCourseRequest $request)
     {
+        dd(Auth::user());
         if($request->getSubscribe()){
             return Auth::user()->courses()->detach(Course::find($request->getId()));
         }else{

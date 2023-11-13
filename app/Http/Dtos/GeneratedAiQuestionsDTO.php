@@ -3,7 +3,7 @@
 namespace App\Http\Dtos;
 
 class GeneratedAiQuestionsDTO {
-    public array $questions = []; // Массив объектов QuestionDTO
+    public array $questions = []; // Масив об'єктів QuestionDTO
 
     public function __construct(array|string $data)
     {

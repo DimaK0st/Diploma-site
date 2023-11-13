@@ -28,9 +28,6 @@ class QuestionService
     {
         $question = $this->questionRepository->create($testId, $questionDTO->question);
 
-//        $question = new Question();
-//        $question->test_id = $testId;
-
         $this->variantService->createFromAi($questionDTO->options, $question->id);
 
         return $question;
